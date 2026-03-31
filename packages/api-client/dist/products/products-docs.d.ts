@@ -73,9 +73,6 @@ export declare const productsApiDocs: {
                     slug: {
                         type: string;
                     };
-                    imageUrl: {
-                        type: string;
-                    };
                 };
                 required: string[];
             };
@@ -100,9 +97,6 @@ export declare const productsApiDocs: {
                     description: {
                         type: string;
                         nullable: boolean;
-                    };
-                    imageUrl: {
-                        type: string;
                     };
                     unit: {
                         type: string;
@@ -381,7 +375,7 @@ export declare const productsApiDocs: {
                 requestBody: {
                     required: boolean;
                     content: {
-                        "multipart/form-data": {
+                        "application/json": {
                             schema: {
                                 type: string;
                                 required: string[];
@@ -577,10 +571,6 @@ export declare const productsApiDocs: {
                                     description: {
                                         type: string;
                                     };
-                                    image: {
-                                        type: string;
-                                        format: string;
-                                    };
                                     unit: {
                                         type: string;
                                         enum: string[];
@@ -741,7 +731,7 @@ export declare const productsApiDocs: {
                 requestBody: {
                     required: boolean;
                     content: {
-                        "multipart/form-data": {
+                        "application/json": {
                             schema: {
                                 type: string;
                                 required: string[];
@@ -755,10 +745,6 @@ export declare const productsApiDocs: {
                                     };
                                     slug: {
                                         type: string;
-                                    };
-                                    image: {
-                                        type: string;
-                                        format: string;
                                     };
                                 };
                             };

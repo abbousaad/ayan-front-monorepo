@@ -5,7 +5,6 @@ export type Store = {
     name: string;
     category: StoreCategory;
     slug: string;
-    imageUrl: string;
 };
 export type StoresResponse = {
     data: Store[];

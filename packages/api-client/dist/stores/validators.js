@@ -9,7 +9,6 @@ const isStore = (value) => {
     return (typeof value.id === 'string' &&
         typeof value.name === 'string' &&
         typeof value.slug === 'string' &&
-        typeof value.imageUrl === 'string' &&
         isStoreCategory(value.category));
 };
 export const parseStoresResponse = (value) => {

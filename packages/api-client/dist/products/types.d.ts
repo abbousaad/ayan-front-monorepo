@@ -7,7 +7,6 @@ export type Product = {
     price: number;
     stock: number;
     description: string | null;
-    imageUrl: string;
     unit: ProductUnit;
 };
 export type ProductsQuery = {

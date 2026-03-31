@@ -1,14 +1,12 @@
 # Frontend Monorepo
 
-pnpm + Turborepo monorepo with a Vite React web app, an Expo mobile app, and shared TypeScript packages.
+pnpm + Turborepo monorepo with a Vite React web app, an Expo mobile app, and a shared TypeScript package.
 
 ## Apps and Packages
 
 - `apps/web` — Vite + React + Tailwind + React Router + React Hook Form
 - `apps/mobile` — Expo mobile app
 - `packages/shared` — shared types, demo data, and pure utilities
-- `packages/api-client` — API client for products and stores
-- `packages/cart` — cart state management (reducer, selectors, types)
 
 ## Requirements
 
@@ -53,8 +51,6 @@ pnpm build
 
 This builds:
 - `@acme/shared`
-- `@acme/api-client`
-- `@acme/cart`
 - `web`
 - `mobile` (native iOS export flow)
 
@@ -63,16 +59,6 @@ This builds:
 ```bash
 pnpm lint
 ```
-
-## Cart Feature
-
-The cart supports adding products from multiple stores. State is managed via a reducer in `packages/cart` and persisted to localStorage.
-
-**Key files:**
-- `packages/cart/src/cart-reducer.ts` — add, remove, increment, decrement, clear
-- `packages/cart/src/cart-selectors.ts` — count, subtotal, line total, item lookup
-- `apps/web/src/cart/cart-provider.tsx` — React context provider
-- `apps/web/src/components/cart/` — sidebar, button, line item, quantity control
 
 ## Notes
 

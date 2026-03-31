@@ -11,7 +11,6 @@ const isProduct = (value) => {
         typeof value.name === 'string' &&
         typeof value.price === 'number' &&
         typeof value.stock === 'number' &&
-        typeof value.imageUrl === 'string' &&
         (value.description === null || typeof value.description === 'string' || value.description === undefined) &&
         isProductUnit(value.unit));
 };

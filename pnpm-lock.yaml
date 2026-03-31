@@ -57,9 +57,6 @@ importers:
       '@acme/api-client':
         specifier: workspace:*
         version: link:../../packages/api-client
-      '@acme/cart':
-        specifier: workspace:*
-        version: link:../../packages/cart
       '@acme/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -99,8 +96,6 @@ importers:
         version: 7.3.1(@types/node@25.5.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1)(yaml@2.8.3)
 
   packages/api-client: {}
-
-  packages/cart: {}
 
   packages/shared: {}
 
