@@ -9,6 +9,7 @@
     "test": "node --eval \"console.log('No tests for web yet')\""
   },
   "dependencies": {
+    "@acme/cart": "workspace:*",
     "@acme/api-client": "workspace:*",
     "@acme/shared": "workspace:*",
     "react": "^19.1.1",

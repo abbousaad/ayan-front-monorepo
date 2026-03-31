@@ -10,6 +10,14 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@acme/api-client": ["packages/api-client/src/index.ts"],
+      "@acme/api-client/*": ["packages/api-client/src/*"],
+      "@acme/cart": ["packages/cart/src/index.ts"],
+      "@acme/cart/*": ["packages/cart/src/*"],
+      "@acme/shared": ["packages/shared/src/index.ts"],
+      "@acme/shared/*": ["packages/shared/src/*"]
+    }
   }
 }
