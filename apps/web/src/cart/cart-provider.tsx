@@ -6,23 +6,20 @@ import {
   decrementItem,
   getCartCount,
   getCartItemQuantity,
-  getCartStoreConflict,
-  getCartStoreId,
   getCartSubtotal,
   incrementItem,
   isCartEmpty,
   removeItem,
   setItemQuantity,
   type CartItemInput,
-  type CartState,
-  type CartStoreConflict
+  type CartState
 } from '@acme/cart';
 import { createContext, type ReactNode, useEffect, useMemo, useReducer, useState } from 'react';
 
 import { loadCartState, saveCartState } from './cart-storage-web';
 
 type CartContextValue = {
-  addCartItem: (item: CartItemInput) => { ok: true } | { conflict: CartStoreConflict; ok: false };
+  addCartItem: (item: CartItemInput) => void;
   cartCount: number;
   clearCartItems: () => void;
   closeCart: () => void;
@@ -36,7 +33,6 @@ type CartContextValue = {
   removeCartItem: (productId: string) => void;
   setCartItemQuantity: (productId: string, quantity: number) => void;
   state: CartState;
-  storeId: string | null;
   subtotal: number;
   getItemQuantity: (productId: string) => number;
 };
@@ -73,12 +69,6 @@ export function CartProvider({ children }: CartProviderProps) {
 
     return {
       addCartItem: (item) => {
-        const conflict = getCartStoreConflict(state, item.storeId);
-
-        if (conflict) {
-          return { conflict, ok: false };
-        }
-
         dispatch({
           type: 'add-item',
           payload: {
@@ -86,8 +76,6 @@ export function CartProvider({ children }: CartProviderProps) {
             ...createMeta()
           }
         });
-
-        return { ok: true };
       },
       cartCount: getCartCount(state),
       clearCartItems: () => {
@@ -144,7 +132,6 @@ export function CartProvider({ children }: CartProviderProps) {
         });
       },
       state,
-      storeId: getCartStoreId(state),
       subtotal: getCartSubtotal(state),
       toggleCart: () => {
         setIsOpen((currentValue) => !currentValue);

@@ -19,10 +19,10 @@ const getProductDescription = (description: Product['description']) =>
   description ?? 'A reliable everyday staple with clean ingredients and easy prep.';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
-  const { addCartItem, clearCartItems, openCart } = useCart();
+  const { addCartItem, openCart } = useCart();
 
   const handleAddToCart = () => {
-    const result = addCartItem({
+    addCartItem({
       imageUrl: product.imageUrl,
       name: product.name,
       price: product.price,
@@ -31,25 +31,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       storeId: product.storeId,
       unit: product.unit
     });
-
-    if (!result.ok) {
-      const shouldReplaceCart = window.confirm('Your cart already contains items from another store. Clear it and add this item instead?');
-
-      if (!shouldReplaceCart) {
-        return;
-      }
-
-      clearCartItems();
-      addCartItem({
-        imageUrl: product.imageUrl,
-        name: product.name,
-        price: product.price,
-        productId: product.id,
-        quantity: 1,
-        storeId: product.storeId,
-        unit: product.unit
-      });
-    }
 
     openCart();
   };

@@ -3,12 +3,17 @@
 > expo export --platform ios
 
 Starting Metro Bundler
-iOS Bundled 1315ms apps/mobile/index.js (587 modules)
+iOS apps/mobile/index.js ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.9% (635/635)
+iOS Bundled 3560ms apps/mobile/index.js (635 modules)
+
+› Assets (2):
+../../node_modules/.pnpm/@expo+vector-icons@15.1.1_expo-font@14.0.11_expo@54.0.33_@babel+core@7.29.0_react-nativ_1b0bd741822583821bef7332aee848ea/node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/Ionicons.ttf (390 kB)
+assets/ayan.png (1.39 MB)
 
 › ios bundles (1):
-_expo/static/js/ios/index-c350b83869ede1f5ec1ff09d742ee5ed.hbc (1.75 MB)
+_expo/static/js/ios/index-7776960b30519923352e371052cfb7c9.hbc (1.86 MB)
 
 › Files (1):
-metadata.json (142 B)
+metadata.json (267 B)
 
 Exported: dist

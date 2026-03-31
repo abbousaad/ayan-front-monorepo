@@ -21,11 +21,6 @@ export type CartMutationMeta = {
   updatedAt?: string | null;
 };
 
-export type CartStoreConflict = {
-  incomingStoreId: string;
-  storeId: string;
-};
-
 export type CartAction =
   | {
       type: 'hydrate-cart';

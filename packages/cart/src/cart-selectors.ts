@@ -12,10 +12,6 @@ export function getCartLineTotal(item: CartItem): number {
   return item.price * item.quantity;
 }
 
-export function getCartStoreId(state: CartState): string | null {
-  return state.items[0]?.storeId ?? null;
-}
-
 export function getCartItem(state: CartState, productId: string): CartItem | null {
   return state.items.find((item) => item.productId === productId) ?? null;
 }

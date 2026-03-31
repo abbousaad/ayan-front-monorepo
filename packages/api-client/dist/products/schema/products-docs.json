@@ -93,13 +93,17 @@
                     },
                     "slug": {
                         "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": "string"
                     }
                 },
                 "required": [
                     "id",
                     "name",
                     "category",
-                    "slug"
+                    "slug",
+                    "imageUrl"
                 ]
             },
             "Product": {
@@ -124,6 +128,9 @@
                         "type": "string",
                         "nullable": true
                     },
+                    "imageUrl": {
+                        "type": "string"
+                    },
                     "unit": {
                         "type": "string",
                         "enum": [
@@ -141,6 +148,7 @@
                     "name",
                     "price",
                     "stock",
+                    "imageUrl",
                     "unit"
                 ]
             },
@@ -457,7 +465,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "required": [
@@ -676,6 +684,10 @@
                                     "description": {
                                         "type": "string"
                                     },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
                                     "unit": {
                                         "type": "string",
                                         "enum": [
@@ -860,7 +872,7 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "type": "object",
                                 "required": [
@@ -884,6 +896,10 @@
                                     },
                                     "slug": {
                                         "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 }
                             }

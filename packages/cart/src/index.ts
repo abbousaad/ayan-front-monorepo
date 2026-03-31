@@ -4,7 +4,6 @@ export {
   clearCart,
   createCartState,
   decrementItem,
-  getCartStoreConflict,
   incrementItem,
   removeItem,
   setItemQuantity
@@ -14,8 +13,7 @@ export {
   getCartItem,
   getCartItemQuantity,
   getCartLineTotal,
-  getCartStoreId,
   getCartSubtotal,
   isCartEmpty
 } from './cart-selectors';
-export type { CartAction, CartItem, CartItemInput, CartMutationMeta, CartState, CartStoreConflict } from './types';
+export type { CartAction, CartItem, CartItemInput, CartMutationMeta, CartState } from './types';

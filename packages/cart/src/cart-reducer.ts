@@ -1,4 +1,4 @@
-import type { CartAction, CartItem, CartItemInput, CartMutationMeta, CartState, CartStoreConflict } from './types';
+import type { CartAction, CartItem, CartItemInput, CartMutationMeta, CartState } from './types';
 
 const MINIMUM_CART_QUANTITY = 1;
 
@@ -31,12 +31,6 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
 }
 
 export function addItem(state: CartState, item: CartItemInput, meta?: CartMutationMeta): CartState {
-  const storeConflict = getCartStoreConflict(state, item.storeId);
-
-  if (storeConflict) {
-    return state;
-  }
-
   const quantityToAdd = normalizeQuantity(item.quantity ?? MINIMUM_CART_QUANTITY);
   const existingItemIndex = state.items.findIndex((cartItem) => cartItem.productId === item.productId);
 
@@ -117,19 +111,6 @@ export function decrementItem(state: CartState, productId: string, meta?: CartMu
 
 export function clearCart(state: CartState, meta?: CartMutationMeta): CartState {
   return withUpdatedItems(state, [], meta);
-}
-
-export function getCartStoreConflict(state: CartState, incomingStoreId: string): CartStoreConflict | null {
-  const currentStoreId = state.items[0]?.storeId;
-
-  if (!currentStoreId || currentStoreId === incomingStoreId) {
-    return null;
-  }
-
-  return {
-    incomingStoreId,
-    storeId: currentStoreId
-  };
 }
 
 function withUpdatedItems(state: CartState, items: CartItem[], meta?: CartMutationMeta): CartState {
