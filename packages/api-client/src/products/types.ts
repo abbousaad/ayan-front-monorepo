@@ -1,0 +1,26 @@
+export const PRODUCT_UNITS = ['g', 'kg', 'ml', 'l', 'unit'] as const;
+
+export type ProductUnit = (typeof PRODUCT_UNITS)[number];
+
+export type Product = {
+  id: string;
+  storeId: string;
+  name: string;
+  price: number;
+  stock: number;
+  description: string | null;
+  imageUrl: string;
+  unit: ProductUnit;
+};
+
+export type ProductsQuery = {
+  storeId?: string;
+};
+
+export type ProductsResponse = {
+  data: Product[];
+};
+
+export type ProductResponse = {
+  data: Product;
+};

@@ -1,0 +1,34 @@
+{
+  "name": "@acme/api-client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "react-native": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./products": {
+      "types": "./src/products/index.ts",
+      "react-native": "./src/products/index.ts",
+      "default": "./src/products/index.ts"
+    },
+    "./stores": {
+      "types": "./src/stores/index.ts",
+      "react-native": "./src/stores/index.ts",
+      "default": "./src/stores/index.ts"
+    },
+    "./products/schema": {
+      "default": "./src/products/schema/products-docs.json"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "lint": "tsc --noEmit -p tsconfig.json",
+    "test": "node --eval \"console.log('No tests for @acme/api-client yet')\""
+  }
+}

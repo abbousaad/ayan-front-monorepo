@@ -1,0 +1,4 @@
+
+> @acme/shared@0.0.0 lint /Users/absaad/Desktop/ayan-front-monorepo-oac/packages/shared
+> tsc --noEmit -p tsconfig.json
+

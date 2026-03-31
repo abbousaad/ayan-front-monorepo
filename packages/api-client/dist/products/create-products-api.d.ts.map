@@ -1,0 +1,1 @@
+{"version":3,"file":"create-products-api.d.ts","sourceRoot":"","sources":["../../src/products/create-products-api.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,iBAAiB,CAAC;AAIvD,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,SAAS,CAAC;AAE7C,eAAO,MAAM,iBAAiB,GAAI,QAAQ,eAAe;0BACjC,aAAa;gCACP,MAAM;CAClC,CAAC"}

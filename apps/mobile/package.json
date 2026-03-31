@@ -1,0 +1,27 @@
+{
+  "name": "mobile",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "build": "expo export --platform ios",
+    "build:android": "expo export --platform android",
+    "dev": "expo start",
+    "lint": "tsc --noEmit",
+    "test": "node --eval \"console.log('No tests for mobile yet')\""
+  },
+  "dependencies": {
+    "@acme/api-client": "workspace:*",
+    "@acme/shared": "workspace:*",
+    "@expo/vector-icons": "^15.1.1",
+    "expo": "^54.0.0",
+    "expo-image": "~3.0.11",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "babel-preset-expo": "^54.0.0",
+    "typescript": "^5.9.2"
+  }
+}

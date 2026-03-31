@@ -1,0 +1,4 @@
+
+> @acme/shared@0.0.0 build /Users/absaad/Desktop/ayan-front-monorepo-oac/packages/shared
+> tsc -p tsconfig.json
+

@@ -1,0 +1,4 @@
+
+> @acme/api-client@0.0.0 lint /Users/absaad/Desktop/ayan-front-monorepo-oac/packages/api-client
+> tsc --noEmit -p tsconfig.json
+

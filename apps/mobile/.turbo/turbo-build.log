@@ -1,0 +1,14 @@
+
+> mobile@ build /Users/absaad/Desktop/ayan-front-monorepo-oac/apps/mobile
+> expo export --platform ios
+
+Starting Metro Bundler
+iOS Bundled 1315ms apps/mobile/index.js (587 modules)
+
+› ios bundles (1):
+_expo/static/js/ios/index-c350b83869ede1f5ec1ff09d742ee5ed.hbc (1.75 MB)
+
+› Files (1):
+metadata.json (142 B)
+
+Exported: dist
