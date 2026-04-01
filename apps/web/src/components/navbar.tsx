@@ -1,6 +1,7 @@
 import { brandColors } from '@acme/shared';
 
 import logo from '../assets/ayan.png';
+import { CartButton } from './cart/cart-button';
 
 const navItems = [
   {
@@ -53,6 +54,7 @@ export const Navbar = () => (
       </nav>
 
       <div className="flex items-center gap-3">
+        <CartButton />
         {actionItems.map((item) => (
           <a
             key={item.label}
