@@ -108,7 +108,14 @@ export function CartSidebar() {
         )}
       </aside>
 
-      {showAuthModal && <AuthChoiceModal onClose={() => setShowAuthModal(false)} />}
+      {showAuthModal && (
+        <AuthChoiceModal
+          onClose={() => {
+            setShowAuthModal(false);
+            closeCart();
+          }}
+        />
+      )}
     </>
   );
 }

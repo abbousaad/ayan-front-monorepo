@@ -6,7 +6,8 @@ export const AuthChoiceModal = ({ onClose }: { onClose: () => void }) => {
   const navigate = useNavigate();
 
   const handleContinueAsGuest = () => {
-    // Navigate to checkout page for guest workflow
+    // Close the modal and sidebar, then navigate to checkout
+    onClose();
     navigate('/checkout');
   };
 
