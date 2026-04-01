@@ -167,7 +167,7 @@ Tasks are ordered. Each is one DO cycle (implement + review). Dependencies are l
 
 ---
 
-### AT-1 — Admin API client: auth module
+### [x] AT-1 — Admin API client: auth module
 **Title:** Add `login()` and `changePassword()` to `@acme/api-client`
 
 **Files to create/edit:**
@@ -186,7 +186,7 @@ Tasks are ordered. Each is one DO cycle (implement + review). Dependencies are l
 
 ---
 
-### AT-2 — Admin API client: multipart helper + stores/products CRUD
+### [x] AT-2 — Admin API client: multipart helper + stores/products CRUD
 **Title:** Add `requestMultipart()` helper and admin stores/products mutation functions
 
 **Files to create/edit:**
@@ -205,7 +205,7 @@ Tasks are ordered. Each is one DO cycle (implement + review). Dependencies are l
 
 ---
 
-### AT-3 — Admin API client: coupons + pricing config + order confirm
+### [x] AT-3 — Admin API client: coupons + pricing config + order confirm
 **Title:** Add admin coupons, pricing config, and order-confirm functions
 
 **Files to create/edit:**

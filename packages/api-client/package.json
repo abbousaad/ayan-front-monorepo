@@ -28,6 +28,11 @@
       "types": "./src/orders/index.ts",
       "react-native": "./src/orders/index.ts",
       "default": "./src/orders/index.ts"
+    },
+    "./admin": {
+      "types": "./src/admin/index.ts",
+      "react-native": "./src/admin/index.ts",
+      "default": "./src/admin/index.ts"
     }
   },
   "scripts": {
