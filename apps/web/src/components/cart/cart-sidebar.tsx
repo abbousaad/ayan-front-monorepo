@@ -1,8 +1,9 @@
 import { brandColors } from '@acme/shared';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FiShoppingBag, FiX } from 'react-icons/fi';
 
 import { useCart } from '../../cart/use-cart';
+import { AuthChoiceModal } from '../checkout/auth-choice-modal';
 import { CartLineItem } from './cart-line-item';
 
 const formatPrice = (price: number) =>
@@ -13,6 +14,7 @@ const formatPrice = (price: number) =>
 
 export function CartSidebar() {
   const { clearCartItems, closeCart, isCartEmpty, isOpen, state, subtotal } = useCart();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -84,7 +86,8 @@ export function CartSidebar() {
 
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <button
-                    className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2"
+                    className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
+                    onClick={() => setShowAuthModal(true)}
                     style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
                     type="button"
                   >
@@ -104,6 +107,8 @@ export function CartSidebar() {
           </>
         )}
       </aside>
+
+      {showAuthModal && <AuthChoiceModal onClose={() => setShowAuthModal(false)} />}
     </>
   );
 }

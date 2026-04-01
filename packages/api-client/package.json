@@ -23,6 +23,11 @@
     },
     "./products/schema": {
       "default": "./src/products/schema/products-docs.json"
+    },
+    "./orders": {
+      "types": "./src/orders/index.ts",
+      "react-native": "./src/orders/index.ts",
+      "default": "./src/orders/index.ts"
     }
   },
   "scripts": {
