@@ -225,7 +225,7 @@ Tasks are ordered. Each is one DO cycle (implement + review). Dependencies are l
 
 ---
 
-### AT-4 — Admin auth context + route guards
+### [x] AT-4 — Admin auth context + route guards
 **Title:** Build `AdminAuthContext`, `AdminAuthProvider`, `RequireAdmin` guard, and admin routes skeleton
 
 **Files to create/edit:**
@@ -243,7 +243,7 @@ Tasks are ordered. Each is one DO cycle (implement + review). Dependencies are l
 
 ---
 
-### AT-5 — Admin Login screen
+### [x] AT-5 — Admin Login screen
 **Title:** Build `/admin/login` page
 
 **Files to create/edit:**

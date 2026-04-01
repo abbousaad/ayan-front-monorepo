@@ -1,6 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { AdminAuthProvider } from './admin/admin-auth-provider';
+import { AdminLayout } from './admin/admin-layout';
+import { RequireAdmin } from './admin/require-admin';
 import { AppLayout } from './routes/app-layout';
+import { AdminChangePasswordPage } from './routes/admin/admin-change-password-page';
+import { AdminCouponsPage } from './routes/admin/admin-coupons-page';
+import { AdminDashboardPage } from './routes/admin/admin-dashboard-page';
+import { AdminLoginPage } from './routes/admin/admin-login-page';
+import { AdminOrdersPage } from './routes/admin/admin-orders-page';
+import { AdminPricingPage } from './routes/admin/admin-pricing-page';
+import { AdminProductsPage } from './routes/admin/admin-products-page';
+import { AdminStoresPage } from './routes/admin/admin-stores-page';
 import { CheckoutPage } from './routes/checkout-page';
 import { HomePage } from './routes/home-page';
 import { ProductsPage } from './routes/products-page';
@@ -26,6 +37,57 @@ export const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <CheckoutPage />
+      }
+    ]
+  },
+  {
+    path: '/admin/login',
+    element: (
+      <AdminAuthProvider>
+        <AdminLoginPage />
+      </AdminAuthProvider>
+    )
+  },
+  {
+    path: '/admin',
+    element: (
+      <AdminAuthProvider>
+        <RequireAdmin />
+      </AdminAuthProvider>
+    ),
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          {
+            index: true,
+            element: <AdminDashboardPage />
+          },
+          {
+            path: 'stores',
+            element: <AdminStoresPage />
+          },
+          {
+            path: 'products',
+            element: <AdminProductsPage />
+          },
+          {
+            path: 'coupons',
+            element: <AdminCouponsPage />
+          },
+          {
+            path: 'pricing',
+            element: <AdminPricingPage />
+          },
+          {
+            path: 'orders',
+            element: <AdminOrdersPage />
+          },
+          {
+            path: 'change-password',
+            element: <AdminChangePasswordPage />
+          }
+        ]
       }
     ]
   }
