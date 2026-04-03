@@ -1,6 +1,6 @@
 import { ApiClientError } from '../shared/api-client-error';
 
-import type { CreatePublicOrderResponse, PublicOrder, PublicOrderItem } from './types';
+import type { CreatePublicOrderResponse, PricingConfig, PublicOrder, PublicOrderItem } from './types';
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null;
@@ -39,6 +39,24 @@ const isPublicOrder = (value: unknown): value is PublicOrder => {
     (value.totalAmount === undefined || typeof value.totalAmount === 'number') &&
     (value.items === undefined || (Array.isArray(value.items) && value.items.every(isPublicOrderItem)))
   );
+};
+
+const isPricingConfig = (value: unknown): value is PricingConfig => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  return typeof value.deliveryFee === 'number' && typeof value.discountRate === 'number';
+};
+
+export const parsePublicPricingConfigResponse = (value: unknown): PricingConfig | null => {
+  const data = isRecord(value) && 'data' in value ? value.data : value;
+
+  if (!isPricingConfig(data)) {
+    return null;
+  }
+
+  return data;
 };
 
 export const parseCreatePublicOrderResponse = (value: unknown): CreatePublicOrderResponse => {

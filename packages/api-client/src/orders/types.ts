@@ -41,6 +41,11 @@ export interface PublicOrder {
   items?: PublicOrderItem[];
 }
 
+export interface PricingConfig {
+  deliveryFee: number;
+  discountRate: number;
+}
+
 export interface CreatePublicOrderResponse {
   data: PublicOrder;
 }

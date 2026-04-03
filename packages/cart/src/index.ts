@@ -16,4 +16,10 @@ export {
   getCartSubtotal,
   isCartEmpty
 } from './cart-selectors';
+export {
+  getDiscountAmount,
+  getDiscountBase,
+  getTotalWithPricing
+} from './pricing';
+export type { PricingConfig } from './pricing';
 export type { CartAction, CartItem, CartItemInput, CartMutationMeta, CartState } from './types';

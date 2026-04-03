@@ -11,4 +11,6 @@
 - [x] AT-14 — Add public-orders API client functions
 - [x] AT-15 — Admin public orders management page
 - [x] AT-16 — Add public orders route and nav link to admin panel
+- [x] AT-17 — Public pricing config data access + pricing math
+- [x] AT-18 — Cart + checkout UI pricing display
 - [ ] B-1 — Fix unsafe type assertions in admin auth flow

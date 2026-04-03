@@ -1,8 +1,10 @@
 import { createImageUrl } from '@acme/api-client';
+import { getDiscountAmount, getTotalWithPricing } from '@acme/cart';
 import { FiShoppingBag, FiTrash2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { useCart } from '../../cart/use-cart';
+import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { QuantityControl } from '../cart/quantity-control';
 
 const formatPrice = (price: number) =>
@@ -21,6 +23,10 @@ export function CheckoutCartSummary() {
     state,
     subtotal
   } = useCart();
+  const { pricingConfig } = usePricingConfig();
+  const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
+  const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
+  const formattedDiscount = discountAmount > 0 ? `-${formatPrice(discountAmount)}` : formatPrice(0);
 
   if (isCartEmpty) {
     return (
@@ -99,7 +105,20 @@ export function CheckoutCartSummary() {
           <span>Subtotal</span>
           <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal)}</span>
         </div>
-        <p className="mt-2 text-xs text-stone-500">Delivery fee calculated at confirmation.</p>
+        <div className="mt-3 space-y-2 text-sm text-stone-600">
+          <div className="flex items-center justify-between gap-3">
+            <span>Discount</span>
+            <span className="text-sm font-semibold text-stone-950">{formattedDiscount}</span>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <span>Delivery Fee</span>
+            <span className="text-sm font-semibold text-stone-950">{formatPrice(pricingConfig.deliveryFee)}</span>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <span>Total</span>
+            <span className="text-lg font-semibold text-stone-950">{formatPrice(total)}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

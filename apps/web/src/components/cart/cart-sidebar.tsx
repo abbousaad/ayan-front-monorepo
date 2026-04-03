@@ -1,8 +1,10 @@
 import { brandColors } from '@acme/shared';
+import { getDiscountAmount, getTotalWithPricing } from '@acme/cart';
 import { useEffect, useState } from 'react';
 import { FiShoppingBag, FiX } from 'react-icons/fi';
 
 import { useCart } from '../../cart/use-cart';
+import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { AuthChoiceModal } from '../checkout/auth-choice-modal';
 import { CartLineItem } from './cart-line-item';
 
@@ -14,7 +16,11 @@ const formatPrice = (price: number) =>
 
 export function CartSidebar() {
   const { clearCartItems, closeCart, isCartEmpty, isOpen, state, subtotal } = useCart();
+  const { pricingConfig } = usePricingConfig();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
+  const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
+  const formattedDiscount = discountAmount > 0 ? `-${formatPrice(discountAmount)}` : formatPrice(0);
 
   useEffect(() => {
     if (!isOpen) {
@@ -82,7 +88,20 @@ export function CartSidebar() {
                   <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal)}</span>
                 </div>
 
-                <p className="text-sm leading-6 text-stone-500">Delivery fee and final confirmation will be handled at checkout.</p>
+                <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
+                  <span>Discount</span>
+                  <span className="text-sm font-semibold text-stone-950">{formattedDiscount}</span>
+                </div>
+
+                <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
+                  <span>Delivery Fee</span>
+                  <span className="text-sm font-semibold text-stone-950">{formatPrice(pricingConfig.deliveryFee)}</span>
+                </div>
+
+                <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
+                  <span>Total</span>
+                  <span className="text-lg font-semibold text-stone-950">{formatPrice(total)}</span>
+                </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <button
