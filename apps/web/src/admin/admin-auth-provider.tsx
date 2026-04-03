@@ -11,6 +11,8 @@ export type AdminAuthContextValue = {
   isLoading: boolean;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
+  handleUnauthorized: () => void;
+  updateUser: (updates: Partial<AuthUser>) => void;
 };
 
 type AdminAuthProviderProps = {
@@ -68,6 +70,20 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps): React.J
         sessionStorage.removeItem(ADMIN_SESSION_USER_KEY);
         setToken(null);
         setUser(null);
+      },
+      handleUnauthorized: (): void => {
+        sessionStorage.removeItem(ADMIN_SESSION_TOKEN_KEY);
+        sessionStorage.removeItem(ADMIN_SESSION_USER_KEY);
+        setToken(null);
+        setUser(null);
+      },
+      updateUser: (updates: Partial<AuthUser>): void => {
+        setUser((prevUser) => {
+          if (prevUser === null) return null;
+          const updatedUser = { ...prevUser, ...updates };
+          sessionStorage.setItem(ADMIN_SESSION_USER_KEY, JSON.stringify(updatedUser));
+          return updatedUser;
+        });
       }
     }),
     [token, user, isLoading]

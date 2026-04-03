@@ -10,7 +10,7 @@ type OrderConfirmFormValues = {
 };
 
 export function AdminOrdersPage(): React.JSX.Element {
-  const { token } = useAdminAuth();
+  const { token, handleUnauthorized } = useAdminAuth();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -41,6 +41,10 @@ export function AdminOrdersPage(): React.JSX.Element {
       setSuccessMessage(`Order ${orderId} confirmed — moved to 'onpreparation'`);
       reset();
     } catch (err) {
+      if (err instanceof ApiClientError && err.status === 401) {
+        handleUnauthorized();
+        return;
+      }
       if (err instanceof ApiClientError) {
         setErrorMessage(err.message);
       } else {
