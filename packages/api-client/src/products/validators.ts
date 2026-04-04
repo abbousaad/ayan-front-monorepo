@@ -2,13 +2,15 @@ import { ApiClientError } from '../shared/api-client-error';
 
 import { PRODUCT_UNITS, type Product, type ProductResponse, type ProductsResponse } from './types';
 
+type ProductPayload = Omit<Product, 'currencyCode'> & { currencyCode?: string };
+
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null;
 
 const isProductUnit = (value: unknown): value is Product['unit'] =>
   typeof value === 'string' && PRODUCT_UNITS.includes(value as Product['unit']);
 
-const isProduct = (value: unknown): value is Product => {
+const isProduct = (value: unknown): value is ProductPayload => {
   if (!isRecord(value)) {
     return false;
   }
@@ -18,7 +20,7 @@ const isProduct = (value: unknown): value is Product => {
     typeof value.storeId === 'string' &&
     typeof value.name === 'string' &&
     typeof value.price === 'number' &&
-    typeof value.currencyCode === 'string' &&
+    (value.currencyCode === undefined || typeof value.currencyCode === 'string') &&
     typeof value.stock === 'number' &&
     typeof value.imageUrl === 'string' &&
     (value.description === null || typeof value.description === 'string' || value.description === undefined) &&
@@ -26,8 +28,11 @@ const isProduct = (value: unknown): value is Product => {
   );
 };
 
-const toProduct = (value: Product | (Omit<Product, 'description'> & { description?: string | null })) => ({
+const toProduct = (
+  value: ProductPayload | (Omit<ProductPayload, 'description'> & { description?: string | null })
+): Product => ({
   ...value,
+  currencyCode: value.currencyCode ?? 'USD',
   description: value.description ?? null
 });
 
