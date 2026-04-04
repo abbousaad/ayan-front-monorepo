@@ -7,10 +7,10 @@ import { useCart } from '../../cart/use-cart';
 import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { QuantityControl } from '../cart/quantity-control';
 
-const formatPrice = (price: number) =>
+const formatPrice = (price: number, currencyCode = 'USD') =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: currencyCode
   }).format(price);
 
 export function CheckoutCartSummary() {
@@ -23,10 +23,13 @@ export function CheckoutCartSummary() {
     state,
     subtotal
   } = useCart();
+  const currencyCode = state.items[0]?.currencyCode ?? 'USD';
   const { pricingConfig } = usePricingConfig();
   const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
   const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
-  const formattedDiscount = discountAmount > 0 ? `-${formatPrice(discountAmount)}` : formatPrice(0);
+  const formattedDiscount = discountAmount > 0
+    ? `-${formatPrice(discountAmount, currencyCode)}`
+    : formatPrice(0, currencyCode);
 
   if (isCartEmpty) {
     return (
@@ -68,10 +71,10 @@ export function CheckoutCartSummary() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-semibold text-stone-950">{item.name}</h3>
-                    <p className="mt-1 text-xs text-stone-500">
-                      {formatPrice(item.price)}
-                      {item.unit ? <span> / {item.unit}</span> : null}
-                    </p>
+                      <p className="mt-1 text-xs text-stone-500">
+                        {formatPrice(item.price, item.currencyCode ?? currencyCode)}
+                        {item.unit ? <span> / {item.unit}</span> : null}
+                      </p>
                   </div>
 
                   <button
@@ -92,7 +95,9 @@ export function CheckoutCartSummary() {
                     quantity={item.quantity}
                   />
 
-                  <p className="text-sm font-semibold text-stone-950">{formatPrice(lineTotal)}</p>
+                  <p className="text-sm font-semibold text-stone-950">
+                    {formatPrice(lineTotal, item.currencyCode ?? currencyCode)}
+                  </p>
                 </div>
               </div>
             </article>
@@ -103,7 +108,7 @@ export function CheckoutCartSummary() {
       <div className="rounded-[1.75rem] bg-[#fbf7f1] p-4">
         <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
           <span>Subtotal</span>
-          <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal)}</span>
+          <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal, currencyCode)}</span>
         </div>
         <div className="mt-3 space-y-2 text-sm text-stone-600">
           <div className="flex items-center justify-between gap-3">
@@ -112,11 +117,13 @@ export function CheckoutCartSummary() {
           </div>
           <div className="flex items-center justify-between gap-3">
             <span>Delivery Fee</span>
-            <span className="text-sm font-semibold text-stone-950">{formatPrice(pricingConfig.deliveryFee)}</span>
+            <span className="text-sm font-semibold text-stone-950">
+              {formatPrice(pricingConfig.deliveryFee, currencyCode)}
+            </span>
           </div>
           <div className="flex items-center justify-between gap-3">
             <span>Total</span>
-            <span className="text-lg font-semibold text-stone-950">{formatPrice(total)}</span>
+            <span className="text-lg font-semibold text-stone-950">{formatPrice(total, currencyCode)}</span>
           </div>
         </div>
       </div>

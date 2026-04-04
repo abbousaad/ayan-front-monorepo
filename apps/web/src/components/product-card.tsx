@@ -9,10 +9,10 @@ type ProductCardProps = {
   product: Product;
 };
 
-const formatPrice = (price: number) =>
+const formatPrice = (price: number, currencyCode = 'USD') =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: currencyCode
   }).format(price);
 
 const getProductDescription = (description: Product['description']) =>
@@ -23,6 +23,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleAddToCart = () => {
     addCartItem({
+      currencyCode: product.currencyCode,
       productId: product.id,
       name: product.name,
       price: product.price,
@@ -47,7 +48,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
         <div className="mt-auto flex items-center justify-between gap-2">
           <p className="text-sm font-semibold text-stone-900">
-            {formatPrice(product.price)}
+            {formatPrice(product.price, product.currencyCode ?? 'USD')}
             <span className="ml-1 text-xs font-medium text-stone-500">/ {product.unit}</span>
           </p>
 

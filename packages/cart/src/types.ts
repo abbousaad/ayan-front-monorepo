@@ -1,4 +1,5 @@
 export type CartItem = {
+  currencyCode?: string;
   imageUrl?: string;
   name: string;
   price: number;

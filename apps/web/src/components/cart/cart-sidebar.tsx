@@ -8,19 +8,22 @@ import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { AuthChoiceModal } from '../checkout/auth-choice-modal';
 import { CartLineItem } from './cart-line-item';
 
-const formatPrice = (price: number) =>
+const formatPrice = (price: number, currencyCode = 'USD') =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: currencyCode
   }).format(price);
 
 export function CartSidebar() {
   const { clearCartItems, closeCart, isCartEmpty, isOpen, state, subtotal } = useCart();
   const { pricingConfig } = usePricingConfig();
+  const currencyCode = state.items[0]?.currencyCode ?? 'USD';
   const [showAuthModal, setShowAuthModal] = useState(false);
   const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
   const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
-  const formattedDiscount = discountAmount > 0 ? `-${formatPrice(discountAmount)}` : formatPrice(0);
+  const formattedDiscount = discountAmount > 0
+    ? `-${formatPrice(discountAmount, currencyCode)}`
+    : formatPrice(0, currencyCode);
 
   useEffect(() => {
     if (!isOpen) {
@@ -85,7 +88,7 @@ export function CartSidebar() {
               <div className="space-y-4 rounded-[1.75rem] bg-[#fbf7f1] p-4">
                 <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
                   <span>Subtotal</span>
-                  <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal)}</span>
+                  <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal, currencyCode)}</span>
                 </div>
 
                 <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
@@ -95,12 +98,14 @@ export function CartSidebar() {
 
                 <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
                   <span>Delivery Fee</span>
-                  <span className="text-sm font-semibold text-stone-950">{formatPrice(pricingConfig.deliveryFee)}</span>
+                  <span className="text-sm font-semibold text-stone-950">
+                    {formatPrice(pricingConfig.deliveryFee, currencyCode)}
+                  </span>
                 </div>
 
                 <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
                   <span>Total</span>
-                  <span className="text-lg font-semibold text-stone-950">{formatPrice(total)}</span>
+                  <span className="text-lg font-semibold text-stone-950">{formatPrice(total, currencyCode)}</span>
                 </div>
 
                 <div className="flex flex-col gap-3 sm:flex-row">

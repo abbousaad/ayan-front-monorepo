@@ -9,10 +9,10 @@ type CartLineItemProps = {
   item: CartItem;
 };
 
-const formatPrice = (price: number) =>
+const formatPrice = (price: number, currencyCode = 'USD') =>
   new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD'
+    currency: currencyCode
   }).format(price);
 
 export function CartLineItem({ item }: CartLineItemProps) {
@@ -28,7 +28,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
           <div className="min-w-0">
             <h3 className="truncate text-sm font-semibold text-stone-950">{item.name}</h3>
             <p className="mt-1 text-xs text-stone-500">
-              {formatPrice(item.price)}
+              {formatPrice(item.price, item.currencyCode ?? 'USD')}
               {item.unit ? <span> / {item.unit}</span> : null}
             </p>
           </div>
@@ -59,7 +59,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
             quantity={item.quantity}
           />
 
-          <p className="text-sm font-semibold text-stone-950">{formatPrice(lineTotal)}</p>
+          <p className="text-sm font-semibold text-stone-950">{formatPrice(lineTotal, item.currencyCode ?? 'USD')}</p>
         </div>
       </div>
     </article>

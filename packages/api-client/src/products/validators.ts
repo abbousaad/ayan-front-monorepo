@@ -18,6 +18,7 @@ const isProduct = (value: unknown): value is Product => {
     typeof value.storeId === 'string' &&
     typeof value.name === 'string' &&
     typeof value.price === 'number' &&
+    typeof value.currencyCode === 'string' &&
     typeof value.stock === 'number' &&
     typeof value.imageUrl === 'string' &&
     (value.description === null || typeof value.description === 'string' || value.description === undefined) &&
