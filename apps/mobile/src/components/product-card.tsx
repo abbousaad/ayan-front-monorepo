@@ -10,12 +10,13 @@ type ProductCardProps = {
   product: Product;
 };
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
-
-const formatPrice = (price: number) => currencyFormatter.format(price);
+const formatPrice = (price: number, currencyCode: string) => {
+  const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currencyCode
+  });
+  return currencyFormatter.format(price);
+};
 
 const getProductDescription = (description: Product['description']) =>
   description?.trim() || 'A reliable everyday staple with clean ingredients and easy prep.';
@@ -43,7 +44,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <View style={styles.footer}>
           <Text style={styles.price}>
-            {formatPrice(product.price)}
+            {formatPrice(product.price, product.currencyCode)}
             <Text style={styles.unit}> / {product.unit}</Text>
           </Text>
 
