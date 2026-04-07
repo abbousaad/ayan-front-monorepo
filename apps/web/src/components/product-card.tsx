@@ -1,7 +1,8 @@
 import { createImageUrl } from '@acme/api-client';
-import { type Product } from '@acme/api-client/products';
+import type { Product } from '@acme/api-client/products';
 import { brandColors } from '@acme/shared';
 import { FiShoppingCart } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import { useCart } from '../cart/use-cart';
 
@@ -21,7 +22,9 @@ const getProductDescription = (description: Product['description']) =>
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { addCartItem, openCart } = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
     addCartItem({
       currencyCode: product.currencyCode,
       productId: product.id,
@@ -35,7 +38,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <article className="flex h-full max-w-[220px] flex-col rounded-[1.25rem] border border-stone-200 bg-white p-3 transition-transform duration-200 hover:-translate-y-1">
+    <Link
+      className="flex h-full max-w-[220px] flex-col rounded-[1.25rem] border border-stone-200 bg-white p-3 transition-transform duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
+      to={`/products/${product.id}`}
+    >
       <div className="flex h-32 items-center justify-center overflow-hidden rounded-[1rem] bg-stone-50">
         <img alt={product.name} className="max-h-full w-full object-contain" src={createImageUrl(product.imageUrl)} />
       </div>
@@ -63,6 +69,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </button>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };

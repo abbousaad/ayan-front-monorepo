@@ -16,6 +16,7 @@ import { AdminProductsPage } from './routes/admin/admin-products-page';
 import { AdminStoresPage } from './routes/admin/admin-stores-page';
 import { CheckoutPage } from './routes/checkout-page';
 import { HomePage } from './routes/home-page';
+import { ProductPage } from './routes/product-page';
 import { ProductsPage } from './routes/products-page';
 import { StoreProductsPage } from './routes/store-products-page';
 
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: 'products',
         element: <ProductsPage />
+      },
+      {
+        path: 'products/:productId',
+        element: <ProductPage />
       },
       {
         path: 'stores/:storeId/products',
