@@ -98,3 +98,23 @@ export type PricingConfig = {
 };
 
 export type UpdatePricingConfigInput = Partial<PricingConfig>;
+
+// ── Public orders types ──────────────────────────────────────────────────────
+
+export type PublicOrderStatus = 'pending' | 'onpreparation' | 'ondelivery' | 'paid';
+
+export type PublicOrder = {
+  id: string;
+  status: PublicOrderStatus;
+  [key: string]: unknown;
+};
+
+// ── Currency settings types ───────────────────────────────────────────────────
+
+export type CurrencySetting = {
+  currencyCode: string;
+};
+
+export type CurrencySettingInput = {
+  currencyCode: string;
+};

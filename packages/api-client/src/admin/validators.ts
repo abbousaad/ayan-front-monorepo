@@ -8,6 +8,7 @@ import type {
   AdminLoginResponse,
   AuthUser,
   Coupon,
+  CurrencySetting,
   DiscountType,
   PricingConfig,
   UserRole,
@@ -199,6 +200,29 @@ export const parsePricingConfigResponse = (value: unknown): PricingConfig => {
     throw new ApiClientError({
       code: 'INVALID_PRICING_CONFIG_RESPONSE',
       message: 'The pricing config response did not match the expected format.'
+    });
+  }
+
+  return data;
+};
+
+// ── Currency settings validators ──────────────────────────────────────────────
+
+export const isCurrencySetting = (value: unknown): value is CurrencySetting => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  return typeof value.currencyCode === 'string';
+};
+
+export const parseCurrencySettingResponse = (value: unknown): CurrencySetting => {
+  const data = isRecord(value) && 'data' in value ? value.data : value;
+
+  if (!isCurrencySetting(data)) {
+    throw new ApiClientError({
+      code: 'INVALID_CURRENCY_SETTING_RESPONSE',
+      message: 'The currency setting response did not match the expected format.'
     });
   }
 

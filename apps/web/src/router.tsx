@@ -6,9 +6,11 @@ import { RequireAdmin } from './admin/require-admin';
 import { AppLayout } from './routes/app-layout';
 import { AdminChangePasswordPage } from './routes/admin/admin-change-password-page';
 import { AdminCouponsPage } from './routes/admin/admin-coupons-page';
+import { AdminCurrencyPage } from './routes/admin/admin-currency-page';
 import { AdminDashboardPage } from './routes/admin/admin-dashboard-page';
 import { AdminLoginPage } from './routes/admin/admin-login-page';
 import { AdminOrdersPage } from './routes/admin/admin-orders-page';
+import { AdminPublicOrdersPage } from './routes/admin/admin-public-orders-page';
 import { AdminPricingPage } from './routes/admin/admin-pricing-page';
 import { AdminProductsPage } from './routes/admin/admin-products-page';
 import { AdminStoresPage } from './routes/admin/admin-stores-page';
@@ -80,8 +82,16 @@ export const router = createBrowserRouter([
             element: <AdminPricingPage />
           },
           {
+            path: 'currency',
+            element: <AdminCurrencyPage />
+          },
+          {
             path: 'orders',
             element: <AdminOrdersPage />
+          },
+          {
+            path: 'public-orders',
+            element: <AdminPublicOrdersPage />
           },
           {
             path: 'change-password',

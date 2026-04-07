@@ -4,6 +4,13 @@ export { createProduct, updateProduct, deleteProduct } from './products';
 export { listCoupons, createCoupon, updateCoupon, deleteCoupon } from './coupons';
 export { getPricingConfig, updatePricingConfig } from './pricing';
 export { confirmOrder } from './orders';
+export { getCurrencySetting, updateCurrencySetting } from './settings';
+export {
+  listPublicOrders,
+  confirmPublicOrder,
+  acceptPublicOrderDelivery,
+  markPublicOrderPaid
+} from './public-orders';
 
 export type {
   UserRole,
@@ -20,6 +27,10 @@ export type {
   UpdateCouponInput,
   PricingConfig,
   UpdatePricingConfigInput,
+  CurrencySetting,
+  CurrencySettingInput,
+  PublicOrderStatus,
+  PublicOrder,
 } from './types';
 
 export {
@@ -29,4 +40,5 @@ export {
   isProduct,
   isCoupon,
   isPricingConfig,
+  isCurrencySetting,
 } from './validators';

@@ -13,4 +13,6 @@
 - [x] AT-16 — Add public orders route and nav link to admin panel
 - [x] AT-17 — Public pricing config data access + pricing math
 - [x] AT-18 — Cart + checkout UI pricing display
+- [x] AT-19 — Admin API client for currency settings
+- [x] AT-20 — Admin currency settings screen + route
 - [ ] B-1 — Fix unsafe type assertions in admin auth flow

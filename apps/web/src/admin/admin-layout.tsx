@@ -14,7 +14,10 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Products', to: '/admin/products' },
   { label: 'Coupons', to: '/admin/coupons' },
   { label: 'Pricing', to: '/admin/pricing' },
-  { label: 'Orders', to: '/admin/orders' }
+  { label: 'Currency', to: '/admin/currency' },
+  { label: 'Orders', to: '/admin/orders' },
+  { label: 'Public Orders', to: '/admin/public-orders' },
+  { label: 'Change Password', to: '/admin/change-password' }
 ];
 
 export function AdminLayout(): React.JSX.Element {
