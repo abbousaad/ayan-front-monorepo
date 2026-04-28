@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { CartProvider } from './src/cart/cart-provider';
 import { HomeScreen } from './src/home-screen';
 import { StoreProductsScreen } from './src/store-products-screen';
 
@@ -13,9 +14,13 @@ type ActiveScreen =
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>({ name: 'home' });
 
-  if (activeScreen.name === 'store') {
-    return <StoreProductsScreen onBack={() => setActiveScreen({ name: 'home' })} storeId={activeScreen.storeId} />;
-  }
-
-  return <HomeScreen onSelectStore={(storeId) => setActiveScreen({ name: 'store', storeId })} />;
+  return (
+    <CartProvider>
+      {activeScreen.name === 'store' ? (
+        <StoreProductsScreen onBack={() => setActiveScreen({ name: 'home' })} storeId={activeScreen.storeId} />
+      ) : (
+        <HomeScreen onSelectStore={(storeId) => setActiveScreen({ name: 'store', storeId })} />
+      )}
+    </CartProvider>
+  );
 }
