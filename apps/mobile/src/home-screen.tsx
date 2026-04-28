@@ -16,6 +16,7 @@ import {
   View
 } from 'react-native';
 
+import { CartButton } from './components/cart-button';
 import { ProductCard } from './components/product-card';
 import { Screen } from './components/screen';
 import { resolveMobileImageUrl } from './utils/resolve-mobile-image-url';
@@ -23,6 +24,7 @@ import { resolveMobileImageUrl } from './utils/resolve-mobile-image-url';
 import ayanLogo from '../assets/ayan.png';
 
 type HomeScreenProps = {
+  onOpenCart?: () => void;
   onSelectStore: (storeId: string) => void;
 };
 
@@ -53,7 +55,15 @@ const initialStoresState: StoresState = {
 const getErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : 'Something went wrong while loading content.';
 
-const HomeHeader = ({ searchQuery, setSearchQuery }: { searchQuery: string; setSearchQuery: (value: string) => void }) => (
+const HomeHeader = ({
+  onOpenCart,
+  searchQuery,
+  setSearchQuery
+}: {
+  onOpenCart?: () => void;
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+}) => (
   <View style={styles.header}>
     <View style={styles.brandRow}>
       <Image contentFit="contain" source={ayanLogo} style={styles.logo} transition={180} />
@@ -62,6 +72,8 @@ const HomeHeader = ({ searchQuery, setSearchQuery }: { searchQuery: string; setS
         <Text style={styles.brandName}>Ayan Market</Text>
         <Text style={styles.brandSlogan}>Fresh essentials for every day</Text>
       </View>
+
+      <CartButton onPress={onOpenCart} />
     </View>
 
     <View style={styles.searchField}>
@@ -180,7 +192,7 @@ const StoresRail = ({
   </View>
 );
 
-export function HomeScreen({ onSelectStore }: HomeScreenProps) {
+export function HomeScreen({ onOpenCart, onSelectStore }: HomeScreenProps) {
   const [productsState, setProductsState] = useState(initialProductsState);
   const [searchQuery, setSearchQuery] = useState('');
   const [storesState, setStoresState] = useState(initialStoresState);
@@ -236,7 +248,7 @@ export function HomeScreen({ onSelectStore }: HomeScreenProps) {
   const header = useMemo(
     () => (
       <>
-        <HomeHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <HomeHeader onOpenCart={onOpenCart} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <StoresRail
           errorMessage={storesState.errorMessage}
           isLoading={storesState.isLoading}
@@ -249,7 +261,7 @@ export function HomeScreen({ onSelectStore }: HomeScreenProps) {
         <ProductsSectionHeader />
       </>
     ),
-    [loadHomeContent, onSelectStore, searchQuery, storesState.errorMessage, storesState.isLoading, storesState.stores]
+    [loadHomeContent, onOpenCart, onSelectStore, searchQuery, storesState.errorMessage, storesState.isLoading, storesState.stores]
   );
 
   if (productsState.isLoading) {
@@ -347,6 +359,7 @@ const styles = StyleSheet.create({
   brandRow: {
     alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     gap: 12
   },
   brandTextBlock: {

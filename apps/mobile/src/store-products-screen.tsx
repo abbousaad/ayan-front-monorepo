@@ -16,12 +16,14 @@ import {
 
 import type { Product } from '@acme/api-client/products';
 
+import { CartButton } from './components/cart-button';
 import { ProductCard } from './components/product-card';
 import { Screen } from './components/screen';
 import { resolveMobileImageUrl } from './utils/resolve-mobile-image-url';
 
 type StoreProductsScreenProps = {
   onBack: () => void;
+  onOpenCart?: () => void;
   storeId: string;
 };
 
@@ -51,11 +53,13 @@ const LoadingState = () => (
 
 const Banner = ({
   onBack,
+  onOpenCart,
   searchQuery,
   setSearchQuery,
   store
 }: {
   onBack: () => void;
+  onOpenCart?: () => void;
   searchQuery: string;
   setSearchQuery: (value: string) => void;
   store: Store | null;
@@ -81,9 +85,13 @@ const Banner = ({
         </View>
       </View>
 
-      <Pressable onPress={onBack} style={styles.backButton}>
-        <Ionicons color="#8b6b3e" name="close" size={20} />
-      </Pressable>
+      <View style={styles.headerActions}>
+        <CartButton onPress={onOpenCart} />
+
+        <Pressable onPress={onBack} style={styles.backButton}>
+          <Ionicons color="#8b6b3e" name="close" size={20} />
+        </Pressable>
+      </View>
     </View>
 
     <View style={styles.searchField}>
@@ -119,7 +127,7 @@ const EmptyState = ({ onRetry }: { onRetry: () => void }) => (
   </View>
 );
 
-export function StoreProductsScreen({ onBack, storeId }: StoreProductsScreenProps) {
+export function StoreProductsScreen({ onBack, onOpenCart, storeId }: StoreProductsScreenProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [state, setState] = useState(initialState);
 
@@ -153,7 +161,9 @@ export function StoreProductsScreen({ onBack, storeId }: StoreProductsScreenProp
     void loadStoreProducts();
   }, [loadStoreProducts]);
 
-  const header = <Banner onBack={onBack} searchQuery={searchQuery} setSearchQuery={setSearchQuery} store={state.store} />;
+  const header = (
+    <Banner onBack={onBack} onOpenCart={onOpenCart} searchQuery={searchQuery} setSearchQuery={setSearchQuery} store={state.store} />
+  );
 
   if (state.isLoading) {
     return (
@@ -245,6 +255,10 @@ const styles = StyleSheet.create({
   },
   headerTopRow: {
     alignItems: 'flex-start',
+    flexDirection: 'row',
+    gap: 8
+  },
+  headerActions: {
     flexDirection: 'row',
     gap: 8
   },
