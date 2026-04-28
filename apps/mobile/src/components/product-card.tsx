@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { useCart } from '../cart/use-cart';
 import { resolveMobileImageUrl } from '../utils/resolve-mobile-image-url';
 
 type ProductCardProps = {
@@ -22,6 +23,30 @@ const getProductDescription = (description: Product['description']) =>
   description?.trim() || 'A reliable everyday staple with clean ingredients and easy prep.';
 
 export function ProductCard({ product }: ProductCardProps) {
+  const { addCartItem, decrementCartItem, getItemQuantity, incrementCartItem, isHydrated, removeCartItem } = useCart();
+  const quantity = getItemQuantity(product.id);
+
+  const handleAddToCart = () => {
+    addCartItem({
+      currencyCode: product.currencyCode,
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      storeId: product.storeId,
+      imageUrl: product.imageUrl,
+      unit: product.unit
+    });
+  };
+
+  const handleDecrement = () => {
+    if (quantity <= 1) {
+      removeCartItem(product.id);
+      return;
+    }
+
+    decrementCartItem(product.id);
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
@@ -48,9 +73,40 @@ export function ProductCard({ product }: ProductCardProps) {
             <Text style={styles.unit}> / {product.unit}</Text>
           </Text>
 
-          <Pressable accessibilityLabel={`Add ${product.name} to cart`} style={styles.iconButton}>
-            <Ionicons color={brandColors.white} name="bag-handle-outline" size={18} />
-          </Pressable>
+          <View style={styles.actionSlot}>
+            {quantity > 0 ? (
+              <View style={[styles.quantityControl, !isHydrated ? styles.controlDisabled : null]}>
+                <Pressable
+                  accessibilityLabel={`Decrease ${product.name} quantity`}
+                  disabled={!isHydrated}
+                  onPress={handleDecrement}
+                  style={[styles.quantityButton, !isHydrated ? styles.buttonDisabled : null]}
+                >
+                  <Text style={styles.quantityButtonText}>-</Text>
+                </Pressable>
+
+                <Text style={styles.quantityText}>{quantity}</Text>
+
+                <Pressable
+                  accessibilityLabel={`Increase ${product.name} quantity`}
+                  disabled={!isHydrated}
+                  onPress={() => incrementCartItem(product.id)}
+                  style={[styles.quantityButton, !isHydrated ? styles.buttonDisabled : null]}
+                >
+                  <Text style={styles.quantityButtonText}>+</Text>
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable
+                accessibilityLabel={`Add ${product.name} to cart`}
+                disabled={!isHydrated}
+                onPress={handleAddToCart}
+                style={[styles.iconButton, !isHydrated ? styles.buttonDisabled : null]}
+              >
+                <Ionicons color={brandColors.white} name="bag-handle-outline" size={18} />
+              </Pressable>
+            )}
+          </View>
         </View>
       </View>
     </View>
@@ -106,6 +162,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10
   },
+  actionSlot: {
+    alignItems: 'center',
+    height: 38,
+    justifyContent: 'center',
+    minWidth: 98
+  },
   price: {
     color: brandColors.black,
     flex: 1,
@@ -124,5 +186,42 @@ const styles = StyleSheet.create({
     height: 38,
     justifyContent: 'center',
     width: 38
+  },
+  quantityControl: {
+    alignItems: 'center',
+    backgroundColor: brandColors.white,
+    borderColor: '#e7e5e4',
+    borderRadius: 999,
+    borderWidth: 1,
+    flexDirection: 'row',
+    gap: 6,
+    height: 38,
+    paddingHorizontal: 4
+  },
+  quantityButton: {
+    alignItems: 'center',
+    borderRadius: 999,
+    height: 30,
+    justifyContent: 'center',
+    width: 30
+  },
+  quantityButtonText: {
+    color: brandColors.black,
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 20
+  },
+  quantityText: {
+    color: brandColors.black,
+    fontSize: 14,
+    fontWeight: '700',
+    minWidth: 18,
+    textAlign: 'center'
+  },
+  buttonDisabled: {
+    opacity: 0.55
+  },
+  controlDisabled: {
+    opacity: 0.7
   }
 });
