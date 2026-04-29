@@ -161,7 +161,7 @@ export function ProductPage() {
 
   if (state.isLoading) {
     return (
-      <main className="min-h-screen bg-[#f7f2ea]">
+      <main className="min-h-screen bg-white">
         <LoadingState />
       </main>
     );
@@ -169,7 +169,7 @@ export function ProductPage() {
 
   if (state.errorMessage) {
     return (
-      <main className="min-h-screen bg-[#f7f2ea]">
+      <main className="min-h-screen bg-white">
         <ErrorState errorMessage={state.errorMessage} onRetry={loadProduct} />
       </main>
     );
@@ -177,7 +177,7 @@ export function ProductPage() {
 
   if (!state.product) {
     return (
-      <main className="min-h-screen bg-[#f7f2ea]">
+      <main className="min-h-screen bg-white">
         <NotFoundState />
       </main>
     );
@@ -188,7 +188,7 @@ export function ProductPage() {
   const stockColor = product.stock > 10 ? 'text-emerald-600' : product.stock > 0 ? 'text-amber-600' : 'text-red-600';
 
   return (
-    <main className="min-h-screen bg-[#f7f2ea] px-4 py-8 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-white px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         <Link
           className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-stone-600 transition hover:text-stone-900"

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx *)",
+      "Bash(git diff *)",
+      "Bash(pnpm install *)",
+      "Bash(sudo *)",
+      "Bash(npm install *)",
+      "Bash(ln *)",
+      "Bash(mkdir *)",
+      "Bash(rm *)",
+      "Bash(file *)"
+    ]
+  },
+  "$version": 3
+}

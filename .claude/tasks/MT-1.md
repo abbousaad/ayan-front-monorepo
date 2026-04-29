@@ -34,7 +34,14 @@ Expose the same interface as the web provider:
 ```
 No `openCart`/`closeCart` (web sidebar concept, not needed on mobile).
 
+## Hydration & persistence rules
+- On `JSON.parse` failure (corrupt storage), log and fall back to `createCartState()` — never crash.
+- **Only persist after `isHydrated === true`.** Otherwise the empty initial state overwrites stored data on the first effect run before hydration completes.
+- Expose `subtotal` (from `getCartSubtotal`) and `getItemQuantity(productId)` on the context value to match web parity.
+
 ## Acceptance criteria
 - `useCart()` returns live state after hydration
 - Adding/removing items persists across app restarts
 - `isHydrated` is `false` until AsyncStorage read completes
+- Corrupt stored data falls back to empty cart (no crash)
+- Done: tick `[x] MT-1` in `.claude/tasks/activemobile.md` and commit per CLAUDE.md

@@ -16,4 +16,5 @@
 - [x] AT-19 — Admin API client for currency settings
 - [x] AT-20 — Admin currency settings screen + route
 - [x] AT-21 — Product detail page
+- [x] AT-22 — All-Products Page Redesign: White Background + Store Filter Bar
 - [ ] B-1 — Fix unsafe type assertions in admin auth flow

@@ -12,10 +12,15 @@ Display a success screen after a guest order is placed, showing order details an
 ## Screen content
 1. Large checkmark icon (Ionicons `checkmark-circle` in brand green)
 2. Title: "Order placed!"
-3. Order ID: `#<order.id>` (truncated or full)
-4. Delivery mode and address
-5. Grand total (use `order.grandTotal ?? order.totalAmount`)
-6. "Back to shopping" button → calls `onBackToHome()`
+3. Order ID: `#<last-8-of-order.id, uppercased>` — e.g. `#A1B2C3D4`
+4. Delivery mode and address (from `order.deliveryMode`, `order.guestAddress`)
+5. **Line items list** — render `order.items` (productId, quantity, unitPrice, lineTotal) for parity with the web confirmation page
+6. Grand total (use `order.grandTotal ?? order.totalAmount`)
+7. "Back to shopping" button → calls `onBackToHome()`
+
+## Behaviour
+- On mount: call `clearCartItems()` from `useCart()` (deferred from MT-6 to avoid mid-navigation flicker).
+- Disable Android hardware back button via `BackHandler` listener and route it through `onBackToHome` instead — never let the user return to the cleared checkout/cart state.
 
 ## Props
 ```ts
@@ -30,6 +35,8 @@ type OrderConfirmationScreenProps = {
 - Cart was already cleared by MT-6 before navigating here
 
 ## Acceptance criteria
-- Order ID, delivery info, and total rendered correctly
+- Order ID (last 8 chars, uppercased), delivery info, line items, and grand total rendered correctly
 - "Back to shopping" returns to home screen
-- Cart badge shows 0 (cleared in MT-6)
+- Cart is cleared on mount; cart badge shows 0
+- Android hardware back goes home, not back to checkout
+- Done: tick `[x] MT-7` in `.claude/tasks/activemobile.md` and commit

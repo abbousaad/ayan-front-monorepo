@@ -1,4 +1,6 @@
 import { getProducts, type Product } from '@acme/api-client/products';
+import { getStores, type Store } from '@acme/api-client/stores';
+import { createImageUrl } from '@acme/api-client';
 import { brandColors } from '@acme/shared';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -14,10 +16,20 @@ type ProductsState = {
   isLoading: boolean;
 };
 
-const initialState: ProductsState = {
+type StoresState = {
+  stores: Store[];
+  isLoadingStores: boolean;
+};
+
+const initialProductsState: ProductsState = {
   products: [],
   errorMessage: null,
   isLoading: true
+};
+
+const initialStoresState: StoresState = {
+  stores: [],
+  isLoadingStores: true
 };
 
 const LoadingState = () => (
@@ -65,10 +77,104 @@ const MessageState = ({ actionLabel, description, onAction, title }: MessageStat
   </section>
 );
 
-export const ProductsPage = () => {
-  const [{ errorMessage, isLoading, products }, setProductsState] = useState(initialState);
+type StoreFilterBarProps = {
+  isLoading: boolean;
+  onSelect: (storeId: string | null) => void;
+  selectedStoreId: string | null;
+  stores: Store[];
+};
 
-  const loadProducts = useCallback(async () => {
+const StoreFilterBar = ({ isLoading, onSelect, selectedStoreId, stores }: StoreFilterBarProps) => (
+  <section className="rounded-[2rem] border border-stone-200 bg-stone-50 p-6 shadow-[0_18px_45px_rgba(120,98,70,0.05)]">
+    <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      {/* All button */}
+      <button
+        className={`group flex flex-col items-center gap-2 transition-all duration-200 ${
+          selectedStoreId === null ? 'scale-105' : 'hover:scale-105'
+        }`}
+        onClick={() => {
+          onSelect(null);
+        }}
+        type="button"
+      >
+        <div
+          className={`flex h-24 w-24 items-center justify-center rounded-full bg-amber-50 transition-all duration-200 ${
+            selectedStoreId === null
+              ? 'ring-4 ring-amber-500 ring-offset-2 shadow-lg shadow-amber-200/50'
+              : 'grayscale opacity-60 group-hover:opacity-80'
+          }`}
+        >
+          <svg
+            className="h-10 w-10 text-amber-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+            />
+          </svg>
+        </div>
+        <span
+          className={`text-sm font-medium transition-all duration-200 ${
+            selectedStoreId === null ? 'text-amber-700' : 'text-stone-500 group-hover:text-stone-700'
+          }`}
+        >
+          All Products
+        </span>
+      </button>
+      {/* Store circles */}
+      {isLoading
+        ? Array.from({ length: 4 }, (_, i) => (
+            <div key={i} className="flex flex-col items-center gap-2">
+              <div className="h-24 w-24 animate-pulse rounded-full bg-stone-200" />
+              <div className="h-4 w-20 animate-pulse rounded-full bg-stone-200" />
+            </div>
+          ))
+        : stores.map((store) => (
+            <button
+              className={`group flex flex-col items-center gap-2 transition-all duration-200 ${
+                selectedStoreId === store.id ? 'scale-105' : 'hover:scale-105'
+              }`}
+              key={store.id}
+              onClick={() => {
+                onSelect(store.id);
+              }}
+              type="button"
+            >
+              <img
+                alt={store.name}
+                className={`h-24 w-24 rounded-full object-cover transition-all duration-200 ${
+                  selectedStoreId === store.id
+                    ? 'ring-4 ring-amber-500 ring-offset-2 shadow-lg shadow-amber-200/50'
+                    : 'grayscale opacity-60 group-hover:opacity-80'
+                }`}
+                src={createImageUrl(store.imageUrl)}
+              />
+              <span
+                className={`max-w-[96px] truncate text-center text-sm font-medium transition-all duration-200 ${
+                  selectedStoreId === store.id
+                    ? 'text-amber-700'
+                    : 'text-stone-500 group-hover:text-stone-700'
+                }`}
+              >
+                {store.name}
+              </span>
+            </button>
+          ))}
+    </div>
+  </section>
+);
+
+export const ProductsPage = () => {
+  const [{ errorMessage, isLoading, products }, setProductsState] = useState(initialProductsState);
+  const [{ isLoadingStores, stores }, setStoresState] = useState(initialStoresState);
+  const [selectedStoreId, setSelectedStoreId] = useState<string | null>(null);
+
+  const syncProducts = useCallback(async (storeId: string | null) => {
     setProductsState((currentState) => ({
       ...currentState,
       errorMessage: null,
@@ -76,7 +182,7 @@ export const ProductsPage = () => {
     }));
 
     try {
-      const response = await getProducts();
+      const response = await getProducts(storeId ? { storeId } : undefined);
 
       setProductsState({
         products: response.data,
@@ -92,79 +198,72 @@ export const ProductsPage = () => {
     }
   }, []);
 
+  const syncStores = useCallback(async () => {
+    setStoresState((currentState) => ({
+      ...currentState,
+      isLoadingStores: true
+    }));
+
+    try {
+      const response = await getStores();
+
+      setStoresState({
+        stores: response.data,
+        isLoadingStores: false
+      });
+    } catch {
+      setStoresState({
+        stores: [],
+        isLoadingStores: false
+      });
+    }
+  }, []);
+
+  const handleStoreSelect = useCallback(
+    async (storeId: string | null) => {
+      setSelectedStoreId(storeId);
+      await syncProducts(storeId);
+    },
+    [syncProducts]
+  );
+
   useEffect(() => {
     let isSubscribed = true;
 
-    const syncProducts = async () => {
-      setProductsState((currentState) => ({
-        ...currentState,
-        errorMessage: null,
-        isLoading: true
-      }));
-
-      try {
-        const response = await getProducts();
-
-        if (!isSubscribed) {
-          return;
-        }
-
-        setProductsState({
-          products: response.data,
-          errorMessage: null,
-          isLoading: false
-        });
-      } catch (error) {
-        if (!isSubscribed) {
-          return;
-        }
-
-        setProductsState({
-          products: [],
-          errorMessage: getErrorMessage(error),
-          isLoading: false
-        });
-      }
+    const syncAll = async () => {
+      await Promise.all([syncProducts(null), syncStores()]);
     };
 
-    void syncProducts();
+    void syncAll();
 
     return () => {
       isSubscribed = false;
     };
-  }, []);
+  }, [syncProducts, syncStores]);
 
   return (
-    <main className="min-h-screen bg-[#f7f2ea] px-6 py-10 text-stone-900 md:px-8 md:py-14">
+    <main className="min-h-screen bg-white px-6 py-10 text-stone-900 md:px-8 md:py-14">
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
-        <section className="rounded-[2rem] border border-stone-200 bg-[#fbf7f1] p-8 shadow-[0_18px_45px_rgba(120,98,70,0.08)] md:p-10">
+        <section className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-[0_18px_45px_rgba(120,98,70,0.08)] md:p-10">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl space-y-4">
               <Link className="inline-flex text-sm font-medium text-amber-800 transition hover:text-amber-700" to="/">
                 ← Back home
               </Link>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-amber-700">Curated essentials</p>
-              <h1 className="text-4xl font-semibold tracking-tight text-stone-950 md:text-5xl">
-                Thoughtfully stocked pantry favorites.
-              </h1>
-              <p className="max-w-2xl text-base leading-7 text-stone-600 md:text-lg">
-                Browse the latest products from the shared fetch-based API client with calm neutrals, soft depth,
-                and quick add-to-cart actions.
-              </p>
+              <h1 className="text-4xl font-semibold tracking-tight text-stone-950 md:text-5xl">All Products</h1>
             </div>
 
-            <div className="grid max-w-md grid-cols-2 gap-4 rounded-[1.75rem] bg-white p-4 shadow-[0_18px_45px_rgba(120,98,70,0.08)]">
-              <div className="rounded-[1.25rem] bg-amber-50 p-4">
-                <p className="text-sm text-stone-500">Available now</p>
-                <p className="mt-2 text-3xl font-semibold text-stone-950">{products.length}</p>
-              </div>
-              <div className="rounded-[1.25rem] bg-emerald-50 p-4">
-                <p className="text-sm text-stone-500">Fast actions</p>
-                <p className="mt-2 text-3xl font-semibold text-stone-950">1 click</p>
-              </div>
-            </div>
+        
           </div>
         </section>
+
+        {/* Store Filter Bar */}
+        <StoreFilterBar
+          isLoading={isLoadingStores}
+          onSelect={handleStoreSelect}
+          selectedStoreId={selectedStoreId}
+          stores={stores}
+        />
 
         {isLoading ? <LoadingState /> : null}
 
@@ -173,7 +272,7 @@ export const ProductsPage = () => {
             actionLabel="Try again"
             description={errorMessage}
             onAction={() => {
-              void loadProducts();
+              void syncProducts(selectedStoreId);
             }}
             title="We couldn't load the product collection"
           />

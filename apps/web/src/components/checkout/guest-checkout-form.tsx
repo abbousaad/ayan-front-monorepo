@@ -1,7 +1,7 @@
 import { ApiClientError, createPublicOrder } from '@acme/api-client';
 import type { PublicOrder } from '@acme/api-client';
 import { brandColors } from '@acme/shared';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useCart } from '../../cart/use-cart';
@@ -9,10 +9,6 @@ import { useCart } from '../../cart/use-cart';
 type FormValues = {
   name: string;
   phone: string;
-  address: string;
-  email: string;
-  deliveryMode: 'instant' | 'scheduled';
-  scheduledAt: string;
 };
 
 type GuestCheckoutFormProps = {
@@ -33,44 +29,23 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
-    register,
-    resetField,
-    watch
-  } = useForm<FormValues>({
-    defaultValues: {
-      deliveryMode: 'instant',
-      email: '',
-      scheduledAt: ''
-    }
-  });
-
-  const deliveryMode = watch('deliveryMode');
-
-  useEffect(() => {
-    if (deliveryMode !== 'scheduled') {
-      resetField('scheduledAt');
-    }
-  }, [deliveryMode, resetField]);
+    register
+  } = useForm<FormValues>();
 
   const onSubmit = async (values: FormValues) => {
     setSubmitError(null);
 
     try {
       const order = await createPublicOrder({
-        deliveryMode: values.deliveryMode,
+        deliveryMode: 'instant',
         guest: {
-          address: values.address,
-          email: values.email || undefined,
           name: values.name,
           phone: values.phone
         },
         items: state.items.map((item) => ({
           productId: item.productId,
           quantity: item.quantity
-        })),
-        ...(values.deliveryMode === 'scheduled' && values.scheduledAt
-          ? { scheduledAt: new Date(values.scheduledAt).toISOString() }
-          : {})
+        }))
       });
 
       onSuccess(order);
@@ -87,7 +62,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
     <form className="space-y-6" noValidate onSubmit={handleSubmit(onSubmit)}>
       <div>
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-700">Your details</p>
-        <h2 className="mt-1 text-lg font-semibold text-stone-950">Delivery information</h2>
+        <h2 className="mt-1 text-lg font-semibold text-stone-950">Contact information</h2>
       </div>
 
       <div className="space-y-4">
@@ -120,79 +95,6 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
           />
           {errors.phone && <p className={errorClass}>{errors.phone.message}</p>}
         </div>
-
-        <div>
-          <label className={labelClass} htmlFor="checkout-address">
-            Delivery address <span aria-hidden="true" className="text-red-500">*</span>
-          </label>
-          <textarea
-            autoComplete="street-address"
-            className={`mt-1 ${inputClass} resize-none`}
-            id="checkout-address"
-            placeholder="123 Main St, City, State"
-            rows={3}
-            {...register('address', { required: 'Delivery address is required' })}
-          />
-          {errors.address && <p className={errorClass}>{errors.address.message}</p>}
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor="checkout-email">
-            Email address <span className="text-stone-400">(optional)</span>
-          </label>
-          <input
-            autoComplete="email"
-            className={`mt-1 ${inputClass}`}
-            id="checkout-email"
-            placeholder="jane@example.com"
-            type="email"
-            {...register('email')}
-          />
-          {errors.email && <p className={errorClass}>{errors.email.message}</p>}
-        </div>
-
-        <fieldset>
-          <legend className={labelClass}>
-            Delivery mode <span aria-hidden="true" className="text-red-500">*</span>
-          </legend>
-          <div className="mt-2 flex gap-4">
-            <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-stone-700">
-              <input
-                className="accent-emerald-600"
-                type="radio"
-                value="instant"
-                {...register('deliveryMode', { required: true })}
-              />
-              Instant delivery
-            </label>
-            <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-stone-700">
-              <input
-                className="accent-emerald-600"
-                type="radio"
-                value="scheduled"
-                {...register('deliveryMode', { required: true })}
-              />
-              Scheduled delivery
-            </label>
-          </div>
-        </fieldset>
-
-        {deliveryMode === 'scheduled' && (
-          <div>
-            <label className={labelClass} htmlFor="checkout-scheduled-at">
-              Scheduled date & time <span aria-hidden="true" className="text-red-500">*</span>
-            </label>
-            <input
-              className={`mt-1 ${inputClass}`}
-              id="checkout-scheduled-at"
-              type="datetime-local"
-              {...register('scheduledAt', {
-                required: deliveryMode === 'scheduled' ? 'Scheduled date and time is required' : false
-              })}
-            />
-            {errors.scheduledAt && <p className={errorClass}>{errors.scheduledAt.message}</p>}
-          </div>
-        )}
       </div>
 
       {submitError && (

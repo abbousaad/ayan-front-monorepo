@@ -3,7 +3,7 @@ export type DeliveryMode = 'instant' | 'scheduled';
 export interface GuestInfo {
   name: string;
   phone: string;
-  address: string;
+  address?: string;
   email?: string;
 }
 
