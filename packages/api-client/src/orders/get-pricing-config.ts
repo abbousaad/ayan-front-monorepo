@@ -10,16 +10,12 @@ const DEFAULT_PRICING_CONFIG: PricingConfig = {
 };
 
 export const getPublicPricingConfig = async (): Promise<PricingConfig> => {
-  try {
-    const response = await requestJson(
-      {
-        baseUrl: API_BASE_URL
-      },
-      '/orders/pricing-config'
-    );
+  const response = await requestJson(
+    {
+      baseUrl: API_BASE_URL
+    },
+    '/orders/pricing-config'
+  );
 
-    return parsePublicPricingConfigResponse(response) ?? DEFAULT_PRICING_CONFIG;
-  } catch {
-    return DEFAULT_PRICING_CONFIG;
-  }
+  return parsePublicPricingConfigResponse(response) ?? DEFAULT_PRICING_CONFIG;
 };
