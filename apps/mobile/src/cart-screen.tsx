@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useCart } from './cart/use-cart';
+import { AuthChoiceModal } from './components/auth-choice-modal';
 import { Screen } from './components/screen';
 import { resolveMobileImageUrl } from './utils/resolve-mobile-image-url';
 
@@ -61,6 +62,7 @@ export function CartScreen({ onBack, onProceed }: CartScreenProps) {
     isLoading: true,
     pricingConfig: DEFAULT_PRICING_CONFIG
   });
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const currencyCode = getDisplayCurrencyCode(state.items);
 
   useEffect(() => {
@@ -247,7 +249,7 @@ export function CartScreen({ onBack, onProceed }: CartScreenProps) {
 
                 <Pressable
                   disabled={pricingState.isLoading || isCartEmpty}
-                  onPress={onProceed}
+                  onPress={() => setShowAuthModal(true)}
                   style={[styles.primaryButton, pricingState.isLoading || isCartEmpty ? styles.primaryButtonDisabled : null]}
                 >
                   <Text style={styles.primaryButtonText}>Proceed</Text>
@@ -256,6 +258,15 @@ export function CartScreen({ onBack, onProceed }: CartScreenProps) {
             </View>
           </>
         )}
+
+        <AuthChoiceModal
+          onClose={() => setShowAuthModal(false)}
+          onContinueAsGuest={() => {
+            setShowAuthModal(false);
+            onProceed();
+          }}
+          visible={showAuthModal}
+        />
       </View>
     </Screen>
   );
