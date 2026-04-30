@@ -14,6 +14,6 @@
 - [x] MT-2: Wire ProductCard "Add to cart" to cart context
 - [x] MT-3: Cart header button with item-count badge
 - [x] MT-4: Cart screen (items, quantity controls, totals, proceed)
-- [ ] MT-5: Auth choice modal (guest vs login/signup placeholder)
+- [x] MT-5: Auth choice modal (guest vs login/signup placeholder)
 - [ ] MT-6: Guest checkout screen (form + API call)
 - [ ] MT-7: Order confirmation screen
