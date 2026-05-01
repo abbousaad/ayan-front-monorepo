@@ -15,5 +15,5 @@
 - [x] MT-3: Cart header button with item-count badge
 - [x] MT-4: Cart screen (items, quantity controls, totals, proceed)
 - [x] MT-5: Auth choice modal (guest vs login/signup placeholder)
-- [ ] MT-6: Guest checkout screen (form + API call)
+- [x] MT-6: Guest checkout screen (form + API call)
 - [ ] MT-7: Order confirmation screen
