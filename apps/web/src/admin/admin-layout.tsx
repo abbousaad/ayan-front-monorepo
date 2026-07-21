@@ -1,5 +1,7 @@
 import { brandColors } from '@acme/shared';
 import { NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getThemeSetting, type ThemeSetting } from '@acme/api-client/admin';
 
 import { useAdminAuth } from './use-admin-auth';
 
@@ -23,6 +25,19 @@ const NAV_ITEMS: NavItem[] = [
 
 export function AdminLayout(): React.JSX.Element {
   const { logout } = useAdminAuth();
+  const [theme, setTheme] = useState<ThemeSetting | null>(null);
+
+  useEffect(() => {
+    const fetchTheme = async (): Promise<void> => {
+      try {
+        const themeData = await getThemeSetting();
+        setTheme(themeData);
+      } catch {
+        setTheme(null);
+      }
+    };
+    void fetchTheme();
+  }, []);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -76,6 +91,59 @@ export function AdminLayout(): React.JSX.Element {
             </NavLink>
           ))}
         </nav>
+
+        {/* Theme Preview */}
+        {theme && (
+          <div style={{ padding: '12px 12px 16px', borderTop: '1px solid #44403c' }}>
+            <p style={{ fontSize: '11px', fontWeight: '600', color: '#a8a29e', margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              Store Theme
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
+              <div
+                title="Primary"
+                style={{
+                  width: '100%',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  cursor: 'help',
+                  border: '1px solid #78716c'
+                }}
+              >
+                <div style={{ position: 'absolute', inset: 0, backgroundColor: theme.primaryColor }} />
+              </div>
+              <div
+                title="Text"
+                style={{
+                  width: '100%',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  cursor: 'help',
+                  border: '1px solid #78716c'
+                }}
+              >
+                <div style={{ position: 'absolute', inset: 0, backgroundColor: theme.textColor }} />
+              </div>
+              <div
+                title="Secondary"
+                style={{
+                  width: '100%',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  cursor: 'help',
+                  border: '1px solid #78716c'
+                }}
+              >
+                <div style={{ position: 'absolute', inset: 0, backgroundColor: theme.secondaryColor }} />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Logout */}
         <div style={{ padding: '0 12px' }}>
