@@ -2,6 +2,11 @@
 
 :root {
   font-family: Inter, system-ui, sans-serif;
+  --color-primary: #1f2937;
+  --color-text: #000000;
+  --color-secondary: #3b82f6;
+  --color-subtitle-1: #4b5563;
+  --color-subtitle-2: #9ca3af;
 }
 
 body {

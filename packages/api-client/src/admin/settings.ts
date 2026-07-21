@@ -1,8 +1,8 @@
 import { API_BASE_URL } from '../client/config';
 import { requestJson } from '../shared/request-json';
 
-import type { CurrencySetting, CurrencySettingInput } from './types';
-import { parseCurrencySettingResponse } from './validators';
+import type { CurrencySetting, CurrencySettingInput, ThemeSetting, ThemeSettingInput } from './types';
+import { parseCurrencySettingResponse, parseThemeSettingResponse } from './validators';
 
 export const getCurrencySetting = async (token: string): Promise<CurrencySetting> => {
   const response = await requestJson(
@@ -34,4 +34,35 @@ export const updateCurrencySetting = async (
   );
 
   return parseCurrencySettingResponse(response);
+};
+
+export const getThemeSetting = async (): Promise<ThemeSetting> => {
+  const response = await requestJson(
+    {
+      baseUrl: API_BASE_URL
+    },
+    '/settings/theme'
+  );
+
+  return parseThemeSettingResponse(response);
+};
+
+export const updateThemeSetting = async (
+  input: ThemeSettingInput,
+  token: string
+): Promise<ThemeSetting> => {
+  const response = await requestJson(
+    {
+      baseUrl: API_BASE_URL,
+      headers: { Authorization: `Bearer ${token}` }
+    },
+    '/settings/theme',
+    {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input)
+    }
+  );
+
+  return parseThemeSettingResponse(response);
 };

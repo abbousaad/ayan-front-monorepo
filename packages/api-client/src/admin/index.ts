@@ -4,7 +4,7 @@ export { createProduct, updateProduct, deleteProduct } from './products';
 export { listCoupons, createCoupon, updateCoupon, deleteCoupon } from './coupons';
 export { getPricingConfig, updatePricingConfig } from './pricing';
 export { confirmOrder } from './orders';
-export { getCurrencySetting, updateCurrencySetting } from './settings';
+export { getCurrencySetting, updateCurrencySetting, getThemeSetting, updateThemeSetting } from './settings';
 export {
   listPublicOrders,
   confirmPublicOrder,
@@ -31,6 +31,8 @@ export type {
   CurrencySettingInput,
   PublicOrderStatus,
   PublicOrder,
+  ThemeSetting,
+  ThemeSettingInput,
 } from './types';
 
 export {
@@ -41,4 +43,5 @@ export {
   isCoupon,
   isPricingConfig,
   isCurrencySetting,
+  isThemeSetting,
 } from './validators';

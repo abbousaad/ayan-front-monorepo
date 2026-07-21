@@ -12,6 +12,7 @@ import type {
   DiscountType,
   PricingConfig,
   UserRole,
+  ThemeSetting,
 } from './types';
 
 // ── Shared helpers ────────────────────────────────────────────────────────────
@@ -223,6 +224,40 @@ export const parseCurrencySettingResponse = (value: unknown): CurrencySetting =>
     throw new ApiClientError({
       code: 'INVALID_CURRENCY_SETTING_RESPONSE',
       message: 'The currency setting response did not match the expected format.'
+    });
+  }
+
+  return data;
+};
+
+// ── Theme settings validators ────────────────────────────────────────────────
+
+const isHexColor = (value: unknown): value is string => {
+  if (typeof value !== 'string') return false;
+  return /^#[0-9a-fA-F]{6}$/.test(value);
+};
+
+export const isThemeSetting = (value: unknown): value is ThemeSetting => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  return (
+    isHexColor(value.primaryColor) &&
+    isHexColor(value.textColor) &&
+    isHexColor(value.secondaryColor) &&
+    isHexColor(value.subtitle1Color) &&
+    isHexColor(value.subtitle2Color)
+  );
+};
+
+export const parseThemeSettingResponse = (value: unknown): ThemeSetting => {
+  const data = isRecord(value) && 'data' in value ? value.data : value;
+
+  if (!isThemeSetting(data)) {
+    throw new ApiClientError({
+      code: 'INVALID_THEME_SETTING_RESPONSE',
+      message: 'The theme setting response did not match the expected format.'
     });
   }
 

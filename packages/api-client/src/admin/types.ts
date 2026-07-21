@@ -118,3 +118,21 @@ export type CurrencySetting = {
 export type CurrencySettingInput = {
   currencyCode: string;
 };
+
+// ── Theme settings types ──────────────────────────────────────────────────────
+
+export type ThemeSetting = {
+  primaryColor: string;
+  textColor: string;
+  secondaryColor: string;
+  subtitle1Color: string;
+  subtitle2Color: string;
+};
+
+export type ThemeSettingInput = {
+  primaryColor?: string;
+  textColor?: string;
+  secondaryColor?: string;
+  subtitle1Color?: string;
+  subtitle2Color?: string;
+};

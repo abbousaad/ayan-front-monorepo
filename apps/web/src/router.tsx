@@ -8,6 +8,7 @@ import { AdminChangePasswordPage } from './routes/admin/admin-change-password-pa
 import { AdminCouponsPage } from './routes/admin/admin-coupons-page';
 import { AdminCurrencyPage } from './routes/admin/admin-currency-page';
 import { AdminDashboardPage } from './routes/admin/admin-dashboard-page';
+import { AdminThemePage } from './routes/admin/admin-theme-page';
 import { AdminLoginPage } from './routes/admin/admin-login-page';
 import { AdminOrdersPage } from './routes/admin/admin-orders-page';
 import { AdminPublicOrdersPage } from './routes/admin/admin-public-orders-page';
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
           {
             path: 'currency',
             element: <AdminCurrencyPage />
+          },
+          {
+            path: 'theme',
+            element: <AdminThemePage />
           },
           {
             path: 'orders',
