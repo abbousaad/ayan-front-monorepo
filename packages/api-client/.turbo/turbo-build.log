@@ -1,4 +1,4 @@
 
-> @acme/api-client@0.0.0 build /Users/absaad/Desktop/ayan-front-monorepo-oac/packages/api-client
+> @acme/api-client@0.0.0 build /Users/absaad/Desktop/myfolders/ayan-front-monorepo-oac/packages/api-client
 > tsc -p tsconfig.json
 

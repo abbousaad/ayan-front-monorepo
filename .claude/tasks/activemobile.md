@@ -17,3 +17,11 @@
 - [x] MT-5: Auth choice modal (guest vs login/signup placeholder)
 - [x] MT-6: Guest checkout screen (form + API call)
 - [x] MT-7: Order confirmation screen
+
+## Mobile Bug Fixes
+
+- [x] B-2: Make mobile product cards full width on home and store screens
+- [ ] B-3: Keep mobile cart screen background white
+- [ ] B-4: Make proceed modal a transparent bottom sheet
+- [ ] B-5: Keep guest checkout screen background white
+- [ ] B-6: Simplify guest checkout to name and phone only

@@ -5,8 +5,10 @@ export type Product = {
     storeId: string;
     name: string;
     price: number;
+    currencyCode: string;
     stock: number;
     description: string | null;
+    imageUrl: string;
     unit: ProductUnit;
 };
 export type ProductsQuery = {

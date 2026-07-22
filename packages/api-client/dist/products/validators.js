@@ -10,12 +10,15 @@ const isProduct = (value) => {
         typeof value.storeId === 'string' &&
         typeof value.name === 'string' &&
         typeof value.price === 'number' &&
+        (value.currencyCode === undefined || typeof value.currencyCode === 'string') &&
         typeof value.stock === 'number' &&
+        typeof value.imageUrl === 'string' &&
         (value.description === null || typeof value.description === 'string' || value.description === undefined) &&
         isProductUnit(value.unit));
 };
 const toProduct = (value) => ({
     ...value,
+    currencyCode: value.currencyCode ?? 'USD',
     description: value.description ?? null
 });
 export const parseProductsResponse = (value) => {

@@ -313,12 +313,10 @@ export function HomeScreen({ onOpenCart, onSelectStore }: HomeScreenProps) {
     <Screen>
       <StatusBar style="dark" />
       <FlatList
-        columnWrapperStyle={styles.productRow}
         contentContainerStyle={styles.listContent}
         data={productsState.products}
         keyExtractor={(product) => product.id}
         ListHeaderComponent={header}
-        numColumns={2}
         renderItem={({ item }) => (
           <View style={styles.productColumn}>
             <ProductCard product={item} />
@@ -344,13 +342,8 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
     gap: 16
   },
-  productRow: {
-    gap: 14,
-    justifyContent: 'space-between'
-  },
   productColumn: {
-    flex: 1,
-    maxWidth: '48%'
+    width: '100%'
   },
   header: {
     marginBottom: 20,

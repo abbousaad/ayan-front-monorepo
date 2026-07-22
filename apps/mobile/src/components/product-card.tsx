@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 38,
     justifyContent: 'center',
+    flexShrink: 0,
     minWidth: 98
   },
   price: {

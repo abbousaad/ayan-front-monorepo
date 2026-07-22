@@ -1,4 +1,5 @@
 import { ApiClientError } from '@acme/api-client';
+import { isAuthUser } from '@acme/api-client/admin';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -35,8 +36,10 @@ export function AdminLoginPage(): React.JSX.Element {
       // Simpler: re-read from sessionStorage since login() writes it there synchronously.
       const storedUserRaw = sessionStorage.getItem(ADMIN_SESSION_USER_KEY);
       if (storedUserRaw) {
-        const storedUser = JSON.parse(storedUserRaw) as { mustChangePassword?: boolean };
-        if (storedUser.mustChangePassword) {
+        const parsedStoredUser = JSON.parse(storedUserRaw) as unknown;
+        const storedUser = isAuthUser(parsedStoredUser) ? parsedStoredUser : null;
+
+        if (storedUser?.mustChangePassword) {
           void navigate('/admin/change-password');
           return;
         }
