@@ -63,8 +63,8 @@ export const Navbar = () => (
             style={
               item.variant === 'primary'
                 ? {
-                    backgroundColor: brandColors.logoGreen,
-                    color: brandColors.white
+                    backgroundColor: 'var(--color-secondary)',
+                    color: '#ffffff'
                   }
                 : {
                     backgroundColor: brandColors.white,

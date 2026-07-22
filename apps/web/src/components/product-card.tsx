@@ -48,21 +48,21 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
       <div className="mt-3 flex flex-1 flex-col gap-2">
         <div className="space-y-1.5">
-          <h2 className="text-base font-semibold leading-5 text-stone-900">{product.name}</h2>
-          <p className="line-clamp-2 text-xs leading-5 text-stone-600">{getProductDescription(product.description)}</p>
+          <h2 className="text-base font-semibold leading-5" style={{ color: 'var(--color-text)' }}>{product.name}</h2>
+          <p className="line-clamp-2 text-xs leading-5" style={{ color: 'var(--color-subtitle-1)' }}>{getProductDescription(product.description)}</p>
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2">
-          <p className="text-sm font-semibold text-stone-900">
+          <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
             {formatPrice(product.price, product.currencyCode ?? 'USD')}
-            <span className="ml-1 text-xs font-medium text-stone-500">/ {product.unit}</span>
+            <span className="ml-1 text-xs font-medium" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
           </p>
 
           <button
             aria-label={`Add ${product.name} to cart`}
             className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-full p-2.5 transition focus:outline-none focus:ring-2 focus:ring-offset-2"
             onClick={handleAddToCart}
-            style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+            style={{ backgroundColor: 'var(--color-secondary)', color: '#ffffff' }}
             type="button"
           >
             <FiShoppingCart aria-hidden="true" size={16} />

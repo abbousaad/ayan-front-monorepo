@@ -61,7 +61,7 @@ const MessageState = ({ actionLabel, description, onAction, title }: MessageStat
         <button
           className="inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2"
           onClick={onAction}
-          style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+          style={{ backgroundColor: 'var(--color-secondary)', color: '#ffffff' }}
           type="button"
         >
           {actionLabel}
@@ -120,7 +120,7 @@ export const StoreProductsPage = () => {
   }, [loadStoreProducts]);
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-stone-900 md:px-8 md:py-14">
+    <main className="min-h-screen px-6 py-10 md:px-8 md:py-14" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text)' }}>
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
         <section className="rounded-[2rem] border border-stone-200 bg-white p-8 md:p-10">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -132,11 +132,11 @@ export const StoreProductsPage = () => {
               >
                 <FiChevronLeft aria-hidden="true" size={20} />
               </Link>
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-amber-700">Store collection</p>
-              <h1 className="text-4xl font-semibold tracking-tight text-stone-950 md:text-5xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-subtitle-2)' }}>Store collection</p>
+              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: 'var(--color-text)' }}>
                 {store ? `${store.name} products` : 'Curated store products'}
               </h1>
-              <p className="max-w-2xl text-base leading-7 text-stone-600 md:text-lg">
+              <p className="max-w-2xl text-base leading-7 md:text-lg" style={{ color: 'var(--color-subtitle-1)' }}>
                 {store
                   ? `Browse the latest items from ${store.name} in the same warm, calm shopping experience used across the catalog.`
                   : 'Browse a focused store assortment with a calm layout, quick actions, and clear availability.'}
