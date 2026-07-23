@@ -247,7 +247,13 @@ export const isThemeSetting = (value: unknown): value is ThemeSetting => {
     isHexColor(value.textColor) &&
     isHexColor(value.secondaryColor) &&
     isHexColor(value.subtitle1Color) &&
-    isHexColor(value.subtitle2Color)
+    isHexColor(value.subtitle2Color) &&
+    isHexColor(value.logoTitleColor) &&
+    isHexColor(value.logoSubtitleColor) &&
+    isHexColor(value.mainButtonBgColor) &&
+    isHexColor(value.secButtonBgColor) &&
+    isHexColor(value.homeSubtitleTextColor) &&
+    isHexColor(value.homeTitleColor)
   );
 };
 

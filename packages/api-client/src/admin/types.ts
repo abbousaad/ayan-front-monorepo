@@ -127,6 +127,12 @@ export type ThemeSetting = {
   secondaryColor: string;
   subtitle1Color: string;
   subtitle2Color: string;
+  logoTitleColor: string;
+  logoSubtitleColor: string;
+  mainButtonBgColor: string;
+  secButtonBgColor: string;
+  homeSubtitleTextColor: string;
+  homeTitleColor: string;
 };
 
 export type ThemeSettingInput = {
@@ -135,4 +141,10 @@ export type ThemeSettingInput = {
   secondaryColor?: string;
   subtitle1Color?: string;
   subtitle2Color?: string;
+  logoTitleColor?: string;
+  logoSubtitleColor?: string;
+  mainButtonBgColor?: string;
+  secButtonBgColor?: string;
+  homeSubtitleTextColor?: string;
+  homeTitleColor?: string;
 };

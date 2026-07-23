@@ -193,8 +193,8 @@ export const HomePage = () => {
           <div className="grid w-full gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:items-center">
             <div className="flex h-full flex-col gap-5">
               <div className="space-y-4">
-                <p className="text-sm font-semibold uppercase tracking-[0.35em] text-amber-700">Fresh arrivals</p>
-                <h1 className="max-w-xl text-2xl font-semibold tracking-tight text-stone-950 md:text-5xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-home-subtitle-text)' }}>Fresh arrivals</p>
+                <h1 className="max-w-xl text-2xl font-semibold tracking-tight md:text-5xl" style={{ color: 'var(--color-home-title)' }}>
                   Shop neighborhood stores and pantry favorites in one calm space.
                 </h1>
                 <p className="max-w-2xl text-base leading-7 text-stone-600 md:text-lg">

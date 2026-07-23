@@ -53,6 +53,12 @@ function applyTheme(theme: ThemeSetting): void {
   root.style.setProperty('--color-secondary', theme.secondaryColor);
   root.style.setProperty('--color-subtitle-1', theme.subtitle1Color);
   root.style.setProperty('--color-subtitle-2', theme.subtitle2Color);
+  root.style.setProperty('--color-logo-title', theme.logoTitleColor);
+  root.style.setProperty('--color-logo-subtitle', theme.logoSubtitleColor);
+  root.style.setProperty('--color-main-button-bg', theme.mainButtonBgColor);
+  root.style.setProperty('--color-sec-button-bg', theme.secButtonBgColor);
+  root.style.setProperty('--color-home-subtitle-text', theme.homeSubtitleTextColor);
+  root.style.setProperty('--color-home-title', theme.homeTitleColor);
 }
 
 function applyDefaultTheme(): void {
@@ -61,7 +67,13 @@ function applyDefaultTheme(): void {
     textColor: '#000000',
     secondaryColor: '#3b82f6',
     subtitle1Color: '#4b5563',
-    subtitle2Color: '#9ca3af'
+    subtitle2Color: '#9ca3af',
+    logoTitleColor: '#0c0a09',
+    logoSubtitleColor: '#1f6446',
+    mainButtonBgColor: '#1f6446',
+    secButtonBgColor: '#1f6446',
+    homeSubtitleTextColor: '#b45309',
+    homeTitleColor: '#0c0a09'
   };
   applyTheme(defaultTheme);
 }

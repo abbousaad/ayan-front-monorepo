@@ -18,7 +18,7 @@ export function CartButton() {
       {cartCount > 0 && (
         <span
           className="absolute -right-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold"
-          style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+          style={{ backgroundColor: 'var(--color-sec-button-bg)', color: '#ffffff' }}
         >
           {cartCount}
         </span>

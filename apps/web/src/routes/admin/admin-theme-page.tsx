@@ -12,14 +12,62 @@ type ThemeFormValues = {
   secondaryColor: string;
   subtitle1Color: string;
   subtitle2Color: string;
+  logoTitleColor: string;
+  logoSubtitleColor: string;
+  mainButtonBgColor: string;
+  secButtonBgColor: string;
+  homeSubtitleTextColor: string;
+  homeTitleColor: string;
 };
 
-const COLOR_DESCRIPTIONS = {
-  primaryColor: 'Main background color',
-  textColor: 'Main text color',
-  secondaryColor: 'Buttons and hover state color',
-  subtitle1Color: 'Secondary text color',
-  subtitle2Color: 'Tertiary text color'
+type ColorField = keyof ThemeFormValues;
+
+type ColorGroup = {
+  label: string;
+  fields: { key: ColorField; label: string; description: string }[];
+};
+
+const COLOR_GROUPS: ColorGroup[] = [
+  {
+    label: 'Navbar',
+    fields: [
+      { key: 'logoTitleColor', label: 'Logo Title', description: '"Ayan Market" text color' },
+      { key: 'logoSubtitleColor', label: 'Logo Subtitle', description: '"Fresh essentials" text color' },
+      { key: 'mainButtonBgColor', label: 'Main Button', description: '"S\'enregistrer" button background' },
+      { key: 'secButtonBgColor', label: 'Cart Badge', description: 'Cart item count badge background' },
+    ]
+  },
+  {
+    label: 'Home Page',
+    fields: [
+      { key: 'homeSubtitleTextColor', label: 'Section Label', description: '"Fresh arrivals" label color' },
+      { key: 'homeTitleColor', label: 'Hero Title', description: '"Shop neighborhood stores…" title color' },
+    ]
+  },
+  {
+    label: 'Store & Products',
+    fields: [
+      { key: 'primaryColor', label: 'Page Background', description: 'Store page background color' },
+      { key: 'textColor', label: 'Main Text', description: 'Product names, prices, headings' },
+      { key: 'secondaryColor', label: 'Add to Cart Button', description: 'Add to cart button background' },
+      { key: 'subtitle1Color', label: 'Subtitle 1', description: 'Product descriptions, store paragraphs' },
+      { key: 'subtitle2Color', label: 'Subtitle 2', description: 'Price units (e.g. /kg), small labels' },
+    ]
+  }
+];
+
+const DEFAULT_VALUES: ThemeFormValues = {
+  primaryColor: '#1f2937',
+  textColor: '#000000',
+  secondaryColor: '#3b82f6',
+  subtitle1Color: '#4b5563',
+  subtitle2Color: '#9ca3af',
+  logoTitleColor: '#0c0a09',
+  logoSubtitleColor: '#1f6446',
+  mainButtonBgColor: '#1f6446',
+  secButtonBgColor: '#1f6446',
+  homeSubtitleTextColor: '#b45309',
+  homeTitleColor: '#0c0a09',
 };
 
 export function AdminThemePage(): React.JSX.Element {
@@ -34,105 +82,77 @@ export function AdminThemePage(): React.JSX.Element {
     reset,
     watch,
     formState: { errors, isSubmitting }
-  } = useForm<ThemeFormValues>({
-    defaultValues: {
-      primaryColor: '#1f2937',
-      textColor: '#000000',
-      secondaryColor: '#3b82f6',
-      subtitle1Color: '#4b5563',
-      subtitle2Color: '#9ca3af'
-    }
-  });
+  } = useForm<ThemeFormValues>({ defaultValues: DEFAULT_VALUES });
 
   const watchColors = watch();
 
-  const fetchThemeSetting = async (): Promise<void> => {
-    setIsLoading(true);
-    setErrorMessage(null);
-
-    try {
-      const response = await getThemeSetting();
-      reset({
-        primaryColor: response.primaryColor,
-        textColor: response.textColor,
-        secondaryColor: response.secondaryColor,
-        subtitle1Color: response.subtitle1Color,
-        subtitle2Color: response.subtitle2Color
-      });
-    } catch (error) {
-      if (error instanceof ApiClientError && error.status === 401) {
-        handleUnauthorized();
-        return;
-      }
-      if (error instanceof ApiClientError) {
-        setErrorMessage(error.message);
-      } else {
-        setErrorMessage('An unexpected error occurred. Please try again.');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchThemeSetting = async (): Promise<void> => {
+      setIsLoading(true);
+      setErrorMessage(null);
+      try {
+        const response = await getThemeSetting();
+        reset({
+          primaryColor: response.primaryColor,
+          textColor: response.textColor,
+          secondaryColor: response.secondaryColor,
+          subtitle1Color: response.subtitle1Color,
+          subtitle2Color: response.subtitle2Color,
+          logoTitleColor: response.logoTitleColor,
+          logoSubtitleColor: response.logoSubtitleColor,
+          mainButtonBgColor: response.mainButtonBgColor,
+          secButtonBgColor: response.secButtonBgColor,
+          homeSubtitleTextColor: response.homeSubtitleTextColor,
+          homeTitleColor: response.homeTitleColor,
+        });
+      } catch (error) {
+        if (error instanceof ApiClientError && error.status === 401) { handleUnauthorized(); return; }
+        setErrorMessage(error instanceof ApiClientError ? error.message : 'An unexpected error occurred.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
     void fetchThemeSetting();
   }, []);
 
   const onSubmit = async (values: ThemeFormValues): Promise<void> => {
     setSuccessMessage(null);
     setErrorMessage(null);
-
-    if (!token) {
-      setErrorMessage('You must be signed in to update theme settings.');
-      return;
-    }
+    if (!token) { setErrorMessage('You must be signed in to update theme settings.'); return; }
 
     const input: ThemeSettingInput = {
-      primaryColor: values.primaryColor.trim(),
-      textColor: values.textColor.trim(),
-      secondaryColor: values.secondaryColor.trim(),
-      subtitle1Color: values.subtitle1Color.trim(),
-      subtitle2Color: values.subtitle2Color.trim()
+      primaryColor: values.primaryColor,
+      textColor: values.textColor,
+      secondaryColor: values.secondaryColor,
+      subtitle1Color: values.subtitle1Color,
+      subtitle2Color: values.subtitle2Color,
+      logoTitleColor: values.logoTitleColor,
+      logoSubtitleColor: values.logoSubtitleColor,
+      mainButtonBgColor: values.mainButtonBgColor,
+      secButtonBgColor: values.secButtonBgColor,
+      homeSubtitleTextColor: values.homeSubtitleTextColor,
+      homeTitleColor: values.homeTitleColor,
     };
 
     try {
       const updated = await updateThemeSetting(input, token);
-      reset({
-        primaryColor: updated.primaryColor,
-        textColor: updated.textColor,
-        secondaryColor: updated.secondaryColor,
-        subtitle1Color: updated.subtitle1Color,
-        subtitle2Color: updated.subtitle2Color
-      });
+      reset({ ...updated });
       setSuccessMessage('Theme settings updated successfully.');
     } catch (error) {
-      if (error instanceof ApiClientError && error.status === 401) {
-        handleUnauthorized();
-        return;
-      }
-      if (error instanceof ApiClientError) {
-        setErrorMessage(error.message);
-      } else {
-        setErrorMessage('An unexpected error occurred. Please try again.');
-      }
+      if (error instanceof ApiClientError && error.status === 401) { handleUnauthorized(); return; }
+      setErrorMessage(error instanceof ApiClientError ? error.message : 'An unexpected error occurred.');
     }
   };
 
-  const colorFields = [
-    'primaryColor',
-    'textColor',
-    'secondaryColor',
-    'subtitle1Color',
-    'subtitle2Color'
-  ] as const;
+  const hexPattern = { value: /^#[0-9a-fA-F]{6}$/, message: 'Must be a valid hex color (#RRGGBB)' };
 
   return (
     <div style={{ padding: '24px' }}>
-      <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#1c1917', margin: '0 0 12px' }}>
+      <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#1c1917', margin: '0 0 4px' }}>
         Theme Settings
       </h1>
       <p style={{ fontSize: '14px', color: '#78716c', margin: '0 0 20px' }}>
-        Customize the store appearance for your customers
+        Customize the store appearance seen by customers
       </p>
 
       {(successMessage || errorMessage) && (
@@ -152,150 +172,66 @@ export function AdminThemePage(): React.JSX.Element {
         </div>
       )}
 
-      <div
-        style={{
-          backgroundColor: '#ffffff',
-          borderRadius: '12px',
-          padding: '24px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-        }}
-      >
-        <form
-          onSubmit={(event) => { void handleSubmit(onSubmit)(event); }}
-          noValidate
-          style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
-        >
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-            {colorFields.map((field) => (
-              <div key={field} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label
-                  htmlFor={field}
-                  style={{ fontSize: '14px', fontWeight: '600', color: '#1c1917' }}
-                >
-                  {field.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())}
-                </label>
-                <p style={{ fontSize: '12px', color: '#78716c', margin: '0 0 8px' }}>
-                  {COLOR_DESCRIPTIONS[field as keyof typeof COLOR_DESCRIPTIONS]}
-                </p>
-                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                  <input
-                    id={field}
-                    type="color"
-                    aria-invalid={errors[field] !== undefined}
-                    disabled={isLoading}
-                    {...register(field as keyof ThemeFormValues, {
-                      required: `${field} is required`,
-                      pattern: {
-                        value: /^#[0-9a-fA-F]{6}$/,
-                        message: 'Must be a valid hex color (e.g. #1f2937)'
-                      }
-                    })}
-                    style={{
-                      width: '60px',
-                      height: '40px',
-                      borderRadius: '6px',
-                      border: errors[field] ? '2px solid #f87171' : '1px solid #d6d3d1',
-                      cursor: 'pointer'
-                    }}
-                  />
-                  <input
-                    type="text"
-                    value={watchColors[field as keyof ThemeFormValues]}
-                    readOnly
-                    style={{
-                      flex: 1,
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d6d3d1',
-                      fontSize: '14px',
-                      color: '#1c1917',
-                      backgroundColor: '#f5f5f5',
-                      fontFamily: 'monospace'
-                    }}
-                  />
-                </div>
-                {errors[field] && (
-                  <span role="alert" style={{ fontSize: '12px', color: '#b91c1c' }}>
-                    {errors[field]?.message}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', paddingTop: '12px' }}>
-            <button
-              type="submit"
-              disabled={isSubmitting || isLoading}
-              style={{
-                padding: '10px 18px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: isSubmitting || isLoading ? '#a7c4b8' : '#1f6446',
-                color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: isSubmitting || isLoading ? 'not-allowed' : 'pointer'
-              }}
+      <form onSubmit={(e) => { void handleSubmit(onSubmit)(e); }} noValidate>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {COLOR_GROUPS.map((group) => (
+            <div
+              key={group.label}
+              style={{ backgroundColor: '#ffffff', borderRadius: '12px', padding: '20px 24px', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}
             >
-              {isSubmitting ? 'Saving...' : 'Save Theme'}
-            </button>
-            {isLoading && (
-              <span style={{ fontSize: '13px', color: '#78716c' }}>
-                Loading theme settings...
-              </span>
-            )}
-          </div>
-        </form>
-      </div>
+              <h2 style={{ fontSize: '15px', fontWeight: '700', color: '#1c1917', margin: '0 0 16px', paddingBottom: '12px', borderBottom: '1px solid #f5f5f4' }}>
+                {group.label}
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '16px' }}>
+                {group.fields.map(({ key, label, description }) => (
+                  <div key={key} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <label htmlFor={key} style={{ fontSize: '13px', fontWeight: '600', color: '#1c1917' }}>
+                      {label}
+                    </label>
+                    <p style={{ fontSize: '12px', color: '#78716c', margin: 0 }}>{description}</p>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '4px' }}>
+                      <input
+                        id={key}
+                        type="color"
+                        disabled={isLoading}
+                        {...register(key, { required: `${label} is required`, pattern: hexPattern })}
+                        style={{
+                          width: '48px', height: '36px', borderRadius: '6px', cursor: 'pointer',
+                          border: errors[key] ? '2px solid #f87171' : '1px solid #d6d3d1'
+                        }}
+                      />
+                      <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#57534e' }}>
+                        {watchColors[key]}
+                      </span>
+                    </div>
+                    {errors[key] && (
+                      <span role="alert" style={{ fontSize: '12px', color: '#b91c1c' }}>
+                        {errors[key]?.message}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
-      {/* Preview section */}
-      <div
-        style={{
-          marginTop: '32px',
-          backgroundColor: '#ffffff',
-          borderRadius: '12px',
-          padding: '24px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-        }}
-      >
-        <h2 style={{ fontSize: '16px', fontWeight: '700', color: '#1c1917', margin: '0 0 16px' }}>
-          Theme Preview
-        </h2>
-        <div
-          style={{
-            padding: '20px',
-            borderRadius: '8px',
-            backgroundColor: watchColors.primaryColor,
-            color: watchColors.textColor
-          }}
-        >
-          <h3 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: '700' }}>
-            Main Title
-          </h3>
-          <p style={{ margin: '0 0 12px', fontSize: '14px', color: watchColors.subtitle1Color }}>
-            Secondary text would appear here
-          </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '24px' }}>
           <button
-            type="button"
+            type="submit"
+            disabled={isSubmitting || isLoading}
             style={{
-              padding: '10px 16px',
-              borderRadius: '6px',
-              border: 'none',
-              backgroundColor: watchColors.secondaryColor,
-              color: '#ffffff',
-              fontSize: '14px',
-              fontWeight: '600',
-              cursor: 'pointer'
+              padding: '10px 20px', borderRadius: '6px', border: 'none',
+              backgroundColor: isSubmitting || isLoading ? '#a7c4b8' : '#1f6446',
+              color: '#ffffff', fontSize: '14px', fontWeight: '600',
+              cursor: isSubmitting || isLoading ? 'not-allowed' : 'pointer'
             }}
           >
-            Example Button
+            {isSubmitting ? 'Saving...' : 'Save Theme'}
           </button>
-          <p style={{ margin: '12px 0 0', fontSize: '12px', color: watchColors.subtitle2Color }}>
-            Tertiary text for smaller details
-          </p>
+          {isLoading && <span style={{ fontSize: '13px', color: '#78716c' }}>Loading…</span>}
         </div>
-      </div>
+      </form>
     </div>
   );
 }

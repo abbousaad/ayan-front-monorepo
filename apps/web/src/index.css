@@ -7,6 +7,12 @@
   --color-secondary: #3b82f6;
   --color-subtitle-1: #4b5563;
   --color-subtitle-2: #9ca3af;
+  --color-logo-title: #0c0a09;
+  --color-logo-subtitle: #1f6446;
+  --color-main-button-bg: #1f6446;
+  --color-sec-button-bg: #1f6446;
+  --color-home-subtitle-text: #b45309;
+  --color-home-title: #0c0a09;
 }
 
 body {

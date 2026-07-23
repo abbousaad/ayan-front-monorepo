@@ -34,8 +34,8 @@ export const Navbar = () => (
       <a className="flex items-center gap-3" href="/">
         <img alt="Ayan logo" className="h-11 w-11 rounded-2xl object-cover shadow-[0_10px_24px_rgba(36,76,57,0.18)]" src={logo} />
         <div className="space-y-1">
-          <p className="text-lg font-semibold tracking-tight" style={{ color: brandColors.black }}>Ayan Market</p>
-          <p className="text-xs font-medium uppercase tracking-[0.25em]" style={{ color: brandColors.logoGreen }}>
+          <p className="text-lg font-semibold tracking-tight" style={{ color: 'var(--color-logo-title)' }}>Ayan Market</p>
+          <p className="text-xs font-medium uppercase tracking-[0.25em]" style={{ color: 'var(--color-logo-subtitle)' }}>
             Fresh essentials
           </p>
         </div>
@@ -62,14 +62,8 @@ export const Navbar = () => (
             href={item.href}
             style={
               item.variant === 'primary'
-                ? {
-                    backgroundColor: 'var(--color-secondary)',
-                    color: '#ffffff'
-                  }
-                : {
-                    backgroundColor: brandColors.white,
-                    color: brandColors.black
-                  }
+                ? { backgroundColor: 'var(--color-main-button-bg)', color: '#ffffff' }
+                : { backgroundColor: brandColors.white, color: brandColors.black }
             }
           >
             {item.label}
