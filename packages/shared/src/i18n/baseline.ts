@@ -36,6 +36,32 @@ export const enBaseline = {
   'home.welcome': 'Welcome',
   'home.featured': 'Featured Products',
 
+  // Home — hero section
+  'home.hero.eyebrow': 'Fresh arrivals',
+  'home.hero.title': 'Shop neighborhood stores and pantry favorites in one calm space.',
+  'home.hero.subtitle':
+    'Discover featured stores, browse their collections, and keep scrolling for a full product lineup in the same warm shopping experience.',
+
+  // Home — stores section
+  'home.stores.eyebrow': 'Stores',
+  'home.stores.title': 'Choose a store',
+  'home.stores.errorTitle': "We couldn't load the stores",
+  'home.stores.errorAction': 'Reload stores',
+  'home.stores.emptyTitle': 'No stores to browse',
+  'home.stores.emptyDescription': 'No stores are available yet.',
+
+  // Home — product collection section
+  'home.products.eyebrow': 'Product collection',
+  'home.products.title': 'Explore everything currently available.',
+  'home.products.subtitle':
+    'Browse the full catalog below or jump straight into a store to view a focused assortment.',
+  'home.products.cta': 'Open products page',
+  'home.products.errorTitle': "We couldn't load the product collection",
+  'home.products.errorAction': 'Try again',
+  'home.products.emptyTitle': 'Nothing to browse just yet',
+  'home.products.emptyDescription': 'No products are available yet. Check back after the catalog is populated.',
+  'home.section.loadError': 'We could not load this section right now.',
+
   // ── Product ─────────────────────────────────────────────────────────────
   'product.price': 'Price',
   'product.stock': 'In Stock',

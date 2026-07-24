@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ProductCard } from '../components/product-card';
+import { useI18n } from '../contexts/i18n-context';
 
 type AsyncState<T> = {
   data: T;
@@ -13,8 +14,8 @@ type AsyncState<T> = {
   isLoading: boolean;
 };
 
-const getErrorMessage = (error: unknown) =>
-  error instanceof Error ? error.message : 'We could not load this section right now.';
+const getErrorMessage = (error: unknown, fallback: string) =>
+  error instanceof Error ? error.message : fallback;
 
 const initialProductsState: AsyncState<Product[]> = {
   data: [],
@@ -132,6 +133,7 @@ const StoreCard = ({ store }: { store: Store }) => (
 );
 
 export const HomePage = () => {
+  const { t } = useI18n();
   const [productsState, setProductsState] = useState(initialProductsState);
   const [storesState, setStoresState] = useState(initialStoresState);
 
@@ -159,7 +161,7 @@ export const HomePage = () => {
           }
         : {
             data: [],
-            errorMessage: getErrorMessage(storesResult.reason),
+            errorMessage: getErrorMessage(storesResult.reason, t('home.section.loadError')),
             isLoading: false
           }
     );
@@ -173,11 +175,11 @@ export const HomePage = () => {
           }
         : {
             data: [],
-            errorMessage: getErrorMessage(productsResult.reason),
+            errorMessage: getErrorMessage(productsResult.reason, t('home.section.loadError')),
             isLoading: false
           }
     );
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     void loadHomeContent();
@@ -194,13 +196,12 @@ export const HomePage = () => {
           <div className="grid w-full gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:items-center">
             <div className="flex h-full flex-col gap-5">
               <div className="space-y-4">
-                <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-home-subtitle-text)' }}>Fresh arrivals</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-home-subtitle-text)' }}>{t('home.hero.eyebrow')}</p>
                 <h1 className="max-w-xl text-2xl font-semibold tracking-tight md:text-5xl" style={{ color: 'var(--color-home-title)' }}>
-                  Shop neighborhood stores and pantry favorites in one calm space.
+                  {t('home.hero.title')}
                 </h1>
                 <p className="max-w-2xl text-base leading-7 text-stone-600 md:text-lg">
-                  Discover featured stores, browse their collections, and keep scrolling for a full product lineup in
-                  the same warm shopping experience.
+                  {t('home.hero.subtitle')}
                 </p>
               </div>
 
@@ -214,8 +215,8 @@ export const HomePage = () => {
             <aside className="rounded-[1.75rem] border border-stone-200 bg-white p-5 md:p-6">
               <div className="mb-5 flex items-center justify-between gap-4">
                 <div className="space-y-2">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>Stores</p>
-                  <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>Choose a store</h2>
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>{t('home.stores.eyebrow')}</p>
+                  <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>{t('home.stores.title')}</h2>
                 </div>
               </div>
 
@@ -223,15 +224,15 @@ export const HomePage = () => {
 
               {!storesState.isLoading && storesState.errorMessage ? (
                 <MessageState
-                  actionLabel="Reload stores"
+                  actionLabel={t('home.stores.errorAction')}
                   description={storesState.errorMessage}
                   onAction={handleRetry}
-                  title="We couldn't load the stores"
+                  title={t('home.stores.errorTitle')}
                 />
               ) : null}
 
               {!storesState.isLoading && !storesState.errorMessage && storesState.data.length === 0 ? (
-                <MessageState description="No stores are available yet." title="No stores to browse" />
+                <MessageState description={t('home.stores.emptyDescription')} title={t('home.stores.emptyTitle')} />
               ) : null}
 
               {!storesState.isLoading && !storesState.errorMessage && storesState.data.length > 0 ? (
@@ -247,12 +248,12 @@ export const HomePage = () => {
 
         <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-accent)' }}>Product collection</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-accent)' }}>{t('home.products.eyebrow')}</p>
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={{ color: 'var(--color-section-title)' }}>
-              Explore everything currently available.
+              {t('home.products.title')}
             </h2>
             <p className="max-w-2xl text-base leading-7" style={{ color: 'var(--color-body-text)' }}>
-              Browse the full catalog below or jump straight into a store to view a focused assortment.
+              {t('home.products.subtitle')}
             </p>
           </div>
 
@@ -260,7 +261,7 @@ export const HomePage = () => {
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 bg-white px-5 py-3 font-medium text-stone-900 transition hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2"
             to="/products"
           >
-            Open products page
+            {t('home.products.cta')}
           </Link>
         </section>
 
@@ -268,17 +269,17 @@ export const HomePage = () => {
 
         {!productsState.isLoading && productsState.errorMessage ? (
           <MessageState
-            actionLabel="Try again"
+            actionLabel={t('home.products.errorAction')}
             description={productsState.errorMessage}
             onAction={handleRetry}
-            title="We couldn't load the product collection"
+            title={t('home.products.errorTitle')}
           />
         ) : null}
 
         {!productsState.isLoading && !productsState.errorMessage && productsState.data.length === 0 ? (
           <MessageState
-            description="No products are available yet. Check back after the catalog is populated."
-            title="Nothing to browse just yet"
+            description={t('home.products.emptyDescription')}
+            title={t('home.products.emptyTitle')}
           />
         ) : null}
 
