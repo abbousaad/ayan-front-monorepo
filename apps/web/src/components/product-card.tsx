@@ -5,6 +5,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { useCart } from '../cart/use-cart';
+import { useI18n } from '../contexts/i18n-context';
 
 type ProductCardProps = {
   product: Product;
@@ -21,6 +22,7 @@ const getProductDescription = (description: Product['description']) =>
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { addCartItem, openCart } = useCart();
+  const { t } = useI18n();
 
   const handleAddToCart = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -59,7 +61,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </p>
 
           <button
-            aria-label={`Add ${product.name} to cart`}
+            aria-label={`${t('product.addToCart')}: ${product.name}`}
             className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-full p-2.5 transition focus:outline-none focus:ring-2 focus:ring-offset-2"
             onClick={handleAddToCart}
             style={{ backgroundColor: 'var(--color-secondary)', color: '#ffffff' }}

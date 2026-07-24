@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FiShoppingBag, FiX } from 'react-icons/fi';
 
 import { useCart } from '../../cart/use-cart';
+import { useI18n } from '../../contexts/i18n-context';
 import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { AuthChoiceModal } from '../checkout/auth-choice-modal';
 import { CartLineItem } from './cart-line-item';
@@ -16,6 +17,7 @@ const formatPrice = (price: number, currencyCode = 'USD') =>
 
 export function CartSidebar() {
   const { clearCartItems, closeCart, isCartEmpty, isOpen, state, subtotal } = useCart();
+  const { t } = useI18n();
   const { pricingConfig } = usePricingConfig();
   const currencyCode = state.items[0]?.currencyCode ?? 'USD';
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -52,7 +54,7 @@ export function CartSidebar() {
       >
         <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
           <div className="space-y-1">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em]" style={{ color: 'var(--color-accent)' }}>Cart</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em]" style={{ color: 'var(--color-accent)' }}>{t('nav.cart')}</p>
             <h2 className="text-xl font-semibold" style={{ color: 'var(--color-cart-title)' }}>Your selections</h2>
           </div>
 
@@ -72,7 +74,7 @@ export function CartSidebar() {
               <FiShoppingBag aria-hidden="true" size={24} />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-semibold text-stone-950">Your cart is empty</h3>
+              <h3 className="text-lg font-semibold text-stone-950">{t('cart.empty')}</h3>
               <p className="text-sm leading-6 text-stone-600">Add a few items and they will appear here with live totals.</p>
             </div>
           </div>
@@ -115,7 +117,7 @@ export function CartSidebar() {
                     style={{ backgroundColor: 'var(--color-checkout-button-bg)', color: '#ffffff' }}
                     type="button"
                   >
-                    Continue
+                    {t('cart.checkout')}
                   </button>
 
                   <button
