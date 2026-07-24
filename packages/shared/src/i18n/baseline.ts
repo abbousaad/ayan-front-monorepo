@@ -6,9 +6,11 @@
  * the server-driven translations are missing a key (or fail to load entirely),
  * mirroring `applyDefaultTheme` in the web theme context.
  *
- * Add every new string here (namespaced by area) before referencing it via
- * `t('...')` in the apps. The string-extraction tasks (AT-26 / MT-9) grow this
- * object as hardcoded text is replaced.
+ * IMPORTANT: these keys must stay aligned with the keys the backend serves from
+ * `GET /settings/translations` — otherwise `t(key)` falls back to English instead
+ * of resolving the server's FR/AR strings. The set below mirrors the backend's
+ * current vocabulary (nav.* / button.* / home.* / cart.* / product.*). Add new
+ * keys here AND in the backend seed together.
  */
 export const enBaseline = {
   // ── Common ──────────────────────────────────────────────────────────────
@@ -21,38 +23,28 @@ export const enBaseline = {
   'common.close': 'Close',
 
   // ── Navbar ──────────────────────────────────────────────────────────────
-  'nav.logoTitle': 'Ayan Market',
-  'nav.logoSubtitle': 'Fresh essentials',
   'nav.about': 'About',
-  'nav.register': 'Sign up',
-  'nav.login': 'Log in',
-  'nav.language': 'Language',
+  'nav.products': 'Products',
+  'nav.cart': 'Cart',
+
+  // ── Buttons ─────────────────────────────────────────────────────────────
+  'button.login': 'Login',
+  'button.logout': 'Logout',
+  'button.register': 'Register',
 
   // ── Home ────────────────────────────────────────────────────────────────
-  'home.freshArrivals': 'Fresh arrivals',
-  'home.stores': 'Stores',
-  'home.chooseStore': 'Choose a store',
-  'home.productCollection': 'Product collection',
+  'home.welcome': 'Welcome',
+  'home.featured': 'Featured Products',
 
-  // ── Products ────────────────────────────────────────────────────────────
-  'products.title': 'All Products',
-  'products.availableNow': 'Available now',
-  'product.addToCart': 'Add to cart',
-  'product.outOfStock': 'Out of stock',
+  // ── Product ─────────────────────────────────────────────────────────────
+  'product.price': 'Price',
+  'product.stock': 'In Stock',
+  'product.addToCart': 'Add to Cart',
 
   // ── Cart ────────────────────────────────────────────────────────────────
-  'cart.title': 'Your cart',
-  'cart.empty': 'Your cart is empty.',
-  'cart.subtotal': 'Subtotal',
+  'cart.empty': 'Your cart is empty',
   'cart.checkout': 'Checkout',
-
-  // ── Checkout ────────────────────────────────────────────────────────────
-  'checkout.title': 'Checkout',
-  'checkout.placeOrder': 'Place order',
-
-  // ── Order confirmation ──────────────────────────────────────────────────
-  'order.confirmed': 'Order confirmed',
-  'order.backToHome': 'Back to home'
+  'cart.continue': 'Continue Shopping'
 } as const;
 
 export type TranslationKey = keyof typeof enBaseline;

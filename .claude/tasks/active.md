@@ -23,7 +23,7 @@
 
 - [x] AT-23 — Shared i18n core (locales, baseline, translate)
 - [x] AT-24 — api-client translation settings (get/update + validators)
-- [ ] AT-25 — Web I18nProvider + language switcher + App wiring
+- [x] AT-25 — Web I18nProvider + language switcher + App wiring
 - [ ] AT-26 — Web string extraction pass (routes + components → t())
 - [ ] AT-27 — Web RTL pass (logical Tailwind utilities)
 - [ ] AT-28 — Admin translations editor page + route + nav link
