@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ProductCard } from '../components/product-card';
+import { StoreStories } from '../components/store-stories';
 import { useI18n } from '../contexts/i18n-context';
 
 type AsyncState<T> = {
@@ -192,6 +193,8 @@ export const HomePage = () => {
   return (
     <main className="min-h-screen px-6 py-10 md:px-8 md:py-14" style={{ backgroundColor: 'var(--color-page-bg)', color: 'var(--color-body-text)' }}>
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
+        <StoreStories />
+
         <section className="flex min-h-[calc(100vh-9rem)] w-full items-center border border-stone-200 bg-white p-6 md:p-8 lg:p-10">
           <div className="grid w-full gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:items-center">
             <div className="flex h-full flex-col gap-5">
