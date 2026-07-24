@@ -59,6 +59,15 @@ function applyTheme(theme: ThemeSetting): void {
   root.style.setProperty('--color-sec-button-bg', theme.secButtonBgColor);
   root.style.setProperty('--color-home-subtitle-text', theme.homeSubtitleTextColor);
   root.style.setProperty('--color-home-title', theme.homeTitleColor);
+  root.style.setProperty('--color-accent', theme.accentColor);
+  root.style.setProperty('--color-card-bg', theme.cardBgColor);
+  root.style.setProperty('--color-checkout-button-bg', theme.checkoutButtonBgColor);
+  root.style.setProperty('--color-cart-title', theme.cartTitleColor);
+  root.style.setProperty('--color-section-title', theme.sectionTitleColor);
+  root.style.setProperty('--color-body-text', theme.bodyTextColor);
+  root.style.setProperty('--color-price', theme.priceColor);
+  root.style.setProperty('--color-page-bg', theme.pageBgColor);
+  root.style.setProperty('--color-nav-bg', theme.navBgColor);
 }
 
 function applyDefaultTheme(): void {
@@ -73,7 +82,16 @@ function applyDefaultTheme(): void {
     mainButtonBgColor: '#1f6446',
     secButtonBgColor: '#1f6446',
     homeSubtitleTextColor: '#b45309',
-    homeTitleColor: '#0c0a09'
+    homeTitleColor: '#0c0a09',
+    accentColor: '#b45309',
+    cardBgColor: '#fbf7f1',
+    checkoutButtonBgColor: '#1f6446',
+    cartTitleColor: '#0c0a09',
+    sectionTitleColor: '#0c0a09',
+    bodyTextColor: '#44403c',
+    priceColor: '#0c0a09',
+    pageBgColor: '#ffffff',
+    navBgColor: '#ffffff'
   };
   applyTheme(defaultTheme);
 }

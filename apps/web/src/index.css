@@ -13,6 +13,15 @@
   --color-sec-button-bg: #1f6446;
   --color-home-subtitle-text: #b45309;
   --color-home-title: #0c0a09;
+  --color-accent: #b45309;
+  --color-card-bg: #fbf7f1;
+  --color-checkout-button-bg: #1f6446;
+  --color-cart-title: #0c0a09;
+  --color-section-title: #0c0a09;
+  --color-body-text: #44403c;
+  --color-price: #0c0a09;
+  --color-page-bg: #ffffff;
+  --color-nav-bg: #ffffff;
 }
 
 body {

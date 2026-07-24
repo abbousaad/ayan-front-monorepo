@@ -29,7 +29,7 @@ const getActionClassName = (variant: (typeof actionItems)[number]['variant']) =>
     : 'border border-stone-300 bg-white !text-stone-950 hover:bg-stone-50';
 
 export const Navbar = () => (
-  <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white backdrop-blur">
+  <header className="sticky top-0 z-50 border-b border-stone-200/80 backdrop-blur" style={{ backgroundColor: 'var(--color-nav-bg)' }}>
     <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-8">
       <a className="flex items-center gap-3" href="/">
         <img alt="Ayan logo" className="h-11 w-11 rounded-2xl object-cover shadow-[0_10px_24px_rgba(36,76,57,0.18)]" src={logo} />

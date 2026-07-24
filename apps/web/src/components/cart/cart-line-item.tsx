@@ -20,7 +20,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
   const lineTotal = item.price * item.quantity;
 
   return (
-    <article className="flex gap-3 rounded-[1.5rem] border border-stone-200 bg-[#fbf7f1] p-3">
+    <article className="flex gap-3 rounded-[1.5rem] border border-stone-200 p-3" style={{ backgroundColor: 'var(--color-card-bg)' }}>
       <img alt={item.name} className="h-24 w-24 rounded-[1rem] object-cover" src={createImageUrl(item.imageUrl ?? '')} />
 
       <div className="flex min-w-0 flex-1 flex-col gap-3">

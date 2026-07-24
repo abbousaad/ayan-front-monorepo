@@ -133,6 +133,15 @@ export type ThemeSetting = {
   secButtonBgColor: string;
   homeSubtitleTextColor: string;
   homeTitleColor: string;
+  accentColor: string;
+  cardBgColor: string;
+  checkoutButtonBgColor: string;
+  cartTitleColor: string;
+  sectionTitleColor: string;
+  bodyTextColor: string;
+  priceColor: string;
+  pageBgColor: string;
+  navBgColor: string;
 };
 
 export type ThemeSettingInput = {
@@ -147,4 +156,13 @@ export type ThemeSettingInput = {
   secButtonBgColor?: string;
   homeSubtitleTextColor?: string;
   homeTitleColor?: string;
+  accentColor?: string;
+  cardBgColor?: string;
+  checkoutButtonBgColor?: string;
+  cartTitleColor?: string;
+  sectionTitleColor?: string;
+  bodyTextColor?: string;
+  priceColor?: string;
+  pageBgColor?: string;
+  navBgColor?: string;
 };

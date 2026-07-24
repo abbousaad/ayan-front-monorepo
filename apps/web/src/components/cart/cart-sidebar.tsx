@@ -52,8 +52,8 @@ export function CartSidebar() {
       >
         <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
           <div className="space-y-1">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-700">Cart</p>
-            <h2 className="text-xl font-semibold text-stone-950">Your selections</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em]" style={{ color: 'var(--color-accent)' }}>Cart</p>
+            <h2 className="text-xl font-semibold" style={{ color: 'var(--color-cart-title)' }}>Your selections</h2>
           </div>
 
           <button
@@ -85,7 +85,7 @@ export function CartSidebar() {
             </div>
 
             <div className="border-t border-stone-200 px-5 py-5">
-              <div className="space-y-4 rounded-[1.75rem] bg-[#fbf7f1] p-4">
+              <div className="space-y-4 rounded-[1.75rem] p-4" style={{ backgroundColor: 'var(--color-card-bg)' }}>
                 <div className="flex items-center justify-between gap-3 text-sm text-stone-600">
                   <span>Subtotal</span>
                   <span className="text-lg font-semibold text-stone-950">{formatPrice(subtotal, currencyCode)}</span>
@@ -112,7 +112,7 @@ export function CartSidebar() {
                   <button
                     className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
                     onClick={() => setShowAuthModal(true)}
-                    style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+                    style={{ backgroundColor: 'var(--color-checkout-button-bg)', color: '#ffffff' }}
                     type="button"
                   >
                     Continue

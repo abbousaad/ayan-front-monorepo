@@ -60,14 +60,14 @@ type MessageStateProps = {
 const MessageState = ({ actionLabel, description, onAction, title }: MessageStateProps) => (
   <section className="rounded-[2rem] border border-stone-200 bg-white p-10 text-center shadow-[0_18px_45px_rgba(120,98,70,0.08)]">
     <div className="mx-auto max-w-lg space-y-4">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-700">Products</p>
-      <h2 className="text-2xl font-semibold text-stone-900">{title}</h2>
-      <p className="text-base leading-7 text-stone-600">{description}</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>Products</p>
+      <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>{title}</h2>
+      <p className="text-base leading-7" style={{ color: 'var(--color-body-text)' }}>{description}</p>
       {actionLabel && onAction ? (
         <button
           className="inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2"
           onClick={onAction}
-          style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+          style={{ backgroundColor: 'var(--color-checkout-button-bg)', color: '#ffffff' }}
           type="button"
         >
           {actionLabel}
@@ -242,15 +242,15 @@ export const ProductsPage = () => {
   }, [syncProducts, syncStores]);
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-stone-900 md:px-8 md:py-14">
+    <main className="min-h-screen px-6 py-10 md:px-8 md:py-14" style={{ backgroundColor: 'var(--color-page-bg)', color: 'var(--color-body-text)' }}>
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
         <section className="rounded-[2rem] border border-stone-200 bg-white p-8 shadow-[0_18px_45px_rgba(120,98,70,0.08)] md:p-10">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl space-y-4">
-              <Link className="inline-flex text-sm font-medium text-amber-800 transition hover:text-amber-700" to="/">
+              <Link className="inline-flex text-sm font-medium transition" style={{ color: 'var(--color-accent)' }} to="/">
                 ← Back home
               </Link>
-              <h1 className="text-4xl font-semibold tracking-tight text-stone-950 md:text-5xl">All Products</h1>
+              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: 'var(--color-section-title)' }}>All Products</h1>
             </div>
 
         

@@ -253,7 +253,16 @@ export const isThemeSetting = (value: unknown): value is ThemeSetting => {
     isHexColor(value.mainButtonBgColor) &&
     isHexColor(value.secButtonBgColor) &&
     isHexColor(value.homeSubtitleTextColor) &&
-    isHexColor(value.homeTitleColor)
+    isHexColor(value.homeTitleColor) &&
+    isHexColor(value.accentColor) &&
+    isHexColor(value.cardBgColor) &&
+    isHexColor(value.checkoutButtonBgColor) &&
+    isHexColor(value.cartTitleColor) &&
+    isHexColor(value.sectionTitleColor) &&
+    isHexColor(value.bodyTextColor) &&
+    isHexColor(value.priceColor) &&
+    isHexColor(value.pageBgColor) &&
+    isHexColor(value.navBgColor)
   );
 };
 

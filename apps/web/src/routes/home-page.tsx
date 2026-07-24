@@ -117,7 +117,8 @@ const MessageState = ({ actionLabel, description, onAction, title }: MessageStat
 
 const StoreCard = ({ store }: { store: Store }) => (
   <Link
-    className="flex h-full flex-col items-start gap-3 rounded-[1.25rem] border border-stone-200 bg-[#fbf7f1] p-3 transition duration-200 hover:-translate-y-1 hover:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
+    className="flex h-full flex-col items-start gap-3 rounded-[1.25rem] border border-stone-200 p-3 transition duration-200 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
+  style={{ backgroundColor: 'var(--color-card-bg)' }}
     to={`/stores/${store.id}/products`}
   >
     <img
@@ -126,7 +127,7 @@ const StoreCard = ({ store }: { store: Store }) => (
       src={createImageUrl(store.imageUrl)}
     />
 
-    <h2 className="text-base font-semibold text-stone-950">{store.name}</h2>
+    <h2 className="text-base font-semibold" style={{ color: 'var(--color-section-title)' }}>{store.name}</h2>
   </Link>
 );
 
@@ -187,7 +188,7 @@ export const HomePage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white px-6 py-10 text-stone-900 md:px-8 md:py-14">
+    <main className="min-h-screen px-6 py-10 md:px-8 md:py-14" style={{ backgroundColor: 'var(--color-page-bg)', color: 'var(--color-body-text)' }}>
       <div className="mx-auto flex max-w-7xl flex-col gap-10">
         <section className="flex min-h-[calc(100vh-9rem)] w-full items-center border border-stone-200 bg-white p-6 md:p-8 lg:p-10">
           <div className="grid w-full gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:items-center">
@@ -213,8 +214,8 @@ export const HomePage = () => {
             <aside className="rounded-[1.75rem] border border-stone-200 bg-white p-5 md:p-6">
               <div className="mb-5 flex items-center justify-between gap-4">
                 <div className="space-y-2">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-700">Stores</p>
-                  <h2 className="text-2xl font-semibold text-stone-950">Choose a store</h2>
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>Stores</p>
+                  <h2 className="text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>Choose a store</h2>
                 </div>
               </div>
 
@@ -246,11 +247,11 @@ export const HomePage = () => {
 
         <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-amber-700">Product collection</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-stone-950 md:text-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-accent)' }}>Product collection</p>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl" style={{ color: 'var(--color-section-title)' }}>
               Explore everything currently available.
             </h2>
-            <p className="max-w-2xl text-base leading-7 text-stone-600">
+            <p className="max-w-2xl text-base leading-7" style={{ color: 'var(--color-body-text)' }}>
               Browse the full catalog below or jump straight into a store to view a focused assortment.
             </p>
           </div>

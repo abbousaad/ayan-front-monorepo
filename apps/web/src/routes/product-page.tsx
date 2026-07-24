@@ -50,13 +50,13 @@ const LoadingState = () => (
 const ErrorState = ({ errorMessage, onRetry }: { errorMessage: string; onRetry: () => void }) => (
   <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
     <div className="rounded-[2rem] border border-stone-200 bg-white p-10 text-center shadow-[0_18px_45px_rgba(120,98,70,0.08)]">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-700">Product</p>
-      <h2 className="mt-2 text-2xl font-semibold text-stone-900">We couldn't load this product</h2>
-      <p className="mt-4 text-base leading-7 text-stone-600">{errorMessage}</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>Product</p>
+      <h2 className="mt-2 text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>We couldn't load this product</h2>
+      <p className="mt-4 text-base leading-7" style={{ color: 'var(--color-body-text)' }}>{errorMessage}</p>
       <button
         className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2"
         onClick={onRetry}
-        style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+        style={{ backgroundColor: 'var(--color-checkout-button-bg)', color: '#ffffff' }}
         type="button"
       >
         Try again
@@ -68,9 +68,9 @@ const ErrorState = ({ errorMessage, onRetry }: { errorMessage: string; onRetry: 
 const NotFoundState = () => (
   <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
     <div className="rounded-[2rem] border border-stone-200 bg-white p-10 text-center shadow-[0_18px_45px_rgba(120,98,70,0.08)]">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-700">Product</p>
-      <h2 className="mt-2 text-2xl font-semibold text-stone-900">Product not found</h2>
-      <p className="mt-4 text-base leading-7 text-stone-600">This product may have been removed or doesn't exist.</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.3em]" style={{ color: 'var(--color-accent)' }}>Product</p>
+      <h2 className="mt-2 text-2xl font-semibold" style={{ color: 'var(--color-section-title)' }}>Product not found</h2>
+      <p className="mt-4 text-base leading-7" style={{ color: 'var(--color-body-text)' }}>This product may have been removed or doesn't exist.</p>
       <Link
         className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-stone-300 bg-white px-5 py-3 font-medium text-stone-900 transition hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2"
         to="/products"
@@ -188,10 +188,11 @@ export function ProductPage() {
   const stockColor = product.stock > 10 ? 'text-emerald-600' : product.stock > 0 ? 'text-amber-600' : 'text-red-600';
 
   return (
-    <main className="min-h-screen bg-white px-4 py-8 sm:px-6 lg:px-8">
+    <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--color-page-bg)' }}>
       <div className="mx-auto max-w-5xl">
         <Link
-          className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-stone-600 transition hover:text-stone-900"
+          className="mb-6 inline-flex items-center gap-1 text-sm font-medium transition"
+          style={{ color: 'var(--color-body-text)' }}
           to="/products"
         >
           <FiChevronLeft aria-hidden="true" size={16} />
@@ -210,24 +211,25 @@ export function ProductPage() {
           <div className="flex flex-col gap-6">
             <div>
               <Link
-                className="text-sm font-medium text-amber-700 hover:text-amber-800"
+                className="text-sm font-medium"
+                style={{ color: 'var(--color-accent)' }}
                 to={`/stores/${product.storeId}/products`}
               >
                 View store
               </Link>
-              <h1 className="mt-2 text-3xl font-semibold tracking-tight text-stone-950 md:text-4xl">
+              <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl" style={{ color: 'var(--color-section-title)' }}>
                 {product.name}
               </h1>
-              <p className="mt-4 text-2xl font-semibold text-stone-900">
+              <p className="mt-4 text-2xl font-semibold" style={{ color: 'var(--color-price)' }}>
                 {formatPrice(product.price, product.currencyCode ?? 'USD')}
-                <span className="ml-2 text-base font-normal text-stone-500">/ {product.unit}</span>
+                <span className="ml-2 text-base font-normal" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
               </p>
             </div>
 
             {product.description && (
               <div className="space-y-2">
-                <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Description</h2>
-                <p className="text-base leading-7 text-stone-600">{product.description}</p>
+                <h2 className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: 'var(--color-subtitle-1)' }}>Description</h2>
+                <p className="text-base leading-7" style={{ color: 'var(--color-body-text)' }}>{product.description}</p>
               </div>
             )}
 
@@ -263,7 +265,7 @@ export function ProductPage() {
                 className="inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 text-base font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50"
                 disabled={product.stock === 0}
                 onClick={handleAddToCart}
-                style={{ backgroundColor: brandColors.logoGreen, color: brandColors.white }}
+                style={{ backgroundColor: 'var(--color-checkout-button-bg)', color: '#ffffff' }}
                 type="button"
               >
                 {product.stock === 0 ? 'Out of stock' : 'Add to cart'}

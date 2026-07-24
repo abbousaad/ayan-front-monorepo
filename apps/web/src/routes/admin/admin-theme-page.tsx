@@ -18,6 +18,15 @@ type ThemeFormValues = {
   secButtonBgColor: string;
   homeSubtitleTextColor: string;
   homeTitleColor: string;
+  accentColor: string;
+  cardBgColor: string;
+  checkoutButtonBgColor: string;
+  cartTitleColor: string;
+  sectionTitleColor: string;
+  bodyTextColor: string;
+  priceColor: string;
+  pageBgColor: string;
+  navBgColor: string;
 };
 
 type ColorField = keyof ThemeFormValues;
@@ -31,27 +40,41 @@ const COLOR_GROUPS: ColorGroup[] = [
   {
     label: 'Navbar',
     fields: [
-      { key: 'logoTitleColor', label: 'Logo Title', description: '"Ayan Market" text color' },
-      { key: 'logoSubtitleColor', label: 'Logo Subtitle', description: '"Fresh essentials" text color' },
+      { key: 'navBgColor', label: 'Background', description: 'Navbar background color' },
+      { key: 'logoTitleColor', label: 'Logo Title', description: '"Ayan Market" text' },
+      { key: 'logoSubtitleColor', label: 'Logo Subtitle', description: '"Fresh essentials" text' },
       { key: 'mainButtonBgColor', label: 'Main Button', description: '"S\'enregistrer" button background' },
-      { key: 'secButtonBgColor', label: 'Cart Badge', description: 'Cart item count badge background' },
+      { key: 'secButtonBgColor', label: 'Cart Badge', description: 'Cart item count badge' },
     ]
   },
   {
     label: 'Home Page',
     fields: [
-      { key: 'homeSubtitleTextColor', label: 'Section Label', description: '"Fresh arrivals" label color' },
-      { key: 'homeTitleColor', label: 'Hero Title', description: '"Shop neighborhood stores…" title color' },
+      { key: 'pageBgColor', label: 'Page Background', description: 'Home, products, product detail page background' },
+      { key: 'homeSubtitleTextColor', label: 'Section Label', description: '"Fresh arrivals" / "Product collection" labels' },
+      { key: 'homeTitleColor', label: 'Hero Title', description: '"Shop neighborhood stores…" heading' },
+      { key: 'sectionTitleColor', label: 'Section Titles', description: '"Choose a store", "Explore everything…" headings' },
+      { key: 'bodyTextColor', label: 'Body Text', description: 'Paragraph and description text' },
+      { key: 'cardBgColor', label: 'Card Background', description: 'Store cards, cart item cards, cart summary panel' },
     ]
   },
   {
     label: 'Store & Products',
     fields: [
-      { key: 'primaryColor', label: 'Page Background', description: 'Store page background color' },
-      { key: 'textColor', label: 'Main Text', description: 'Product names, prices, headings' },
-      { key: 'secondaryColor', label: 'Add to Cart Button', description: 'Add to cart button background' },
-      { key: 'subtitle1Color', label: 'Subtitle 1', description: 'Product descriptions, store paragraphs' },
-      { key: 'subtitle2Color', label: 'Subtitle 2', description: 'Price units (e.g. /kg), small labels' },
+      { key: 'accentColor', label: 'Accent / Labels', description: 'All small uppercase labels site-wide' },
+      { key: 'primaryColor', label: 'Store Page Background', description: 'Store products page background' },
+      { key: 'textColor', label: 'Product Name', description: 'Product names and headings in product cards' },
+      { key: 'priceColor', label: 'Price', description: 'Product price on the product detail page' },
+      { key: 'subtitle1Color', label: 'Subtitle 1', description: 'Product descriptions' },
+      { key: 'subtitle2Color', label: 'Subtitle 2', description: 'Price units (e.g. /kg)' },
+      { key: 'secondaryColor', label: 'Add to Cart Button', description: 'Add to cart button in product cards' },
+    ]
+  },
+  {
+    label: 'Cart & Checkout',
+    fields: [
+      { key: 'cartTitleColor', label: 'Cart Title', description: '"Your selections" heading in cart drawer' },
+      { key: 'checkoutButtonBgColor', label: 'Checkout Button', description: '"Continue" and "Add to cart" primary buttons' },
     ]
   }
 ];
@@ -68,6 +91,15 @@ const DEFAULT_VALUES: ThemeFormValues = {
   secButtonBgColor: '#1f6446',
   homeSubtitleTextColor: '#b45309',
   homeTitleColor: '#0c0a09',
+  accentColor: '#b45309',
+  cardBgColor: '#fbf7f1',
+  checkoutButtonBgColor: '#1f6446',
+  cartTitleColor: '#0c0a09',
+  sectionTitleColor: '#0c0a09',
+  bodyTextColor: '#44403c',
+  priceColor: '#0c0a09',
+  pageBgColor: '#ffffff',
+  navBgColor: '#ffffff',
 };
 
 export function AdminThemePage(): React.JSX.Element {
@@ -104,6 +136,15 @@ export function AdminThemePage(): React.JSX.Element {
           secButtonBgColor: response.secButtonBgColor,
           homeSubtitleTextColor: response.homeSubtitleTextColor,
           homeTitleColor: response.homeTitleColor,
+          accentColor: response.accentColor,
+          cardBgColor: response.cardBgColor,
+          checkoutButtonBgColor: response.checkoutButtonBgColor,
+          cartTitleColor: response.cartTitleColor,
+          sectionTitleColor: response.sectionTitleColor,
+          bodyTextColor: response.bodyTextColor,
+          priceColor: response.priceColor,
+          pageBgColor: response.pageBgColor,
+          navBgColor: response.navBgColor,
         });
       } catch (error) {
         if (error instanceof ApiClientError && error.status === 401) { handleUnauthorized(); return; }
@@ -132,6 +173,15 @@ export function AdminThemePage(): React.JSX.Element {
       secButtonBgColor: values.secButtonBgColor,
       homeSubtitleTextColor: values.homeSubtitleTextColor,
       homeTitleColor: values.homeTitleColor,
+      accentColor: values.accentColor,
+      cardBgColor: values.cardBgColor,
+      checkoutButtonBgColor: values.checkoutButtonBgColor,
+      cartTitleColor: values.cartTitleColor,
+      sectionTitleColor: values.sectionTitleColor,
+      bodyTextColor: values.bodyTextColor,
+      priceColor: values.priceColor,
+      pageBgColor: values.pageBgColor,
+      navBgColor: values.navBgColor,
     };
 
     try {
