@@ -1,12 +1,13 @@
 import { createImageUrl, ApiClientError } from '@acme/api-client';
 import { getProductById } from '@acme/api-client/products';
 import type { Product } from '@acme/api-client/products';
-import { brandColors } from '@acme/shared';
+import { brandColors, formatCurrency } from '@acme/shared';
 import { useCallback, useEffect, useState } from 'react';
 import { FiChevronLeft, FiMinus, FiPlus } from 'react-icons/fi';
 import { Link, useParams, Navigate } from 'react-router-dom';
 
 import { useCart } from '../cart/use-cart';
+import { useI18n } from '../contexts/i18n-context';
 
 type ProductState = {
   product: Product | null;
@@ -22,12 +23,6 @@ const initialState: ProductState = {
 
 const getErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : 'Unable to load this product right now.';
-
-const formatPrice = (price: number, currencyCode = 'USD') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currencyCode
-  }).format(price);
 
 const LoadingState = () => (
   <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
@@ -84,6 +79,8 @@ const NotFoundState = () => (
 export function ProductPage() {
   const { productId } = useParams<{ productId: string }>();
   const { addCartItem, openCart } = useCart();
+  const { locale } = useI18n();
+  const formatPrice = (price: number, currencyCode = 'USD') => formatCurrency(price, currencyCode, locale);
   const [state, setState] = useState<ProductState>(initialState);
   const [quantity, setQuantity] = useState(1);
 

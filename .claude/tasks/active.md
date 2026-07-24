@@ -27,7 +27,7 @@
 - [ ] AT-26 — Web string extraction pass (routes + components → t())
 - [ ] AT-27 — Web RTL pass (logical Tailwind utilities)
 - [x] AT-28 — Admin translations editor page + route + nav link
-- [ ] AT-29 — Locale-aware currency/number formatting
+- [x] AT-29 — Locale-aware currency/number formatting (store-facing; admin pages left)
 - [ ] MT-8 — Mobile I18nProvider + switcher + expo-localization
 - [ ] MT-9 — Mobile string extraction pass
 - [ ] MT-10 — Mobile RTL via I18nManager (reload flow)

@@ -1,22 +1,20 @@
 import type { PublicOrder } from '@acme/api-client';
+import { formatCurrency } from '@acme/shared';
 import { useEffect } from 'react';
 import { FiCheckCircle } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { useCart } from '../../cart/use-cart';
+import { useI18n } from '../../contexts/i18n-context';
 
 type OrderConfirmationProps = {
   order: PublicOrder;
 };
 
-const formatPrice = (price: number) =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(price);
-
 export function OrderConfirmation({ order }: OrderConfirmationProps) {
   const { clearCartItems } = useCart();
+  const { locale } = useI18n();
+  const formatPrice = (price: number) => formatCurrency(price, 'USD', locale);
 
   useEffect(() => {
     clearCartItems();

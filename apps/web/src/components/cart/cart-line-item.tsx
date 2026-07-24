@@ -1,22 +1,20 @@
 import { createImageUrl } from '@acme/api-client';
 import { type CartItem } from '@acme/cart';
+import { formatCurrency } from '@acme/shared';
 import { FiTrash2 } from 'react-icons/fi';
 
 import { useCart } from '../../cart/use-cart';
+import { useI18n } from '../../contexts/i18n-context';
 import { QuantityControl } from './quantity-control';
 
 type CartLineItemProps = {
   item: CartItem;
 };
 
-const formatPrice = (price: number, currencyCode = 'USD') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currencyCode
-  }).format(price);
-
 export function CartLineItem({ item }: CartLineItemProps) {
   const { decrementCartItem, incrementCartItem, removeCartItem, setCartItemQuantity } = useCart();
+  const { locale } = useI18n();
+  const formatPrice = (price: number, currencyCode = 'USD') => formatCurrency(price, currencyCode, locale);
   const lineTotal = item.price * item.quantity;
 
   return (

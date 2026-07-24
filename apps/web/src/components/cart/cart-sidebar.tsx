@@ -1,4 +1,4 @@
-import { brandColors } from '@acme/shared';
+import { brandColors, formatCurrency } from '@acme/shared';
 import { getDiscountAmount, getTotalWithPricing } from '@acme/cart';
 import { useEffect, useState } from 'react';
 import { FiShoppingBag, FiX } from 'react-icons/fi';
@@ -9,17 +9,12 @@ import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { AuthChoiceModal } from '../checkout/auth-choice-modal';
 import { CartLineItem } from './cart-line-item';
 
-const formatPrice = (price: number, currencyCode = 'USD') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currencyCode
-  }).format(price);
-
 export function CartSidebar() {
   const { clearCartItems, closeCart, isCartEmpty, isOpen, state, subtotal } = useCart();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { pricingConfig } = usePricingConfig();
   const currencyCode = state.items[0]?.currencyCode ?? 'USD';
+  const formatPrice = (price: number, code = currencyCode) => formatCurrency(price, code, locale);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
   const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);

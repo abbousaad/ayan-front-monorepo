@@ -1,6 +1,6 @@
 import { createImageUrl } from '@acme/api-client';
 import type { Product } from '@acme/api-client/products';
-import { brandColors } from '@acme/shared';
+import { brandColors, formatCurrency } from '@acme/shared';
 import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
@@ -11,18 +11,13 @@ type ProductCardProps = {
   product: Product;
 };
 
-const formatPrice = (price: number, currencyCode = 'USD') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currencyCode
-  }).format(price);
-
 const getProductDescription = (description: Product['description']) =>
   description ?? 'A reliable everyday staple with clean ingredients and easy prep.';
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { addCartItem, openCart } = useCart();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const formatPrice = (price: number, currencyCode = 'USD') => formatCurrency(price, currencyCode, locale);
 
   const handleAddToCart = (event: React.MouseEvent) => {
     event.preventDefault();

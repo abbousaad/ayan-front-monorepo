@@ -1,17 +1,13 @@
 import { createImageUrl } from '@acme/api-client';
 import { getDiscountAmount, getTotalWithPricing } from '@acme/cart';
+import { formatCurrency } from '@acme/shared';
 import { FiShoppingBag, FiTrash2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { useCart } from '../../cart/use-cart';
+import { useI18n } from '../../contexts/i18n-context';
 import { usePricingConfig } from '../../hooks/use-pricing-config';
 import { QuantityControl } from '../cart/quantity-control';
-
-const formatPrice = (price: number, currencyCode = 'USD') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currencyCode
-  }).format(price);
 
 export function CheckoutCartSummary() {
   const {
@@ -23,7 +19,9 @@ export function CheckoutCartSummary() {
     state,
     subtotal
   } = useCart();
+  const { locale } = useI18n();
   const currencyCode = state.items[0]?.currencyCode ?? 'USD';
+  const formatPrice = (price: number, code = currencyCode) => formatCurrency(price, code, locale);
   const { pricingConfig } = usePricingConfig();
   const discountAmount = getDiscountAmount(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
   const total = getTotalWithPricing(subtotal, pricingConfig.deliveryFee, pricingConfig.discountRate);
