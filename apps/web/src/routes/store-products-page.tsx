@@ -130,7 +130,7 @@ export const StoreProductsPage = () => {
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-stone-50 text-stone-900 transition hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
                 to="/"
               >
-                <FiChevronLeft aria-hidden="true" size={20} />
+                <FiChevronLeft aria-hidden="true" className="rtl:rotate-180" size={20} />
               </Link>
               <p className="text-sm font-semibold uppercase tracking-[0.35em]" style={{ color: 'var(--color-subtitle-2)' }}>Store collection</p>
               <h1 className="text-4xl font-semibold tracking-tight md:text-5xl" style={{ color: 'var(--color-text)' }}>

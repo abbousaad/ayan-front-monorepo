@@ -16,10 +16,10 @@ export function CartButton() {
       type="button"
     >
       <FiShoppingBag aria-hidden="true" size={18} />
-      <span className="ml-2 hidden text-sm font-semibold sm:inline">{t('nav.cart')}</span>
+      <span className="ms-2 hidden text-sm font-semibold sm:inline">{t('nav.cart')}</span>
       {cartCount > 0 && (
         <span
-          className="absolute -right-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold"
+          className="absolute -end-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold"
           style={{ backgroundColor: 'var(--color-sec-button-bg)', color: '#ffffff' }}
         >
           {cartCount}

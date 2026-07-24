@@ -45,7 +45,7 @@ export function CartSidebar() {
 
       <aside
         aria-hidden={!isOpen}
-        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-stone-200 bg-white shadow-[0_18px_45px_rgba(120,98,70,0.18)] transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed end-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-s border-stone-200 bg-white shadow-[0_18px_45px_rgba(120,98,70,0.18)] transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full rtl:-translate-x-full'}`}
       >
         <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
           <div className="space-y-1">

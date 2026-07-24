@@ -192,7 +192,7 @@ export function ProductPage() {
           style={{ color: 'var(--color-body-text)' }}
           to="/products"
         >
-          <FiChevronLeft aria-hidden="true" size={16} />
+          <FiChevronLeft aria-hidden="true" className="rtl:rotate-180" size={16} />
           Back to products
         </Link>
 
@@ -219,7 +219,7 @@ export function ProductPage() {
               </h1>
               <p className="mt-4 text-2xl font-semibold" style={{ color: 'var(--color-price)' }}>
                 {formatPrice(product.price, product.currencyCode ?? 'USD')}
-                <span className="ml-2 text-base font-normal" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
+                <span className="ms-2 text-base font-normal" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
               </p>
             </div>
 

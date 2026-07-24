@@ -37,11 +37,11 @@ export function OrderConfirmation({ order }: OrderConfirmationProps) {
         </p>
       </div>
 
-      <div className="rounded-[2rem] border border-stone-200 bg-[#fbf7f1] p-6 text-left space-y-3">
+      <div className="rounded-[2rem] border border-stone-200 bg-[#fbf7f1] p-6 text-start space-y-3">
         <dl className="space-y-3 text-sm">
           <div className="flex justify-between gap-4">
             <dt className="text-stone-500">Order ID</dt>
-            <dd className="font-mono font-medium text-stone-950 break-all text-right">{order.id}</dd>
+            <dd className="font-mono font-medium text-stone-950 break-all text-end">{order.id}</dd>
           </div>
           <div className="flex justify-between gap-4">
             <dt className="text-stone-500">Status</dt>
@@ -53,7 +53,7 @@ export function OrderConfirmation({ order }: OrderConfirmationProps) {
           </div>
           <div className="flex justify-between gap-4">
             <dt className="text-stone-500">Address</dt>
-            <dd className="font-semibold text-stone-950 text-right">{order.guestAddress}</dd>
+            <dd className="font-semibold text-stone-950 text-end">{order.guestAddress}</dd>
           </div>
           {total !== undefined && (
             <div className="flex justify-between gap-4 border-t border-stone-200 pt-3">

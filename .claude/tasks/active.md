@@ -25,7 +25,7 @@
 - [x] AT-24 — api-client translation settings (get/update + validators)
 - [x] AT-25 — Web I18nProvider + language switcher + App wiring
 - [ ] AT-26 — Web string extraction pass (routes + components → t())
-- [ ] AT-27 — Web RTL pass (logical Tailwind utilities)
+- [x] AT-27 — Web RTL pass (logical Tailwind utilities)
 - [x] AT-28 — Admin translations editor page + route + nav link
 - [x] AT-29 — Locale-aware currency/number formatting (store-facing; admin pages left)
 - [ ] MT-8 — Mobile I18nProvider + switcher + expo-localization

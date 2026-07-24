@@ -52,7 +52,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div className="mt-auto flex items-center justify-between gap-2">
           <p className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
             {formatPrice(product.price, product.currencyCode ?? 'USD')}
-            <span className="ml-1 text-xs font-medium" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
+            <span className="ms-1 text-xs font-medium" style={{ color: 'var(--color-subtitle-2)' }}>/ {product.unit}</span>
           </p>
 
           <button
