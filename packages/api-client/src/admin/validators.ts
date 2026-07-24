@@ -13,6 +13,8 @@ import type {
   PricingConfig,
   UserRole,
   ThemeSetting,
+  TranslationSetting,
+  Locale,
 } from './types';
 
 // ── Shared helpers ────────────────────────────────────────────────────────────
@@ -273,6 +275,54 @@ export const parseThemeSettingResponse = (value: unknown): ThemeSetting => {
     throw new ApiClientError({
       code: 'INVALID_THEME_SETTING_RESPONSE',
       message: 'The theme setting response did not match the expected format.'
+    });
+  }
+
+  return data;
+};
+
+// ── Translation settings validators ───────────────────────────────────────────
+
+const LOCALE_VALUES: readonly Locale[] = ['en', 'fr', 'ar'];
+
+const isValidatorLocale = (value: unknown): value is Locale =>
+  typeof value === 'string' && (LOCALE_VALUES as readonly string[]).includes(value);
+
+const isTranslationBundle = (value: unknown): value is Record<string, string> => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  return Object.values(value).every((entry) => typeof entry === 'string');
+};
+
+export const isTranslationSetting = (value: unknown): value is TranslationSetting => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  if (!isValidatorLocale(value.defaultLocale)) {
+    return false;
+  }
+
+  if (!Array.isArray(value.activeLocales) || !value.activeLocales.every(isValidatorLocale)) {
+    return false;
+  }
+
+  if (!isRecord(value.translations)) {
+    return false;
+  }
+
+  return Object.values(value.translations).every(isTranslationBundle);
+};
+
+export const parseTranslationSettingResponse = (value: unknown): TranslationSetting => {
+  const data = isRecord(value) && 'data' in value ? value.data : value;
+
+  if (!isTranslationSetting(data)) {
+    throw new ApiClientError({
+      code: 'INVALID_TRANSLATION_SETTING_RESPONSE',
+      message: 'The translation setting response did not match the expected format.'
     });
   }
 

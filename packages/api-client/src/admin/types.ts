@@ -119,6 +119,24 @@ export type CurrencySettingInput = {
   currencyCode: string;
 };
 
+// ── Translation settings types ────────────────────────────────────────────────
+
+export type Locale = 'en' | 'fr' | 'ar';
+
+export type TranslationBundle = Record<string, string>;
+
+export type TranslationSetting = {
+  defaultLocale: Locale;
+  activeLocales: Locale[];
+  translations: Record<Locale, TranslationBundle>;
+};
+
+export type TranslationSettingInput = {
+  defaultLocale?: Locale;
+  activeLocales?: Locale[];
+  translations?: Partial<Record<Locale, TranslationBundle>>;
+};
+
 // ── Theme settings types ──────────────────────────────────────────────────────
 
 export type ThemeSetting = {
