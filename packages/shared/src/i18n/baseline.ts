@@ -42,6 +42,9 @@ export const enBaseline = {
   'home.hero.subtitle':
     'Discover featured stores, browse their collections, and keep scrolling for a full product lineup in the same warm shopping experience.',
 
+  // Home — store stories
+  'stories.viewProducts': 'View products',
+
   // Home — stores section
   'home.stores.eyebrow': 'Stores',
   'home.stores.title': 'Choose a store',
