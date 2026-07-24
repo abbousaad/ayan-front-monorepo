@@ -15,6 +15,7 @@ import { AdminPublicOrdersPage } from './routes/admin/admin-public-orders-page';
 import { AdminPricingPage } from './routes/admin/admin-pricing-page';
 import { AdminProductsPage } from './routes/admin/admin-products-page';
 import { AdminStoresPage } from './routes/admin/admin-stores-page';
+import { AdminTranslationsPage } from './routes/admin/admin-translations-page';
 import { CheckoutPage } from './routes/checkout-page';
 import { HomePage } from './routes/home-page';
 import { ProductPage } from './routes/product-page';
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
           {
             path: 'currency',
             element: <AdminCurrencyPage />
+          },
+          {
+            path: 'translations',
+            element: <AdminTranslationsPage />
           },
           {
             path: 'theme',

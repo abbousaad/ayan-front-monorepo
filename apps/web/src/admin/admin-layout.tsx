@@ -17,6 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Coupons', to: '/admin/coupons' },
   { label: 'Pricing', to: '/admin/pricing' },
   { label: 'Currency', to: '/admin/currency' },
+  { label: 'Translations', to: '/admin/translations' },
   { label: 'Theme', to: '/admin/theme' },
   { label: 'Orders', to: '/admin/orders' },
   { label: 'Public Orders', to: '/admin/public-orders' },
