@@ -188,7 +188,7 @@ export type ThemeSettingInput = {
 // ── Branding settings types ───────────────────────────────────────────────────
 
 export type BrandingSetting = {
-  logoUrl: string;
+  logoUrl: string | null;
   title: string;
   subtitle: string;
 };

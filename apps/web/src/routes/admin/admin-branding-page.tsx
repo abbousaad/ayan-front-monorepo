@@ -17,8 +17,8 @@ export function AdminBrandingPage(): React.JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [currentLogoUrl, setCurrentLogoUrl] = useState<string>('');
-  const [previewLogoUrl, setPreviewLogoUrl] = useState<string>('');
+  const [currentLogoUrl, setCurrentLogoUrl] = useState<string | null>(null);
+  const [previewLogoUrl, setPreviewLogoUrl] = useState<string | null>(null);
 
   const {
     register,

@@ -139,6 +139,66 @@
           "subtitle2Color": {
             "type": "string",
             "description": "Subtitle 2 color (hex format)"
+          },
+          "logoTitleColor": {
+            "type": "string",
+            "description": "Logo title color (hex format)"
+          },
+          "logoSubtitleColor": {
+            "type": "string",
+            "description": "Logo subtitle color (hex format)"
+          },
+          "mainButtonBgColor": {
+            "type": "string",
+            "description": "Main button background color (hex format)"
+          },
+          "secButtonBgColor": {
+            "type": "string",
+            "description": "Secondary button background color (hex format)"
+          },
+          "homeSubtitleTextColor": {
+            "type": "string",
+            "description": "Home subtitle text color (hex format)"
+          },
+          "homeTitleColor": {
+            "type": "string",
+            "description": "Home title color (hex format)"
+          },
+          "accentColor": {
+            "type": "string",
+            "description": "Accent color (hex format)"
+          },
+          "cardBgColor": {
+            "type": "string",
+            "description": "Card background color (hex format)"
+          },
+          "checkoutButtonBgColor": {
+            "type": "string",
+            "description": "Checkout button background color (hex format)"
+          },
+          "cartTitleColor": {
+            "type": "string",
+            "description": "Cart title color (hex format)"
+          },
+          "sectionTitleColor": {
+            "type": "string",
+            "description": "Section title color (hex format)"
+          },
+          "bodyTextColor": {
+            "type": "string",
+            "description": "Body text color (hex format)"
+          },
+          "priceColor": {
+            "type": "string",
+            "description": "Price color (hex format)"
+          },
+          "pageBgColor": {
+            "type": "string",
+            "description": "Page background color (hex format)"
+          },
+          "navBgColor": {
+            "type": "string",
+            "description": "Navigation background color (hex format)"
           }
         },
         "required": [
@@ -146,7 +206,57 @@
           "textColor",
           "secondaryColor",
           "subtitle1Color",
-          "subtitle2Color"
+          "subtitle2Color",
+          "logoTitleColor",
+          "logoSubtitleColor",
+          "mainButtonBgColor",
+          "secButtonBgColor",
+          "homeSubtitleTextColor",
+          "homeTitleColor",
+          "accentColor",
+          "cardBgColor",
+          "checkoutButtonBgColor",
+          "cartTitleColor",
+          "sectionTitleColor",
+          "bodyTextColor",
+          "priceColor",
+          "pageBgColor",
+          "navBgColor"
+        ]
+      },
+      "TranslationConfig": {
+        "type": "object",
+        "properties": {
+          "defaultLocale": {
+            "type": "string",
+            "enum": [
+              "en",
+              "fr",
+              "ar"
+            ],
+            "description": "Default locale code"
+          },
+          "activeLocales": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "en",
+                "fr",
+                "ar"
+              ]
+            },
+            "description": "Active locale codes"
+          },
+          "translations": {
+            "type": "object",
+            "description": "Translations by locale, each containing key-value string pairs"
+          }
+        },
+        "required": [
+          "defaultLocale",
+          "activeLocales",
+          "translations"
         ]
       },
       "Product": {
@@ -523,6 +633,28 @@
           "taxRate",
           "discountRate"
         ]
+      },
+      "BrandingSetting": {
+        "type": "object",
+        "properties": {
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to the uploaded logo image"
+          },
+          "title": {
+            "type": "string",
+            "description": "Branding title (e.g., \"Ayan Market\")"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "Branding subtitle (e.g., \"Fresh essentials\")"
+          }
+        },
+        "required": [
+          "title",
+          "subtitle"
+        ]
       }
     }
   },
@@ -673,6 +805,66 @@
                   "subtitle2Color": {
                     "type": "string",
                     "description": "Subtitle 2 color in hex format (#RRGGBB)"
+                  },
+                  "logoTitleColor": {
+                    "type": "string",
+                    "description": "Logo title color in hex format (#RRGGBB)"
+                  },
+                  "logoSubtitleColor": {
+                    "type": "string",
+                    "description": "Logo subtitle color in hex format (#RRGGBB)"
+                  },
+                  "mainButtonBgColor": {
+                    "type": "string",
+                    "description": "Main button background color in hex format (#RRGGBB)"
+                  },
+                  "secButtonBgColor": {
+                    "type": "string",
+                    "description": "Secondary button background color in hex format (#RRGGBB)"
+                  },
+                  "homeSubtitleTextColor": {
+                    "type": "string",
+                    "description": "Home subtitle text color in hex format (#RRGGBB)"
+                  },
+                  "homeTitleColor": {
+                    "type": "string",
+                    "description": "Home title color in hex format (#RRGGBB)"
+                  },
+                  "accentColor": {
+                    "type": "string",
+                    "description": "Accent color in hex format (#RRGGBB)"
+                  },
+                  "cardBgColor": {
+                    "type": "string",
+                    "description": "Card background color in hex format (#RRGGBB)"
+                  },
+                  "checkoutButtonBgColor": {
+                    "type": "string",
+                    "description": "Checkout button background color in hex format (#RRGGBB)"
+                  },
+                  "cartTitleColor": {
+                    "type": "string",
+                    "description": "Cart title color in hex format (#RRGGBB)"
+                  },
+                  "sectionTitleColor": {
+                    "type": "string",
+                    "description": "Section title color in hex format (#RRGGBB)"
+                  },
+                  "bodyTextColor": {
+                    "type": "string",
+                    "description": "Body text color in hex format (#RRGGBB)"
+                  },
+                  "priceColor": {
+                    "type": "string",
+                    "description": "Price color in hex format (#RRGGBB)"
+                  },
+                  "pageBgColor": {
+                    "type": "string",
+                    "description": "Page background color in hex format (#RRGGBB)"
+                  },
+                  "navBgColor": {
+                    "type": "string",
+                    "description": "Navigation background color in hex format (#RRGGBB)"
                   }
                 }
               }
@@ -703,6 +895,183 @@
           },
           "422": {
             "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/settings/translations": {
+      "get": {
+        "summary": "Get translation configuration (public)",
+        "responses": {
+          "200": {
+            "description": "Translation configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TranslationConfig"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update translation configuration (superadmin only)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "defaultLocale": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "fr",
+                      "ar"
+                    ],
+                    "description": "Default locale code"
+                  },
+                  "activeLocales": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "en",
+                        "fr",
+                        "ar"
+                      ]
+                    },
+                    "description": "Active locale codes"
+                  },
+                  "translations": {
+                    "type": "object",
+                    "description": "Partial translations to merge into existing state"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Translation configuration updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TranslationConfig"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/settings/branding": {
+      "get": {
+        "summary": "Get branding configuration (public)",
+        "responses": {
+          "200": {
+            "description": "Branding configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BrandingSetting"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update branding configuration with logo upload (superadmin only)",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Branding title (e.g., \"Ayan Market\")"
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "description": "Branding subtitle (e.g., \"Fresh essentials\")"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Logo image file (JPEG, PNG, or WEBP)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Branding configuration updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BrandingSetting"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Upload error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation error or invalid image"
           }
         }
       }

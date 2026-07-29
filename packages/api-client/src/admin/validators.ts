@@ -338,7 +338,7 @@ export const isBrandingSetting = (value: unknown): value is BrandingSetting => {
   }
 
   return (
-    typeof value.logoUrl === 'string' &&
+    (typeof value.logoUrl === 'string' || value.logoUrl === null) &&
     typeof value.title === 'string' &&
     typeof value.subtitle === 'string'
   );
