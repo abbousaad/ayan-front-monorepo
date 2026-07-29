@@ -184,3 +184,17 @@ export type ThemeSettingInput = {
   pageBgColor?: string;
   navBgColor?: string;
 };
+
+// ── Branding settings types ───────────────────────────────────────────────────
+
+export type BrandingSetting = {
+  logoUrl: string;
+  title: string;
+  subtitle: string;
+};
+
+export type BrandingSettingInput = {
+  title?: string;
+  subtitle?: string;
+  image?: File;
+};

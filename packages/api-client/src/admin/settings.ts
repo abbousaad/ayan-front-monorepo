@@ -1,18 +1,23 @@
 import { API_BASE_URL } from '../client/config';
 import { requestJson } from '../shared/request-json';
 
+import { requestMultipart } from '../client/request-multipart';
+
 import type {
   CurrencySetting,
   CurrencySettingInput,
   ThemeSetting,
   ThemeSettingInput,
   TranslationSetting,
-  TranslationSettingInput
+  TranslationSettingInput,
+  BrandingSetting,
+  BrandingSettingInput
 } from './types';
 import {
   parseCurrencySettingResponse,
   parseThemeSettingResponse,
-  parseTranslationSettingResponse
+  parseTranslationSettingResponse,
+  parseBrandingSettingResponse
 } from './validators';
 
 export const getCurrencySetting = async (token: string): Promise<CurrencySetting> => {
@@ -107,4 +112,38 @@ export const updateTranslationSetting = async (
   );
 
   return parseTranslationSettingResponse(response);
+};
+
+export const getBrandingSetting = async (): Promise<BrandingSetting> => {
+  const response = await requestJson(
+    {
+      baseUrl: API_BASE_URL
+    },
+    '/settings/branding'
+  );
+
+  return parseBrandingSettingResponse(response);
+};
+
+export const updateBrandingSetting = async (
+  input: BrandingSettingInput,
+  token: string
+): Promise<BrandingSetting> => {
+  const formData = new FormData();
+
+  if (input.title !== undefined) {
+    formData.append('title', input.title);
+  }
+
+  if (input.subtitle !== undefined) {
+    formData.append('subtitle', input.subtitle);
+  }
+
+  if (input.image !== undefined) {
+    formData.append('image', input.image);
+  }
+
+  const response = await requestMultipart('/settings/branding', 'PATCH', formData, token);
+
+  return parseBrandingSettingResponse(response);
 };

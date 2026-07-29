@@ -1,5 +1,7 @@
 import { brandColors } from '@acme/shared';
 import type { TranslationKey } from '@acme/shared';
+import { getBrandingSetting } from '@acme/api-client/admin';
+import { useEffect, useState } from 'react';
 
 import { useI18n } from '../contexts/i18n-context';
 import logo from '../assets/ayan.png';
@@ -18,18 +20,60 @@ const getActionClassName = (variant: (typeof actionItems)[number]['variant']) =>
     ? 'text-white'
     : 'border border-stone-300 bg-white !text-stone-950 hover:bg-stone-50';
 
+const DEFAULT_BRANDING = {
+  logoUrl: logo,
+  title: 'Ayan Market',
+  subtitle: 'Fresh essentials'
+};
+
 export const Navbar = () => {
   const { t } = useI18n();
+  const [branding, setBranding] = useState(DEFAULT_BRANDING);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBranding = async (): Promise<void> => {
+      try {
+        const response = await getBrandingSetting();
+        setBranding(response);
+      } catch {
+        setBranding(DEFAULT_BRANDING);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    void fetchBranding();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <header className="sticky top-0 z-50 border-b border-stone-200/80 backdrop-blur" style={{ backgroundColor: 'var(--color-nav-bg)' }}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-8">
+          <div className="flex items-center gap-3">
+            <div className="h-11 w-11 rounded-2xl bg-stone-200 animate-pulse" />
+            <div className="space-y-1">
+              <div className="h-5 w-32 bg-stone-200 rounded animate-pulse" />
+              <div className="h-3 w-24 bg-stone-200 rounded animate-pulse" />
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <CartButton />
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200/80 backdrop-blur" style={{ backgroundColor: 'var(--color-nav-bg)' }}>
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-8">
         <a className="flex items-center gap-3" href="/">
-          <img alt="Ayan logo" className="h-11 w-11 rounded-2xl object-cover shadow-[0_10px_24px_rgba(36,76,57,0.18)]" src={logo} />
+          <img alt={branding.title} className="h-11 w-11 rounded-2xl object-cover shadow-[0_10px_24px_rgba(36,76,57,0.18)]" src={branding.logoUrl} />
           <div className="space-y-1">
-            <p className="text-lg font-semibold tracking-tight" style={{ color: 'var(--color-logo-title)' }}>Ayan Market</p>
+            <p className="text-lg font-semibold tracking-tight" style={{ color: 'var(--color-logo-title)' }}>{branding.title}</p>
             <p className="text-xs font-medium uppercase tracking-[0.25em]" style={{ color: 'var(--color-logo-subtitle)' }}>
-              Fresh essentials
+              {branding.subtitle}
             </p>
           </div>
         </a>

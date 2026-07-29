@@ -4,6 +4,7 @@ import { AdminAuthProvider } from './admin/admin-auth-provider';
 import { AdminLayout } from './admin/admin-layout';
 import { RequireAdmin } from './admin/require-admin';
 import { AppLayout } from './routes/app-layout';
+import { AdminBrandingPage } from './routes/admin/admin-branding-page';
 import { AdminChangePasswordPage } from './routes/admin/admin-change-password-page';
 import { AdminCouponsPage } from './routes/admin/admin-coupons-page';
 import { AdminCurrencyPage } from './routes/admin/admin-currency-page';
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
           {
             path: 'translations',
             element: <AdminTranslationsPage />
+          },
+          {
+            path: 'branding',
+            element: <AdminBrandingPage />
           },
           {
             path: 'theme',

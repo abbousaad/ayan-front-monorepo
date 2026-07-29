@@ -10,7 +10,9 @@ export {
   getThemeSetting,
   updateThemeSetting,
   getTranslationSetting,
-  updateTranslationSetting
+  updateTranslationSetting,
+  getBrandingSetting,
+  updateBrandingSetting
 } from './settings';
 export {
   listPublicOrders,
@@ -44,6 +46,8 @@ export type {
   TranslationBundle,
   TranslationSetting,
   TranslationSettingInput,
+  BrandingSetting,
+  BrandingSettingInput,
 } from './types';
 
 export {
@@ -56,4 +60,5 @@ export {
   isCurrencySetting,
   isThemeSetting,
   isTranslationSetting,
+  isBrandingSetting,
 } from './validators';

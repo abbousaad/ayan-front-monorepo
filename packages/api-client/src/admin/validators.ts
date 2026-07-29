@@ -15,6 +15,7 @@ import type {
   ThemeSetting,
   TranslationSetting,
   Locale,
+  BrandingSetting,
 } from './types';
 
 // ── Shared helpers ────────────────────────────────────────────────────────────
@@ -323,6 +324,33 @@ export const parseTranslationSettingResponse = (value: unknown): TranslationSett
     throw new ApiClientError({
       code: 'INVALID_TRANSLATION_SETTING_RESPONSE',
       message: 'The translation setting response did not match the expected format.'
+    });
+  }
+
+  return data;
+};
+
+// ── Branding settings validators ─────────────────────────────────────────────
+
+export const isBrandingSetting = (value: unknown): value is BrandingSetting => {
+  if (!isRecord(value)) {
+    return false;
+  }
+
+  return (
+    typeof value.logoUrl === 'string' &&
+    typeof value.title === 'string' &&
+    typeof value.subtitle === 'string'
+  );
+};
+
+export const parseBrandingSettingResponse = (value: unknown): BrandingSetting => {
+  const data = isRecord(value) && 'data' in value ? value.data : value;
+
+  if (!isBrandingSetting(data)) {
+    throw new ApiClientError({
+      code: 'INVALID_BRANDING_SETTING_RESPONSE',
+      message: 'The branding setting response did not match the expected format.'
     });
   }
 
