@@ -20,6 +20,39 @@ export type BrandCopy = {
   heroCtaSecondary: string;
   heroImageCaption: string;
   features: string[];
+  // nav
+  navHome: string;
+  navShop: string;
+  navCategories: string;
+  navAbout: string;
+  navContact: string;
+  // best sellers / featured
+  featuredEyebrow: string;
+  featuredTitle: string;
+  // about
+  aboutEyebrow: string;
+  aboutTitle: string;
+  aboutBody: string;
+  aboutQuote: string;
+  aboutImageCaption: string;
+  statFoundedValue: string;
+  statFoundedLabel: string;
+  statNaturalValue: string;
+  statNaturalLabel: string;
+  statHandmadeValue: string;
+  statHandmadeLabel: string;
+  // contact
+  contactEyebrow: string;
+  contactTitle: string;
+  contactSubtitle: string;
+  contactInfoTitle: string;
+  contactEmailLabel: string;
+  contactMessageLabel: string;
+  contactSend: string;
+  contactSuccess: string;
+  contactPhoneValue: string;
+  contactEmailValue: string;
+  contactAddressValue: string;
   storyEyebrow: string;
   storyTitle: string;
   storyBody: string;
@@ -91,6 +124,36 @@ const ar: BrandCopy = {
   heroCtaSecondary: 'قصة الدار',
   heroImageCaption: 'سرغينة · بخور دار بنشقرون',
   features: ['صناعة يدوية بفاس', 'مكونات طبيعية', 'وصفات عريقة', 'توصيل داخل المغرب'],
+  navHome: 'الرئيسية',
+  navShop: 'المتجر',
+  navCategories: 'الفئات',
+  navAbout: 'من نحن',
+  navContact: 'اتصل بنا',
+  featuredEyebrow: 'تشكيلتنا',
+  featuredTitle: 'مجموعتنا المختارة',
+  aboutEyebrow: 'قصتنا',
+  aboutTitle: 'من قلب فاس القديمة',
+  aboutBody:
+    'تأسست دار بنشقرون على إرثٍ عائلي في صناعة البخور والسرغينة المخزنية. نختار المكوّنات الطبيعية – العنبر والمسك والعود والصمغ العربي – ونمزجها يدويًا وفق موازين دقيقة توارثناها جيلًا بعد جيل.',
+  aboutQuote: "« Un parfum n'est pas fabriqué, il est raconté. »",
+  aboutImageCaption: 'atelier · hands over embers',
+  statFoundedValue: '1960',
+  statFoundedLabel: 'سنة التأسيس',
+  statNaturalValue: '100%',
+  statNaturalLabel: 'مكوّنات طبيعية',
+  statHandmadeValue: 'يدويًا',
+  statHandmadeLabel: 'تحضير بالكامل',
+  contactEyebrow: 'تواصل معنا',
+  contactTitle: 'نسعد بتواصلكم',
+  contactSubtitle: 'لأي استفسار عن منتجاتنا أو طلباتكم، لا تترددوا في مراسلتنا.',
+  contactInfoTitle: 'معلومات التواصل',
+  contactEmailLabel: 'البريد الإلكتروني',
+  contactMessageLabel: 'رسالتك',
+  contactSend: 'إرسال',
+  contactSuccess: 'شكرًا لك، تم استلام رسالتك وسنعود إليك قريبًا.',
+  contactPhoneValue: '+212 5 35 00 00 00',
+  contactEmailValue: 'contact@benchekroun.ma',
+  contactAddressValue: 'المدينة القديمة، فاس، المغرب',
   storyEyebrow: 'حكايتنا',
   storyTitle: 'إرثٌ من العطر والفخامة',
   storyBody:
@@ -161,6 +224,36 @@ const fr: BrandCopy = {
   heroCtaSecondary: "L'histoire de la maison",
   heroImageCaption: 'Serghina · bakhour Dar Benchekroun',
   features: ['Fait main à Fès', 'Ingrédients naturels', 'Recettes ancestrales', 'Livraison au Maroc'],
+  navHome: 'Accueil',
+  navShop: 'Boutique',
+  navCategories: 'Catégories',
+  navAbout: 'À propos',
+  navContact: 'Contact',
+  featuredEyebrow: 'Notre collection',
+  featuredTitle: 'Notre sélection',
+  aboutEyebrow: 'Notre histoire',
+  aboutTitle: 'Au cœur de la médina de Fès',
+  aboutBody:
+    "Dar Benchekroun est née d'un héritage familial dans l'art du bakhour et de la serghina makhzania. Nous choisissons des ingrédients naturels – ambre, musc, oud et gomme arabique – que nous assemblons à la main selon des dosages précis transmis de génération en génération.",
+  aboutQuote: "« Un parfum n'est pas fabriqué, il est raconté. »",
+  aboutImageCaption: 'atelier · hands over embers',
+  statFoundedValue: '1960',
+  statFoundedLabel: 'Année de création',
+  statNaturalValue: '100%',
+  statNaturalLabel: 'Ingrédients naturels',
+  statHandmadeValue: 'À la main',
+  statHandmadeLabel: 'Entièrement',
+  contactEyebrow: 'Contact',
+  contactTitle: 'Écrivez-nous',
+  contactSubtitle: 'Pour toute question sur nos produits ou vos commandes, écrivez-nous.',
+  contactInfoTitle: 'Coordonnées',
+  contactEmailLabel: 'E-mail',
+  contactMessageLabel: 'Votre message',
+  contactSend: 'Envoyer',
+  contactSuccess: 'Merci, votre message a bien été reçu. Nous vous répondrons bientôt.',
+  contactPhoneValue: '+212 5 35 00 00 00',
+  contactEmailValue: 'contact@benchekroun.ma',
+  contactAddressValue: 'Médina, Fès, Maroc',
   storyEyebrow: 'Notre histoire',
   storyTitle: 'Un héritage de parfum et de raffinement',
   storyBody:

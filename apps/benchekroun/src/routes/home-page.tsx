@@ -3,8 +3,10 @@ import type { Store } from '@acme/api-client/stores';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useBrandCopy } from '../i18n/use-brand-copy';
+import { AboutSection } from '../components/about-section';
 import { CategoryCard } from '../components/category-card';
 import { FeatureStrip } from '../components/feature-strip';
+import { FeaturedProducts } from '../components/featured-products';
 
 type LoadState = {
   stores: Store[];
@@ -122,6 +124,12 @@ export function HomePage() {
           </div>
         )}
       </section>
+
+      {/* Best sellers */}
+      <FeaturedProducts />
+
+      {/* About us */}
+      <AboutSection />
     </main>
   );
 }
