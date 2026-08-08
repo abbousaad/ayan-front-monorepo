@@ -67,17 +67,21 @@ export function Navbar() {
               <FiChevronDown className={`transition ${catOpen ? 'rotate-180' : ''}`} size={14} />
             </button>
             {catOpen && stores.length > 0 && (
-              <div className="absolute end-0 top-full z-40 mt-2 min-w-52 rounded-xl border border-brand-line bg-brand-charcoal p-2 shadow-2xl">
-                {stores.map((store) => (
-                  <Link
-                    className="block rounded-lg px-3 py-2 text-sm text-brand-muted transition hover:bg-brand-panel hover:text-brand-gold"
-                    key={store.id}
-                    onClick={closeMenus}
-                    to={`/category/${store.id}`}
-                  >
-                    {store.name}
-                  </Link>
-                ))}
+              // pt-2 is a hoverable bridge so moving from the button to the
+              // menu doesn't cross an empty gap and close the dropdown.
+              <div className="absolute end-0 top-full z-40 pt-2">
+                <div className="min-w-52 rounded-xl border border-brand-line bg-brand-charcoal p-2 shadow-2xl">
+                  {stores.map((store) => (
+                    <Link
+                      className="block rounded-lg px-3 py-2 text-sm text-brand-muted transition hover:bg-brand-panel hover:text-brand-gold"
+                      key={store.id}
+                      onClick={closeMenus}
+                      to={`/category/${store.id}`}
+                    >
+                      {store.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
           </div>
