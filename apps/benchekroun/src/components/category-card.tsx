@@ -15,20 +15,24 @@ export function CategoryCard({ store }: CategoryCardProps) {
 
   return (
     <Link
-      className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-2xl border border-brand-line transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+      className="group flex flex-col overflow-hidden rounded-xl border border-brand-line bg-brand-charcoal transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
       to={`/category/${store.id}`}
     >
-      <img
-        alt=""
-        aria-hidden
-        className="absolute inset-0 h-full w-full object-cover opacity-40 transition duration-500 group-hover:scale-105 group-hover:opacity-60"
-        src={createImageUrl(store.imageUrl)}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/55 to-transparent" />
+      {/* Image */}
+      <div className="aspect-square overflow-hidden bg-brand-panel">
+        <img
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          src={createImageUrl(store.imageUrl)}
+        />
+      </div>
 
-      <div className="relative mt-auto p-3 text-center">
+      {/* Divided text panel: title + discover button */}
+      <div className="flex flex-col items-center gap-2 border-t border-brand-line p-3 text-center">
         <h3 className="font-display text-sm font-semibold leading-tight text-brand-ink">{store.name}</h3>
-        <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-[0.18em] text-brand-gold">
+        <span className="gold-rule h-px w-8" />
+        <span className="inline-flex items-center gap-1 rounded-full border border-brand-gold-dim/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-brand-gold transition group-hover:border-brand-gold group-hover:bg-brand-gold group-hover:text-brand-black">
           {copy.viewCategory}
           <FiArrowRight aria-hidden className="rtl:rotate-180" size={11} />
         </span>
