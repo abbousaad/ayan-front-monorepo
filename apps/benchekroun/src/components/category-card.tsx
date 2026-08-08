@@ -15,7 +15,7 @@ export function CategoryCard({ store }: CategoryCardProps) {
 
   return (
     <Link
-      className="group flex flex-col overflow-hidden rounded-xl border border-brand-line bg-brand-charcoal transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+      className="group flex w-full flex-col overflow-hidden rounded-xl border border-brand-line bg-brand-charcoal transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
       to={`/category/${store.id}`}
     >
       {/* Image */}

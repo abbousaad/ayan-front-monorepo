@@ -84,7 +84,7 @@ export function HomePage() {
       <FeatureStrip />
 
       {/* Collection */}
-      <section className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-8 sm:px-6 lg:px-8" id="collection">
+      <section className="mx-auto mt-16 max-w-6xl scroll-mt-24 px-4 pb-16 pt-4 sm:mt-20 sm:px-6 lg:px-8" id="collection">
         <div className="mb-8 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.collectionEyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.categoriesTitle}</h2>
@@ -92,9 +92,9 @@ export function HomePage() {
         </div>
 
         {state.isLoading ? (
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+          <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="aspect-[4/5] animate-pulse rounded-2xl bg-brand-charcoal" />
+              <div key={index} className="aspect-[4/5] w-32 animate-pulse rounded-2xl bg-brand-charcoal sm:w-44 lg:w-48" />
             ))}
           </div>
         ) : state.hasError ? (
@@ -113,9 +113,11 @@ export function HomePage() {
             {copy.productsEmpty}
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+          <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {state.stores.map((store) => (
-              <CategoryCard key={store.id} store={store} />
+              <div key={store.id} className="w-32 sm:w-44 lg:w-48">
+                <CategoryCard store={store} />
+              </div>
             ))}
           </div>
         )}
