@@ -64,12 +64,6 @@ export function HomePage() {
                 >
                   {copy.heroCta}
                 </a>
-                <a
-                  className="inline-flex min-h-12 items-center justify-center border border-brand-gold-dim px-7 text-sm font-semibold text-brand-ink transition hover:border-brand-gold hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
-                  href="#story"
-                >
-                  {copy.heroCtaSecondary}
-                </a>
               </div>
             </div>
 
@@ -83,14 +77,6 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Story */}
-      <section className="mx-auto max-w-4xl scroll-mt-24 px-4 py-20 text-center sm:px-6 lg:px-8" id="story">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.storyEyebrow}</p>
-        <h2 className="mt-4 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.storyTitle}</h2>
-        <div className="gold-rule mx-auto my-6 w-24" />
-        <p className="mx-auto max-w-2xl text-base leading-8 text-brand-muted">{copy.storyBody}</p>
       </section>
 
       {/* Collection */}
