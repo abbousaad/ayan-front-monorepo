@@ -34,9 +34,9 @@ export function HomePage() {
 
   return (
     <main>
-      {/* Hero */}
-      <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <div className="relative mx-auto max-w-6xl border border-brand-gold-dim/40 px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
+      {/* Hero — bounded to a single screen (viewport minus navbar) */}
+      <section className="flex min-h-[calc(100svh-5.5rem)] items-center px-4 py-6 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-6xl border border-brand-gold-dim/40 px-6 py-8 sm:px-10 sm:py-12 lg:px-16 lg:py-14">
           {/* Ornate gold corner brackets */}
           <span aria-hidden className="pointer-events-none absolute -left-[3px] -top-[3px] h-9 w-9 border-l-2 border-t-2 border-brand-gold" />
           <span aria-hidden className="pointer-events-none absolute -right-[3px] -top-[3px] h-9 w-9 border-r-2 border-t-2 border-brand-gold" />
@@ -75,7 +75,7 @@ export function HomePage() {
 
             {/* Image panel — hatched placeholder until a hero image is supplied */}
             <div className="fade-up">
-              <div className="hero-hatch relative flex aspect-[4/5] items-center justify-center overflow-hidden border border-brand-gold-dim/50">
+              <div className="hero-hatch relative flex h-[clamp(15rem,48vh,26rem)] w-full items-center justify-center overflow-hidden border border-brand-gold-dim/50">
                 <span className="px-4 text-center text-[11px] uppercase tracking-[0.3em] text-brand-muted">
                   {copy.heroImageCaption}
                 </span>
