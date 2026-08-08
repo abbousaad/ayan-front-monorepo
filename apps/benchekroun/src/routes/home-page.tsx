@@ -35,28 +35,58 @@ export function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-brand-line">
-        <div className="mx-auto max-w-6xl px-4 py-24 text-center sm:px-6 lg:px-8">
-          <p className="fade-up text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">
-            {copy.heroEyebrow}
-          </p>
-          <h1 className="fade-up mx-auto mt-6 max-w-3xl font-display text-4xl font-semibold leading-tight text-brand-ink sm:text-6xl">
-            {copy.heroTitle}
-          </h1>
-          <p className="fade-up mx-auto mt-6 max-w-xl text-base leading-8 text-brand-muted">
-            {copy.heroSubtitle}
-          </p>
-          <a
-            className="fade-up mt-9 inline-flex min-h-12 items-center justify-center rounded-full bg-brand-gold px-8 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
-            href="#collection"
-          >
-            {copy.heroCta}
-          </a>
+      <section className="px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <div className="relative mx-auto max-w-6xl border border-brand-gold-dim/40 px-6 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
+          {/* Ornate gold corner brackets */}
+          <span aria-hidden className="pointer-events-none absolute -left-[3px] -top-[3px] h-9 w-9 border-l-2 border-t-2 border-brand-gold" />
+          <span aria-hidden className="pointer-events-none absolute -right-[3px] -top-[3px] h-9 w-9 border-r-2 border-t-2 border-brand-gold" />
+          <span aria-hidden className="pointer-events-none absolute -bottom-[3px] -left-[3px] h-9 w-9 border-b-2 border-l-2 border-brand-gold" />
+          <span aria-hidden className="pointer-events-none absolute -bottom-[3px] -right-[3px] h-9 w-9 border-b-2 border-r-2 border-brand-gold" />
+
+          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-14">
+            {/* Text — first in DOM so it sits at the start (right in RTL, left in FR) */}
+            <div className="fade-up text-center md:text-start">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold">
+                {copy.heroEyebrow}
+              </p>
+              <h1 className="mt-6 font-display text-5xl font-bold leading-[1.08] sm:text-6xl">
+                <span className="block text-brand-ink">{copy.heroTitleLead}</span>
+                <span className="block text-brand-gold">{copy.heroTitleAccent}</span>
+              </h1>
+              <p className="mt-6 font-display text-lg italic text-brand-ink/90">{copy.heroAccentLine}</p>
+              <p className="mx-auto mt-4 max-w-md text-sm leading-8 text-brand-muted md:mx-0">
+                {copy.heroSubtitle}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+                <a
+                  className="inline-flex min-h-12 items-center justify-center bg-brand-gold px-7 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+                  href="#collection"
+                >
+                  {copy.heroCta}
+                </a>
+                <a
+                  className="inline-flex min-h-12 items-center justify-center border border-brand-gold-dim px-7 text-sm font-semibold text-brand-ink transition hover:border-brand-gold hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+                  href="#story"
+                >
+                  {copy.heroCtaSecondary}
+                </a>
+              </div>
+            </div>
+
+            {/* Image panel — hatched placeholder until a hero image is supplied */}
+            <div className="fade-up">
+              <div className="hero-hatch relative flex aspect-[4/5] items-center justify-center overflow-hidden border border-brand-gold-dim/50">
+                <span className="px-4 text-center text-[11px] uppercase tracking-[0.3em] text-brand-muted">
+                  {copy.heroImageCaption}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Story */}
-      <section className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-4xl scroll-mt-24 px-4 py-20 text-center sm:px-6 lg:px-8" id="story">
         <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.storyEyebrow}</p>
         <h2 className="mt-4 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.storyTitle}</h2>
         <div className="gold-rule mx-auto my-6 w-24" />

@@ -12,8 +12,13 @@ export type BrandCopy = {
   brandTagline: string;
   heroEyebrow: string;
   heroTitle: string;
+  heroTitleLead: string;
+  heroTitleAccent: string;
+  heroAccentLine: string;
   heroSubtitle: string;
   heroCta: string;
+  heroCtaSecondary: string;
+  heroImageCaption: string;
   storyEyebrow: string;
   storyTitle: string;
   storyBody: string;
@@ -69,11 +74,16 @@ export type BrandCopy = {
 const ar: BrandCopy = {
   brandName: 'دار بنشقرون',
   brandTagline: 'بخور مغربي فاخر',
-  heroEyebrow: 'صناعة يدوية · تراث مغربي',
+  heroEyebrow: 'بخور مغربي أصيل · فاس',
   heroTitle: 'عبق الأصالة في كل خيط دخان',
+  heroTitleLead: 'سرغينة مخزنية',
+  heroTitleAccent: 'تُروى بالبخور',
+  heroAccentLine: "L'art du bakhour marocain, façonné à la main.",
   heroSubtitle:
-    'مجموعة مختارة من البخور والعود الفاخر، مستوحاة من عبق المدن العتيقة وحرفية دار بنشقرون.',
+    'خلطات مخزنية عريقة من العنبر والمسك والعود، تُحضّر على النار الهادئة وفق وصفات توارثتها الأجيال في دار بنشقرون.',
   heroCta: 'اكتشف المجموعة',
+  heroCtaSecondary: 'قصة الدار',
+  heroImageCaption: 'سرغينة · بخور دار بنشقرون',
   storyEyebrow: 'حكايتنا',
   storyTitle: 'إرثٌ من العطر والفخامة',
   storyBody:
@@ -128,11 +138,16 @@ const ar: BrandCopy = {
 const fr: BrandCopy = {
   brandName: 'Dar Benchekroun',
   brandTagline: "Encens marocain d'exception",
-  heroEyebrow: 'Fait main · Héritage marocain',
+  heroEyebrow: 'Parfumerie traditionnelle · Fès',
   heroTitle: "L'authenticité dans chaque volute",
+  heroTitleLead: "L'art du bakhour",
+  heroTitleAccent: 'façonné à la main',
+  heroAccentLine: 'Ambre, musc et oud — brûlés au feu doux.',
   heroSubtitle:
-    "Une sélection d'encens et de bois d'oud raffinés, inspirée du parfum des médinas et du savoir-faire de Dar Benchekroun.",
+    "Des compositions d'ambre, de musc et d'oud, brûlées au feu doux selon des recettes transmises de génération en génération chez Dar Benchekroun.",
   heroCta: 'Découvrir la collection',
+  heroCtaSecondary: "L'histoire de la maison",
+  heroImageCaption: 'Serghina · bakhour Dar Benchekroun',
   storyEyebrow: 'Notre histoire',
   storyTitle: 'Un héritage de parfum et de raffinement',
   storyBody:
