@@ -1,9 +1,11 @@
 import { getProducts } from '@acme/api-client/products';
 import type { Product } from '@acme/api-client/products';
+import { getStores } from '@acme/api-client/stores';
+import type { Store } from '@acme/api-client/stores';
 import { useCallback, useEffect, useState } from 'react';
 
-import { STORE_ID } from '../config';
 import { useBrandCopy } from '../i18n/use-brand-copy';
+import { CategoryChips } from '../components/category-chips';
 import { ProductCard } from '../components/product-card';
 
 type LoadState = {
@@ -17,11 +19,28 @@ const initialState: LoadState = { products: [], isLoading: true, hasError: false
 export function HomePage() {
   const copy = useBrandCopy();
   const [state, setState] = useState<LoadState>(initialState);
+  // Backend stores are shown as categories; `null` = the full collection.
+  const [stores, setStores] = useState<Store[]>([]);
+  const [selectedStoreId, setSelectedStoreId] = useState<string | null>(null);
 
-  const loadProducts = useCallback(async () => {
+  useEffect(() => {
+    let isMounted = true;
+    getStores()
+      .then((response) => {
+        if (isMounted) setStores(response.data);
+      })
+      .catch(() => {
+        if (isMounted) setStores([]);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const loadProducts = useCallback(async (storeId: string | null) => {
     setState((current) => ({ ...current, isLoading: true, hasError: false }));
     try {
-      const response = await getProducts({ storeId: STORE_ID });
+      const response = await getProducts(storeId ? { storeId } : undefined);
       setState({ products: response.data, isLoading: false, hasError: false });
     } catch {
       setState({ products: [], isLoading: false, hasError: true });
@@ -29,8 +48,8 @@ export function HomePage() {
   }, []);
 
   useEffect(() => {
-    void loadProducts();
-  }, [loadProducts]);
+    void loadProducts(selectedStoreId);
+  }, [loadProducts, selectedStoreId]);
 
   return (
     <main>
@@ -97,9 +116,16 @@ export function HomePage() {
       <section className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-8 sm:px-6 lg:px-8" id="collection">
         <div className="mb-8 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.collectionEyebrow}</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.collectionTitle}</h2>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.categoriesTitle}</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-brand-muted">{copy.collectionSubtitle}</p>
         </div>
+
+        <CategoryChips
+          allLabel={copy.categoryAll}
+          onSelect={setSelectedStoreId}
+          selectedStoreId={selectedStoreId}
+          stores={stores}
+        />
 
         {state.isLoading ? (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -112,7 +138,7 @@ export function HomePage() {
             <p className="text-brand-muted">{copy.productsError}</p>
             <button
               className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft"
-              onClick={() => void loadProducts()}
+              onClick={() => void loadProducts(selectedStoreId)}
               type="button"
             >
               {copy.retry}
