@@ -31,3 +31,10 @@
 - [ ] MT-8 — Mobile I18nProvider + switcher + expo-localization
 - [ ] MT-9 — Mobile string extraction pass
 - [ ] MT-10 — Mobile RTL via I18nManager (reload flow)
+
+## دار بنشقرون — luxury brand site (apps/benchekroun) — see plan `twinkly-riding-ladybug.md`
+
+- [x] BK-1 — Scaffold apps/benchekroun (Vite/Tailwind v4, gold-on-black theme, AR-default RTL + FR)
+- [x] BK-2 — Providers: I18nProvider (AR/FR, server-driven) + CartProvider + brand-copy dictionary
+- [x] BK-3 — Home (hero + story + collection grid), product detail, COD checkout, MAD confirmation
+- [ ] BK-4 — Bind real STORE_ID + apply final design pixels (blocked: store not seeded; design not shared)

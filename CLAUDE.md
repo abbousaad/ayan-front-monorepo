@@ -25,6 +25,7 @@ No test runner yet — `pnpm test` is a stub.
 ```
 apps/web          — React 19, Vite, React Router v7, Tailwind v4
 apps/mobile       — Expo 54, React Native (iOS-primary)
+apps/benchekroun  — دار بنشقرون luxury brand site (self-themed gold-on-black, AR-default RTL + FR, MAD, COD). Not admin-styled. Port 5174.
 packages/cart          — @acme/cart       pure TS reducer + selectors
 packages/api-client    — @acme/api-client fetch + Zod, subpaths: /products, /stores, /orders, /admin
 packages/shared        — @acme/shared     brand colors, demo data

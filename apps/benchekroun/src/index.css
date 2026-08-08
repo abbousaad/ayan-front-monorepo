@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/*
+ * دار بنشقرون — self-contained luxury brand theme.
+ * Gold-on-black. NOT driven by the admin back-office (unlike apps/web).
+ * Placeholder token values — refine from the design artifact.
+ */
+@theme {
+  --color-brand-black: #0b0a09;
+  --color-brand-charcoal: #141210;
+  --color-brand-panel: #1a1714;
+  --color-brand-gold: #c8a24a;
+  --color-brand-gold-soft: #e6d08a;
+  --color-brand-gold-dim: #8a6f34;
+  --color-brand-ink: #f5f0e6;
+  --color-brand-muted: #a89f8c;
+  --color-brand-line: #2a2621;
+
+  --font-display: "Cormorant Garamond", "Amiri", serif;
+  --font-display-ar: "Amiri", "Cormorant Garamond", serif;
+  --font-body: "Cairo", "Inter", system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: var(--font-body);
+}
+
+html[lang="ar"] {
+  font-family: var(--font-body);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-brand-black);
+  color: var(--color-brand-ink);
+}
+
+/* Display headings use the serif; Arabic prefers Amiri for elegance. */
+.font-display {
+  font-family: var(--font-display);
+}
+html[lang="ar"] .font-display {
+  font-family: var(--font-display-ar);
+}
+
+/* Thin gold hairline used for section dividers. */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-brand-gold),
+    transparent
+  );
+}
+
+/* Subtle gold shimmer on hero. */
+@keyframes goldFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: goldFade 0.7s ease both;
+}
