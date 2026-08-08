@@ -1,55 +1,36 @@
-import { getProducts } from '@acme/api-client/products';
-import type { Product } from '@acme/api-client/products';
 import { getStores } from '@acme/api-client/stores';
 import type { Store } from '@acme/api-client/stores';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useBrandCopy } from '../i18n/use-brand-copy';
-import { CategoryChips } from '../components/category-chips';
-import { ProductCard } from '../components/product-card';
+import { CategoryCard } from '../components/category-card';
 
 type LoadState = {
-  products: Product[];
+  stores: Store[];
   isLoading: boolean;
   hasError: boolean;
 };
 
-const initialState: LoadState = { products: [], isLoading: true, hasError: false };
+const initialState: LoadState = { stores: [], isLoading: true, hasError: false };
 
 export function HomePage() {
   const copy = useBrandCopy();
+  // Backend stores are surfaced as browsable categories.
   const [state, setState] = useState<LoadState>(initialState);
-  // Backend stores are shown as categories; `null` = the full collection.
-  const [stores, setStores] = useState<Store[]>([]);
-  const [selectedStoreId, setSelectedStoreId] = useState<string | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    getStores()
-      .then((response) => {
-        if (isMounted) setStores(response.data);
-      })
-      .catch(() => {
-        if (isMounted) setStores([]);
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  const loadProducts = useCallback(async (storeId: string | null) => {
+  const loadStores = useCallback(async () => {
     setState((current) => ({ ...current, isLoading: true, hasError: false }));
     try {
-      const response = await getProducts(storeId ? { storeId } : undefined);
-      setState({ products: response.data, isLoading: false, hasError: false });
+      const response = await getStores();
+      setState({ stores: response.data, isLoading: false, hasError: false });
     } catch {
-      setState({ products: [], isLoading: false, hasError: true });
+      setState({ stores: [], isLoading: false, hasError: true });
     }
   }, []);
 
   useEffect(() => {
-    void loadProducts(selectedStoreId);
-  }, [loadProducts, selectedStoreId]);
+    void loadStores();
+  }, [loadStores]);
 
   return (
     <main>
@@ -120,16 +101,9 @@ export function HomePage() {
           <p className="mx-auto mt-3 max-w-xl text-sm text-brand-muted">{copy.collectionSubtitle}</p>
         </div>
 
-        <CategoryChips
-          allLabel={copy.categoryAll}
-          onSelect={setSelectedStoreId}
-          selectedStoreId={selectedStoreId}
-          stores={stores}
-        />
-
         {state.isLoading ? (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 8 }).map((_, index) => (
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 6 }).map((_, index) => (
               <div key={index} className="aspect-[3/4] animate-pulse rounded-[1.25rem] bg-brand-charcoal" />
             ))}
           </div>
@@ -138,20 +112,20 @@ export function HomePage() {
             <p className="text-brand-muted">{copy.productsError}</p>
             <button
               className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft"
-              onClick={() => void loadProducts(selectedStoreId)}
+              onClick={() => void loadStores()}
               type="button"
             >
               {copy.retry}
             </button>
           </div>
-        ) : state.products.length === 0 ? (
+        ) : state.stores.length === 0 ? (
           <div className="rounded-[1.5rem] border border-brand-line bg-brand-charcoal p-10 text-center text-brand-muted">
             {copy.productsEmpty}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {state.products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {state.stores.map((store) => (
+              <CategoryCard key={store.id} store={store} />
             ))}
           </div>
         )}

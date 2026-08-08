@@ -27,6 +27,9 @@ export type BrandCopy = {
   collectionSubtitle: string;
   categoriesTitle: string;
   categoryAll: string;
+  categoryEyebrow: string;
+  viewCategory: string;
+  backToCategories: string;
   productsEmpty: string;
   productsError: string;
   retry: string;
@@ -95,6 +98,9 @@ const ar: BrandCopy = {
   collectionSubtitle: 'تصفّح تشكيلتنا الكاملة من البخور والعود الفاخر.',
   categoriesTitle: 'تصفّح حسب الفئة',
   categoryAll: 'الكل',
+  categoryEyebrow: 'الفئة',
+  viewCategory: 'اكتشف',
+  backToCategories: 'العودة إلى الفئات',
   productsEmpty: 'لا توجد منتجات متاحة حاليًا.',
   productsError: 'تعذّر تحميل المجموعة الآن.',
   retry: 'إعادة المحاولة',
@@ -161,6 +167,9 @@ const fr: BrandCopy = {
   collectionSubtitle: "Parcourez notre gamme complète d'encens et de bois d'oud d'exception.",
   categoriesTitle: 'Parcourir par catégorie',
   categoryAll: 'Tout',
+  categoryEyebrow: 'Catégorie',
+  viewCategory: 'Découvrir',
+  backToCategories: 'Retour aux catégories',
   productsEmpty: 'Aucun produit disponible pour le moment.',
   productsError: "Impossible de charger la collection pour l'instant.",
   retry: 'Réessayer',
