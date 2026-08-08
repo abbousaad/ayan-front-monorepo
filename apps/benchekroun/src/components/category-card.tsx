@@ -15,7 +15,7 @@ export function CategoryCard({ store }: CategoryCardProps) {
 
   return (
     <Link
-      className="group relative flex aspect-[3/4] flex-col overflow-hidden rounded-[1.25rem] border border-brand-line transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+      className="group relative flex aspect-[4/5] flex-col overflow-hidden rounded-2xl border border-brand-line transition hover:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
       to={`/category/${store.id}`}
     >
       <img
@@ -26,11 +26,11 @@ export function CategoryCard({ store }: CategoryCardProps) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/55 to-transparent" />
 
-      <div className="relative mt-auto p-4 text-center">
-        <h3 className="font-display text-lg font-semibold text-brand-ink">{store.name}</h3>
-        <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-brand-gold">
+      <div className="relative mt-auto p-3 text-center">
+        <h3 className="font-display text-sm font-semibold leading-tight text-brand-ink">{store.name}</h3>
+        <span className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-medium uppercase tracking-[0.18em] text-brand-gold">
           {copy.viewCategory}
-          <FiArrowRight aria-hidden className="rtl:rotate-180" size={12} />
+          <FiArrowRight aria-hidden className="rtl:rotate-180" size={11} />
         </span>
       </div>
     </Link>

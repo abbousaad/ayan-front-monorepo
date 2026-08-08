@@ -102,9 +102,9 @@ export function HomePage() {
         </div>
 
         {state.isLoading ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="aspect-[3/4] animate-pulse rounded-[1.25rem] bg-brand-charcoal" />
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div key={index} className="aspect-[4/5] animate-pulse rounded-2xl bg-brand-charcoal" />
             ))}
           </div>
         ) : state.hasError ? (
@@ -123,7 +123,7 @@ export function HomePage() {
             {copy.productsEmpty}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
             {state.stores.map((store) => (
               <CategoryCard key={store.id} store={store} />
             ))}
