@@ -34,9 +34,9 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
   };
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-brand-line bg-brand-charcoal transition hover:border-brand-gold-dim">
+    <div className="group flex w-full flex-col overflow-hidden rounded-2xl border border-brand-line bg-brand-charcoal transition hover:border-brand-gold-dim">
       <Link className="hero-hatch relative block" to={`/products/${product.id}`}>
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative aspect-square overflow-hidden">
           <img
             alt={product.name}
             className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105"
@@ -50,22 +50,22 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col gap-3 border-t border-brand-line p-4 text-start">
+      <div className="flex flex-1 flex-col gap-2 border-t border-brand-line p-3 text-start">
         <div>
-          <h3 className="font-display text-lg font-semibold text-brand-ink">
+          <h3 className="font-display text-base font-semibold leading-tight text-brand-ink">
             <Link to={`/products/${product.id}`}>{product.name}</Link>
           </h3>
           {product.description && (
-            <p className="mt-1 text-xs italic text-brand-muted">{product.description}</p>
+            <p className="mt-0.5 line-clamp-1 text-[11px] italic text-brand-muted">{product.description}</p>
           )}
         </div>
 
-        <div className="mt-auto flex items-center justify-between gap-3">
+        <div className="mt-auto flex items-center justify-between gap-2">
           <span className="text-sm font-semibold text-brand-gold">
             {formatPrice(product.price, locale, product.currencyCode)}
           </span>
           <button
-            className="inline-flex min-h-10 items-center justify-center border border-brand-gold-dim px-4 text-xs font-semibold text-brand-gold transition hover:bg-brand-gold hover:text-brand-black focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
+            className="inline-flex min-h-9 items-center justify-center border border-brand-gold-dim px-3 text-[11px] font-semibold text-brand-gold transition hover:bg-brand-gold hover:text-brand-black focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
             disabled={soldOut}
             onClick={handleAdd}
             type="button"

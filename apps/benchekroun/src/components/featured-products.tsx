@@ -51,19 +51,17 @@ export function FeaturedProducts() {
       </div>
 
       {products === null ? (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="h-96 animate-pulse rounded-2xl bg-brand-charcoal" />
+        <div className="flex flex-wrap justify-center gap-6">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index} className="h-72 w-44 animate-pulse rounded-2xl bg-brand-charcoal sm:w-56 lg:w-60" />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-6">
           {products.map((product) => (
-            <FeaturedProductCard
-              key={product.id}
-              categoryLabel={storeNames[product.storeId]}
-              product={product}
-            />
+            <div className="w-44 sm:w-56 lg:w-60" key={product.id}>
+              <FeaturedProductCard categoryLabel={storeNames[product.storeId]} product={product} />
+            </div>
           ))}
         </div>
       )}
