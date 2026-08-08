@@ -19,6 +19,7 @@ export type BrandCopy = {
   heroCta: string;
   heroCtaSecondary: string;
   heroImageCaption: string;
+  features: string[];
   storyEyebrow: string;
   storyTitle: string;
   storyBody: string;
@@ -89,6 +90,7 @@ const ar: BrandCopy = {
   heroCta: 'اكتشف المجموعة',
   heroCtaSecondary: 'قصة الدار',
   heroImageCaption: 'سرغينة · بخور دار بنشقرون',
+  features: ['صناعة يدوية بفاس', 'مكونات طبيعية', 'وصفات عريقة', 'توصيل داخل المغرب'],
   storyEyebrow: 'حكايتنا',
   storyTitle: 'إرثٌ من العطر والفخامة',
   storyBody:
@@ -158,6 +160,7 @@ const fr: BrandCopy = {
   heroCta: 'Découvrir la collection',
   heroCtaSecondary: "L'histoire de la maison",
   heroImageCaption: 'Serghina · bakhour Dar Benchekroun',
+  features: ['Fait main à Fès', 'Ingrédients naturels', 'Recettes ancestrales', 'Livraison au Maroc'],
   storyEyebrow: 'Notre histoire',
   storyTitle: 'Un héritage de parfum et de raffinement',
   storyBody:

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { CategoryCard } from '../components/category-card';
+import { FeatureStrip } from '../components/feature-strip';
 
 type LoadState = {
   stores: Store[];
@@ -78,6 +79,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Brand promises strip */}
+      <FeatureStrip />
 
       {/* Collection */}
       <section className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-8 sm:px-6 lg:px-8" id="collection">
