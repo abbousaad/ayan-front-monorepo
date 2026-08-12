@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { CartDrawer } from '../components/cart/cart-drawer';
+import { Footer } from '../components/footer';
 import { Navbar } from '../components/navbar';
 
 // Smooth-scroll to a #hash target (e.g. #collection) after navigation, and reset to
@@ -32,13 +33,3 @@ export const AppLayout = () => (
     <Footer />
   </>
 );
-
-function Footer() {
-  const year = new Date().getFullYear();
-  return (
-    <footer className="mt-16 border-t border-brand-line px-4 py-10 text-center sm:px-6 lg:px-8">
-      <p className="font-display text-lg text-brand-gold">دار بنشقرون · Dar Benchekroun</p>
-      <p className="mt-1 text-xs text-brand-muted">© {year}</p>
-    </footer>
-  );
-}

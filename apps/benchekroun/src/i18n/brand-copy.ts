@@ -26,6 +26,10 @@ export type BrandCopy = {
   navCategories: string;
   navAbout: string;
   navContact: string;
+  // footer
+  footerBlurb: string;
+  footerExploreTitle: string;
+  footerRights: string;
   // best sellers / featured
   featuredEyebrow: string;
   featuredTitle: string;
@@ -130,6 +134,10 @@ const ar: BrandCopy = {
   navCategories: 'الفئات',
   navAbout: 'من نحن',
   navContact: 'اتصل بنا',
+  footerBlurb:
+    'دار بنشقرون — بخور مغربي فاخر يُصنع يدويًا بفاس وفق وصفات عريقة، ويُوصل إلى باب منزلك داخل المغرب.',
+  footerExploreTitle: 'استكشف',
+  footerRights: 'جميع الحقوق محفوظة',
   featuredEyebrow: 'تشكيلتنا',
   featuredTitle: 'مجموعتنا المختارة',
   aboutEyebrow: 'قصتنا',
@@ -231,6 +239,10 @@ const fr: BrandCopy = {
   navCategories: 'Catégories',
   navAbout: 'À propos',
   navContact: 'Contact',
+  footerBlurb:
+    "Dar Benchekroun — encens marocain d'exception, fait main à Fès selon des recettes ancestrales et livré chez vous partout au Maroc.",
+  footerExploreTitle: 'Explorer',
+  footerRights: 'Tous droits réservés',
   featuredEyebrow: 'Notre collection',
   featuredTitle: 'Notre sélection',
   aboutEyebrow: 'Notre histoire',
