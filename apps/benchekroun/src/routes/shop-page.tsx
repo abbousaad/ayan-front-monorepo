@@ -36,7 +36,7 @@ export function ShopPage() {
       </header>
 
       {products === null ? (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {Array.from({ length: 8 }).map((_, index) => (
             <div key={index} className="aspect-[3/4] animate-pulse rounded-[1.25rem] bg-brand-charcoal" />
           ))}
@@ -57,7 +57,7 @@ export function ShopPage() {
           {copy.productsEmpty}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
