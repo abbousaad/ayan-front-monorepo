@@ -86,7 +86,7 @@ export function Navbar() {
             )}
           </div>
 
-          <Link className={linkClass} to="/#about">
+          <Link className={linkClass} to="/about">
             {copy.navAbout}
           </Link>
           <Link className={linkClass} to="/contact">
@@ -120,7 +120,7 @@ export function Navbar() {
             <Link className="rounded-lg px-3 py-2 text-brand-ink" onClick={closeMenus} to="/shop">
               {copy.navShop}
             </Link>
-            <Link className="rounded-lg px-3 py-2 text-brand-ink" onClick={closeMenus} to="/#about">
+            <Link className="rounded-lg px-3 py-2 text-brand-ink" onClick={closeMenus} to="/about">
               {copy.navAbout}
             </Link>
             <Link className="rounded-lg px-3 py-2 text-brand-ink" onClick={closeMenus} to="/contact">

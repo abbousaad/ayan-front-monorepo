@@ -3,7 +3,6 @@ import type { Store } from '@acme/api-client/stores';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useBrandCopy } from '../i18n/use-brand-copy';
-import { AboutSection } from '../components/about-section';
 import { CategoryCard } from '../components/category-card';
 import { FeatureStrip } from '../components/feature-strip';
 import { FeaturedProducts } from '../components/featured-products';
@@ -130,9 +129,6 @@ export function HomePage() {
       {/* Best sellers */}
       <FeaturedProducts />
       </div>
-
-      {/* About us */}
-      <AboutSection />
     </main>
   );
 }

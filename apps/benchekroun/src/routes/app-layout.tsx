@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { CartDrawer } from '../components/cart/cart-drawer';
 import { Navbar } from '../components/navbar';
 
-// Smooth-scroll to a #hash target (e.g. #about) after navigation, and reset to
+// Smooth-scroll to a #hash target (e.g. #collection) after navigation, and reset to
 // the top on plain route changes — React Router v7 doesn't do this on its own.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
