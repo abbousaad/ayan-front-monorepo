@@ -21,7 +21,7 @@ const inputClass =
   'w-full rounded-2xl border border-brand-line bg-brand-charcoal px-4 py-3 text-sm text-brand-ink placeholder:text-brand-muted focus:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold';
 
 const labelClass = 'block text-sm font-medium text-brand-muted';
-const errorClass = 'mt-1 text-xs text-red-400';
+const errorClass = 'mt-1 text-xs text-red-600';
 
 export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
   const { state } = useCart();
@@ -65,12 +65,12 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
   return (
     <form className="space-y-6" noValidate onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-gold">{copy.checkoutEyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold-ink">{copy.checkoutEyebrow}</p>
         <h2 className="mt-1 font-display text-xl font-semibold text-brand-ink">{copy.contactDetails}</h2>
       </div>
 
       <div className="flex items-start gap-3 rounded-2xl border border-brand-gold-dim/40 bg-brand-charcoal px-4 py-3">
-        <FiTruck aria-hidden="true" className="mt-0.5 shrink-0 text-brand-gold" size={18} />
+        <FiTruck aria-hidden="true" className="mt-0.5 shrink-0 text-gold-ink" size={18} />
         <div>
           <p className="text-sm font-semibold text-brand-ink">{copy.cashOnDelivery}</p>
           <p className="text-xs text-brand-muted">{copy.cashOnDeliveryNote}</p>
@@ -80,7 +80,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
       <div className="space-y-4">
         <div>
           <label className={labelClass} htmlFor="checkout-name">
-            {copy.fullName} <span aria-hidden="true" className="text-brand-gold">*</span>
+            {copy.fullName} <span aria-hidden="true" className="text-gold-ink">*</span>
           </label>
           <input
             autoComplete="name"
@@ -94,7 +94,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
 
         <div>
           <label className={labelClass} htmlFor="checkout-phone">
-            {copy.phone} <span aria-hidden="true" className="text-brand-gold">*</span>
+            {copy.phone} <span aria-hidden="true" className="text-gold-ink">*</span>
           </label>
           <input
             autoComplete="tel"
@@ -110,7 +110,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
 
         <div>
           <label className={labelClass} htmlFor="checkout-address">
-            {copy.address} <span aria-hidden="true" className="text-brand-gold">*</span>
+            {copy.address} <span aria-hidden="true" className="text-gold-ink">*</span>
           </label>
           <textarea
             autoComplete="street-address"
@@ -123,7 +123,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
       </div>
 
       {submitError && (
-        <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300" role="alert">
+        <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-700" role="alert">
           {submitError}
         </div>
       )}

@@ -53,7 +53,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
-          <p className="text-sm font-semibold text-brand-gold">
+          <p className="text-sm font-semibold text-gold-ink">
             {formatPrice(product.price, locale, product.currencyCode)}
             <span className="ms-1 text-xs font-medium text-brand-muted">/ {product.unit}</span>
           </p>

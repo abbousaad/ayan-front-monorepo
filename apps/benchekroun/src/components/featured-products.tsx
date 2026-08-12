@@ -41,7 +41,7 @@ export function FeaturedProducts() {
   return (
     <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6 lg:px-8">
       <div className="mb-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.featuredEyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.featuredEyebrow}</p>
         <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.featuredTitle}</h2>
         <div className="mx-auto mt-5 flex items-center justify-center gap-3">
           <span className="h-px w-16 bg-brand-gold-dim/60" />

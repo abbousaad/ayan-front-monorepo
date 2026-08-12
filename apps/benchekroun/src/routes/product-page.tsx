@@ -72,7 +72,7 @@ export function ProductPage() {
 
   const backLink = (
     <Link
-      className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-brand-gold"
+      className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-gold-ink"
       to="/"
     >
       <FiChevronLeft aria-hidden="true" className="rtl:rotate-180" size={16} />
@@ -81,7 +81,8 @@ export function ProductPage() {
   );
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <main className="surface-light min-h-screen">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
       {backLink}
 
       {state.isLoading ? (
@@ -107,6 +108,7 @@ export function ProductPage() {
           locale={locale}
         />
       )}
+      </div>
     </main>
   );
 }
@@ -154,7 +156,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-brand-ink">{product.name}</h1>
-          <p className="mt-4 text-2xl font-semibold text-brand-gold">
+          <p className="mt-4 text-2xl font-semibold text-gold-ink">
             {formatPrice(product.price, locale, product.currencyCode)}
             <span className="ms-2 text-base font-normal text-brand-muted">/ {product.unit}</span>
           </p>
@@ -167,7 +169,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
           </div>
         )}
 
-        <p className={`text-sm font-medium ${soldOut ? 'text-red-400' : 'text-brand-gold-soft'}`}>{stockLabel}</p>
+        <p className={`text-sm font-medium ${soldOut ? 'text-red-500' : 'text-gold-ink'}`}>{stockLabel}</p>
 
         <div className="mt-auto space-y-4">
           <div className="flex items-center gap-3">
@@ -175,7 +177,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
             <div className="flex items-center gap-2 rounded-full border border-brand-line bg-brand-charcoal p-1">
               <button
                 aria-label="−"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-brand-gold disabled:opacity-40"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-gold-ink disabled:opacity-40"
                 disabled={quantity <= 1}
                 onClick={() => setQuantity((current) => Math.max(1, current - 1))}
                 type="button"
@@ -185,7 +187,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
               <span className="w-10 text-center text-base font-semibold text-brand-ink">{quantity}</span>
               <button
                 aria-label="+"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-brand-gold"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-gold-ink"
                 onClick={() => setQuantity((current) => current + 1)}
                 type="button"
               >

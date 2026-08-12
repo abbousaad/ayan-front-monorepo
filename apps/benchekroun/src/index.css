@@ -16,6 +16,14 @@
   --color-brand-muted: #a89f8c;
   --color-brand-line: #2a2621;
 
+  /*
+   * Gold used as TEXT (prices, eyebrows, links). Bright on the dark surface;
+   * `.surface-light` deepens it so it stays legible on bone. Gold BUTTONS keep
+   * the bright `--color-brand-gold` fill (dark text sits on top), so the two
+   * jobs are decoupled.
+   */
+  --color-gold-ink: #c8a24a;
+
   --font-display: "Cormorant Garamond", "Amiri", serif;
   --font-display-ar: "Amiri", "Cormorant Garamond", serif;
   --font-body: "Cairo", "Inter", system-ui, sans-serif;
@@ -43,6 +51,39 @@ body {
 }
 html[lang="ar"] .font-display {
   font-family: var(--font-display-ar);
+}
+
+/*
+ * Light "product" surface. Wrap product/store/checkout/contact zones in this to
+ * flip the neutral palette to a warm bone theme — products read far better on a
+ * light ground. Only neutrals are remapped: gold BUTTONS keep their bright fill,
+ * gold-as-TEXT switches to the deeper --color-gold-ink for contrast, and
+ * --color-brand-black is intentionally NOT remapped (it's the dark text on gold
+ * buttons). color-scheme:light keeps native form controls light — matters for
+ * checkout + contact inputs.
+ */
+.surface-light {
+  color-scheme: light;
+  --color-brand-charcoal: #ffffff; /* cards — pure white so products pop */
+  --color-brand-panel: #efe7d6; /* inset wells, image backdrops */
+  --color-brand-line: #e3dccb; /* hairlines / borders */
+  --color-brand-ink: #221d15; /* primary text — warm near-black */
+  --color-brand-muted: #6b6252; /* secondary text */
+  --color-gold-ink: #7c611f; /* deep gold, legible on bone (AA) */
+  background-color: #f6f1e7; /* warm bone page — NOT pure white */
+  color: var(--color-brand-ink);
+}
+
+/* On the light surface the dark hero hatch would muddy white cards. */
+.surface-light .hero-hatch {
+  background-color: var(--color-brand-panel);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(124, 97, 31, 0.06) 0,
+    rgba(124, 97, 31, 0.06) 1px,
+    transparent 1px,
+    transparent 13px
+  );
 }
 
 /* Thin gold hairline used for section dividers. */

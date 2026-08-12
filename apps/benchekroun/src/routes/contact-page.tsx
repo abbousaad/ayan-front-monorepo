@@ -11,14 +11,14 @@ type FormValues = {
 };
 
 const inputClass =
-  'w-full rounded-2xl border border-brand-line bg-brand-black px-4 py-3 text-sm text-brand-ink placeholder:text-brand-muted focus:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold';
+  'w-full rounded-2xl border border-brand-line bg-brand-charcoal px-4 py-3 text-sm text-brand-ink placeholder:text-brand-muted focus:border-brand-gold-dim focus:outline-none focus:ring-2 focus:ring-brand-gold';
 const labelClass = 'block text-sm font-medium text-brand-muted';
-const errorClass = 'mt-1 text-xs text-red-400';
+const errorClass = 'mt-1 text-xs text-red-600';
 
 function InfoRow({ icon, value, ltr = false }: { icon: React.ReactNode; value: string; ltr?: boolean }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-line text-brand-gold">
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-line text-gold-ink">
         {icon}
       </span>
       <span className="text-sm text-brand-ink" dir={ltr ? 'ltr' : undefined}>
@@ -43,9 +43,10 @@ export function ContactPage() {
   };
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="surface-light min-h-screen">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       <header className="mb-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.contactEyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.contactEyebrow}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-brand-ink sm:text-5xl">{copy.contactTitle}</h1>
         <p className="mx-auto mt-4 max-w-xl text-sm text-brand-muted">{copy.contactSubtitle}</p>
       </header>
@@ -63,7 +64,7 @@ export function ContactPage() {
         <div className="rounded-2xl border border-brand-line bg-brand-charcoal p-6">
           {sent ? (
             <div className="flex flex-col items-center gap-4 py-8 text-center">
-              <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-brand-gold-dim text-brand-gold">
+              <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-brand-gold-dim text-gold-ink">
                 <FiCheckCircle size={30} />
               </span>
               <p className="text-sm text-brand-ink">{copy.contactSuccess}</p>
@@ -120,6 +121,7 @@ export function ContactPage() {
             </form>
           )}
         </div>
+      </div>
       </div>
     </main>
   );

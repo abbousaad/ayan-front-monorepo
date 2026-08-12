@@ -85,10 +85,12 @@ export function HomePage() {
       {/* Brand promises strip */}
       <FeatureStrip />
 
+      {/* Light "product" band — category grid + best sellers read better on bone */}
+      <div className="surface-light pb-16 sm:pb-20">
       {/* Collection */}
-      <section className="mx-auto mt-16 max-w-6xl scroll-mt-24 px-4 pb-16 pt-4 sm:mt-20 sm:px-6 lg:px-8" id="collection">
+      <section className="mx-auto max-w-6xl scroll-mt-24 px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8" id="collection">
         <div className="mb-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.collectionEyebrow}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.collectionEyebrow}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.categoriesTitle}</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-brand-muted">{copy.collectionSubtitle}</p>
         </div>
@@ -127,6 +129,7 @@ export function HomePage() {
 
       {/* Best sellers */}
       <FeaturedProducts />
+      </div>
 
       {/* About us */}
       <AboutSection />

@@ -27,9 +27,10 @@ export function ShopPage() {
   }, [load]);
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <main className="surface-light min-h-screen">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <header className="mb-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.brandTagline}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.brandTagline}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-brand-ink sm:text-5xl">{copy.navShop}</h1>
         <div className="gold-rule mx-auto mt-6 w-24" />
       </header>
@@ -62,6 +63,7 @@ export function ShopPage() {
           ))}
         </div>
       )}
+      </div>
     </main>
   );
 }

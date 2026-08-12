@@ -50,9 +50,10 @@ export function CategoryPage() {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <main className="surface-light min-h-screen">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <Link
-        className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-brand-gold"
+        className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-gold-ink"
         to="/#collection"
       >
         <FiChevronLeft aria-hidden className="rtl:rotate-180" size={16} />
@@ -60,7 +61,7 @@ export function CategoryPage() {
       </Link>
 
       <header className="mb-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-gold">{copy.categoryEyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.categoryEyebrow}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-brand-ink sm:text-5xl">
           {state.store?.name ?? '—'}
         </h1>
@@ -95,6 +96,7 @@ export function CategoryPage() {
           ))}
         </div>
       )}
+      </div>
     </main>
   );
 }

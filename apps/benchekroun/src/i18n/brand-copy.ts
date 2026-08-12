@@ -68,6 +68,7 @@ export type BrandCopy = {
   productsError: string;
   retry: string;
   backToHome: string;
+  continueShopping: string;
   backToCollection: string;
   viewStore: string;
   addToCart: string;
@@ -170,6 +171,7 @@ const ar: BrandCopy = {
   productsError: 'تعذّر تحميل المجموعة الآن.',
   retry: 'إعادة المحاولة',
   backToHome: 'العودة إلى الرئيسية',
+  continueShopping: 'متابعة التسوق',
   backToCollection: 'العودة إلى المجموعة',
   viewStore: 'زيارة المتجر',
   addToCart: 'أضف إلى السلة',
@@ -270,6 +272,7 @@ const fr: BrandCopy = {
   productsError: "Impossible de charger la collection pour l'instant.",
   retry: 'Réessayer',
   backToHome: "Retour à l'accueil",
+  continueShopping: 'Continuer les achats',
   backToCollection: 'Retour à la collection',
   viewStore: 'Voir la boutique',
   addToCart: 'Ajouter au panier',
