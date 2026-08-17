@@ -1,9 +1,10 @@
 import { getStores } from '@acme/api-client/stores';
 import type { Store } from '@acme/api-client/stores';
 import { useEffect, useState } from 'react';
-import { FiMail, FiMapPin, FiPhone, FiTruck } from 'react-icons/fi';
+import { FiInstagram, FiMail, FiMapPin, FiPhone, FiTruck } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import { SOCIAL_LINKS } from '../config';
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { LanguageSwitcher } from './language-switcher';
 
@@ -54,6 +55,27 @@ export function Footer() {
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-gold-dim/40 px-4 py-2 text-xs text-brand-gold-soft/90">
               <FiTruck aria-hidden className="text-brand-gold" size={15} />
               {copy.cashOnDelivery}
+            </div>
+
+            {/* Social + direct dial — links live in config.ts (placeholders for now) */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                aria-label="Instagram"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-line text-brand-muted transition hover:border-brand-gold-dim hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold"
+                href={SOCIAL_LINKS.instagram}
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                <FiInstagram aria-hidden size={17} />
+              </a>
+              <a
+                aria-label={SOCIAL_LINKS.phoneLabel}
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-brand-line px-4 text-sm text-brand-muted transition hover:border-brand-gold-dim hover:text-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold"
+                href={`tel:${SOCIAL_LINKS.phone}`}
+              >
+                <FiPhone aria-hidden className="text-brand-gold" size={15} />
+                <span dir="ltr">{SOCIAL_LINKS.phoneLabel}</span>
+              </a>
             </div>
           </div>
 
