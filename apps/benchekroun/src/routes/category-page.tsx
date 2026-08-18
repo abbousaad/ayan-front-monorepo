@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { Link, Navigate, useParams } from 'react-router-dom';
 
+import { useLocalized } from '../hooks/use-localized';
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { ProductCard } from '../components/product-card';
 
@@ -21,6 +22,7 @@ const initialState: CategoryState = { store: null, products: [], isLoading: true
 export function CategoryPage() {
   const { storeId } = useParams<{ storeId: string }>();
   const copy = useBrandCopy();
+  const tr = useLocalized();
   const [state, setState] = useState<CategoryState>(initialState);
 
   const load = useCallback(async () => {
@@ -63,7 +65,7 @@ export function CategoryPage() {
       <header className="mb-10 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.4em] text-gold-ink">{copy.categoryEyebrow}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold text-brand-ink sm:text-5xl">
-          {state.store?.name ?? '—'}
+          {state.store ? tr(state.store.nameLocalized, state.store.name) : '—'}
         </h1>
         <div className="gold-rule mx-auto mt-6 w-24" />
       </header>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { useCart } from '../cart/use-cart';
 import { useI18n } from '../contexts/i18n-context';
+import { useLocalized } from '../hooks/use-localized';
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { formatPrice } from '../lib/format';
 
@@ -15,8 +16,11 @@ type FeaturedProductCardProps = {
 export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductCardProps) {
   const { addCartItem, openCart } = useCart();
   const { locale } = useI18n();
+  const tr = useLocalized();
   const copy = useBrandCopy();
   const soldOut = product.stock === 0;
+  const name = tr(product.nameLocalized, product.name);
+  const description = tr(product.descriptionLocalized, product.description ?? '');
 
   const handleAdd = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -24,7 +28,7 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
     addCartItem({
       currencyCode: product.currencyCode,
       productId: product.id,
-      name: product.name,
+      name,
       price: product.price,
       storeId: product.storeId,
       imageUrl: product.imageUrl,
@@ -38,7 +42,7 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
       <Link className="hero-hatch relative block" to={`/products/${product.id}`}>
         <div className="relative aspect-square overflow-hidden">
           <img
-            alt={product.name}
+            alt={name}
             className="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-105"
             src={createImageUrl(product.imageUrl)}
           />
@@ -53,10 +57,10 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
       <div className="flex flex-1 flex-col gap-2 border-t border-brand-line p-3 text-start">
         <div>
           <h3 className="font-display text-base font-semibold leading-tight text-brand-ink">
-            <Link to={`/products/${product.id}`}>{product.name}</Link>
+            <Link to={`/products/${product.id}`}>{name}</Link>
           </h3>
-          {product.description && (
-            <p className="mt-0.5 line-clamp-1 text-[11px] italic text-brand-muted">{product.description}</p>
+          {description && (
+            <p className="mt-0.5 line-clamp-1 text-[11px] italic text-brand-muted">{description}</p>
           )}
         </div>
 

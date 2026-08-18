@@ -1,8 +1,10 @@
 import { getProducts } from '@acme/api-client/products';
 import type { Product } from '@acme/api-client/products';
 import { getStores } from '@acme/api-client/stores';
+import type { Store } from '@acme/api-client/stores';
 import { useEffect, useState } from 'react';
 
+import { useLocalized } from '../hooks/use-localized';
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { FeaturedProductCard } from './featured-product-card';
 
@@ -10,8 +12,9 @@ const FEATURED_LIMIT = 6;
 
 export function FeaturedProducts() {
   const copy = useBrandCopy();
+  const tr = useLocalized();
   const [products, setProducts] = useState<Product[] | null>(null);
-  const [storeNames, setStoreNames] = useState<Record<string, string>>({});
+  const [storeMap, setStoreMap] = useState<Record<string, Store>>({});
 
   useEffect(() => {
     let isMounted = true;
@@ -21,7 +24,7 @@ export function FeaturedProducts() {
           return;
         }
         setProducts(productsRes.data.slice(0, FEATURED_LIMIT));
-        setStoreNames(Object.fromEntries(storesRes.data.map((store) => [store.id, store.name])));
+        setStoreMap(Object.fromEntries(storesRes.data.map((store) => [store.id, store])));
       })
       .catch(() => {
         if (isMounted) {
@@ -58,11 +61,17 @@ export function FeaturedProducts() {
         </div>
       ) : (
         <div className="flex flex-wrap justify-center gap-6">
-          {products.map((product) => (
-            <div className="w-44 sm:w-56 lg:w-60" key={product.id}>
-              <FeaturedProductCard categoryLabel={storeNames[product.storeId]} product={product} />
-            </div>
-          ))}
+          {products.map((product) => {
+            const store = storeMap[product.storeId];
+            return (
+              <div className="w-44 sm:w-56 lg:w-60" key={product.id}>
+                <FeaturedProductCard
+                  categoryLabel={store ? tr(store.nameLocalized, store.name) : undefined}
+                  product={product}
+                />
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

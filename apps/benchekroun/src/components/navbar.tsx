@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FiChevronDown, FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import { useLocalized } from '../hooks/use-localized';
 import { useBrandCopy } from '../i18n/use-brand-copy';
 import { CartButton } from './cart/cart-button';
 import { LanguageSwitcher } from './language-switcher';
@@ -12,6 +13,7 @@ const linkClass = 'text-sm font-medium text-brand-muted transition hover:text-br
 
 export function Navbar() {
   const copy = useBrandCopy();
+  const tr = useLocalized();
   const [stores, setStores] = useState<Store[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
@@ -77,7 +79,7 @@ export function Navbar() {
                       onClick={closeMenus}
                       to={`/category/${store.id}`}
                     >
-                      {store.name}
+                      {tr(store.nameLocalized, store.name)}
                     </Link>
                   ))}
                 </div>
@@ -138,7 +140,7 @@ export function Navbar() {
                     onClick={closeMenus}
                     to={`/category/${store.id}`}
                   >
-                    {store.name}
+                    {tr(store.nameLocalized, store.name)}
                   </Link>
                 ))}
               </div>

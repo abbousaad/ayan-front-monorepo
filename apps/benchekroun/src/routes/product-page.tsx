@@ -1,4 +1,4 @@
-import { createImageUrl, ApiClientError } from '@acme/api-client';
+import { createImageUrl, ApiClientError, resolveLocalizedText } from '@acme/api-client';
 import { getProductById } from '@acme/api-client/products';
 import type { Product } from '@acme/api-client/products';
 import { useCallback, useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ export function ProductPage() {
 
     addCartItem({
       productId: state.product.id,
-      name: state.product.name,
+      name: resolveLocalizedText(state.product.nameLocalized, locale) || state.product.name,
       price: state.product.price,
       storeId: state.product.storeId,
       imageUrl: state.product.imageUrl,
@@ -141,6 +141,8 @@ type ProductDetailProps = {
 
 function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: ProductDetailProps) {
   const soldOut = product.stock === 0;
+  const name = resolveLocalizedText(product.nameLocalized, locale) || product.name;
+  const description = resolveLocalizedText(product.descriptionLocalized, locale) || product.description;
   const stockLabel = soldOut
     ? copy.outOfStock
     : product.stock <= 10
@@ -150,22 +152,22 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
   return (
     <div className="grid gap-8 md:grid-cols-2">
       <div className="aspect-square overflow-hidden rounded-[1.5rem] border border-brand-line bg-brand-charcoal">
-        <img alt={product.name} className="h-full w-full object-cover" src={createImageUrl(product.imageUrl)} />
+        <img alt={name} className="h-full w-full object-cover" src={createImageUrl(product.imageUrl)} />
       </div>
 
       <div className="flex flex-col gap-6">
         <div>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-brand-ink">{product.name}</h1>
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-brand-ink">{name}</h1>
           <p className="mt-4 text-2xl font-semibold text-brand-burgundy">
             {formatPrice(product.price, locale, product.currencyCode)}
             <span className="ms-2 text-base font-normal text-brand-muted">/ {product.unit}</span>
           </p>
         </div>
 
-        {product.description && (
+        {description && (
           <div className="space-y-2">
             <h2 className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">{copy.description}</h2>
-            <p className="text-base leading-8 text-brand-ink/90">{product.description}</p>
+            <p className="text-base leading-8 text-brand-ink/90">{description}</p>
           </div>
         )}
 
