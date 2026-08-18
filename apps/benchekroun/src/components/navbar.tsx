@@ -38,9 +38,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-30 border-b border-brand-line bg-brand-black/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link className="flex flex-col leading-tight" onClick={closeMenus} to="/">
+        <Link className="flex items-center leading-tight" onClick={closeMenus} to="/">
           <span className="font-display text-2xl font-semibold tracking-wide text-brand-gold">{copy.brandName}</span>
-          <span className="text-[11px] uppercase tracking-[0.35em] text-brand-muted">{copy.brandTagline}</span>
         </Link>
 
         {/* Desktop nav */}
