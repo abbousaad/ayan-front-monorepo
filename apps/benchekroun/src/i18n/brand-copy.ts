@@ -122,7 +122,7 @@ const ar: BrandCopy = {
   heroTitle: 'عبق الأصالة في كل خيط دخان',
   heroTitleLead: 'ما تتوارثه',
   heroTitleAccent: 'العائلات المغربية',
-  heroAccentLine: '«الإرث لا يُبتكر، الإرث يُصان.»',
+  heroAccentLine: '«الفخامة الحقيقية لا تُصنع، بل تُورَّث.»',
   heroSubtitle: 'مواد نبيلة، وصفات قديمة، وصنعة أهل الحرفة — مجموعة في دار واحدة.',
   heroCta: 'اكتشف المجموعة',
   heroCtaSecondary: 'قصة الدار',
