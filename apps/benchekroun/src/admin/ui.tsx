@@ -1,3 +1,4 @@
+import { createImageUrl } from '@acme/api-client';
 import { FiX } from 'react-icons/fi';
 
 import type { LocalizedInput } from './admin-api';
@@ -35,6 +36,41 @@ const LOCALES: { code: keyof LocalizedInput; label: string; dir?: 'rtl' }[] = [
   { code: 'fr', label: 'FR' },
   { code: 'ar', label: 'AR', dir: 'rtl' }
 ];
+
+export function ImagePicker({
+  currentImageUrl,
+  files,
+  onChange
+}: {
+  currentImageUrl?: string | null;
+  files: File[];
+  onChange: (files: File[]) => void;
+}) {
+  const previews = files.map((file) => URL.createObjectURL(file));
+
+  return (
+    <div className="space-y-2">
+      <span className={labelClass}>Images</span>
+      <div className="flex flex-wrap items-center gap-2">
+        {files.length > 0
+          ? previews.map((src, index) => (
+              <img alt="" className="h-16 w-16 rounded-lg border border-slate-200 object-cover" key={index} src={src} />
+            ))
+          : currentImageUrl && (
+              <img alt="" className="h-16 w-16 rounded-lg border border-slate-200 object-cover" src={createImageUrl(currentImageUrl)} />
+            )}
+      </div>
+      <input
+        accept="image/*"
+        className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-900 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-slate-700"
+        multiple
+        onChange={(event) => onChange(Array.from(event.target.files ?? []))}
+        type="file"
+      />
+      {files.length > 0 && <p className="text-xs text-slate-500">{files.length} new file(s) — replaces current on save.</p>}
+    </div>
+  );
+}
 
 type LocalizedFieldProps = {
   label: string;

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAdminAuth } from './admin-auth';
 import { createCategory, deleteCategory, updateCategory } from './admin-api';
 import type { CategoryInput, LocalizedInput } from './admin-api';
-import { EMPTY_LOCALIZED, LocalizedField, Modal, dangerBtn, ghostBtn, inputClass, labelClass, primaryBtn } from './ui';
+import { EMPTY_LOCALIZED, ImagePicker, LocalizedField, Modal, dangerBtn, ghostBtn, inputClass, labelClass, primaryBtn } from './ui';
 
 const toNameInput = (store: Store): LocalizedInput => ({
   en: store.nameLocalized?.en ?? store.name ?? '',
@@ -118,6 +118,7 @@ function CategoryForm({
   const [name, setName] = useState<LocalizedInput>(initial ? toNameInput(initial) : EMPTY_LOCALIZED);
   const [category, setCategory] = useState<StoreCategory>(initial?.category ?? STORE_CATEGORIES[0]);
   const [slug, setSlug] = useState(initial?.slug ?? '');
+  const [images, setImages] = useState<File[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -128,7 +129,7 @@ function CategoryForm({
     }
     setError(null);
     setBusy(true);
-    const payload: CategoryInput = { name, category, slug: slug.trim() };
+    const payload: CategoryInput = { name, category, slug: slug.trim(), images };
     try {
       if (initial) {
         await updateCategory(initial.id, payload, token);
@@ -160,6 +161,8 @@ function CategoryForm({
           <label className={labelClass} htmlFor="slug-input">Slug</label>
           <input className={inputClass} id="slug-input" onChange={(event) => setSlug(event.target.value)} required value={slug} />
         </div>
+
+        <ImagePicker currentImageUrl={initial?.imageUrl} files={images} onChange={setImages} />
 
         {error && <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p>}
 

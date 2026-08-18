@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAdminAuth } from './admin-auth';
 import { createProduct, deleteProduct, updateProduct } from './admin-api';
 import type { LocalizedInput, ProductInput } from './admin-api';
-import { EMPTY_LOCALIZED, LocalizedField, Modal, dangerBtn, ghostBtn, inputClass, labelClass, primaryBtn } from './ui';
+import { EMPTY_LOCALIZED, ImagePicker, LocalizedField, Modal, dangerBtn, ghostBtn, inputClass, labelClass, primaryBtn } from './ui';
 
 const toName = (product: Product): LocalizedInput => ({
   en: product.nameLocalized?.en ?? product.name ?? '',
@@ -138,6 +138,7 @@ function ProductForm({
   const [price, setPrice] = useState(String(initial?.price ?? ''));
   const [stock, setStock] = useState(String(initial?.stock ?? ''));
   const [unit, setUnit] = useState<ProductUnit>(initial?.unit ?? PRODUCT_UNITS[0]);
+  const [images, setImages] = useState<File[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -154,7 +155,8 @@ function ProductForm({
       description,
       price: Number(price),
       stock: Number(stock),
-      unit
+      unit,
+      images
     };
     try {
       if (initial) {
@@ -202,6 +204,8 @@ function ProductForm({
             </select>
           </div>
         </div>
+
+        <ImagePicker currentImageUrl={initial?.imageUrl} files={images} onChange={setImages} />
 
         {error && <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p>}
 
