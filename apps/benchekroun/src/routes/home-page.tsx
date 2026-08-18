@@ -58,9 +58,6 @@ export function HomePage() {
               <p className="mx-auto mt-6 max-w-md text-base leading-7 text-brand-ink/90 md:mx-0">
                 {copy.heroSubtitle}
               </p>
-              <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted md:mx-0">
-                {copy.heroBody}
-              </p>
               <p className="mt-6 font-display text-lg italic text-brand-gold-soft/90">{copy.heroAccentLine}</p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <a

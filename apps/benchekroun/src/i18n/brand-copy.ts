@@ -16,7 +16,6 @@ export type BrandCopy = {
   heroTitleAccent: string;
   heroAccentLine: string;
   heroSubtitle: string;
-  heroBody: string;
   heroCta: string;
   heroCtaSecondary: string;
   heroImageCaption: string;
@@ -125,8 +124,6 @@ const ar: BrandCopy = {
   heroTitleAccent: 'العائلات المغربية',
   heroAccentLine: '«الإرث لا يُبتكر، الإرث يُصان.»',
   heroSubtitle: 'مواد نبيلة، وصفات قديمة، وصنعة أهل الحرفة — مجموعة في دار واحدة.',
-  heroBody:
-    'دار بنشقرون تجمع ما تُعِدّه دور فاس والدار البيضاء منذ أجيال، بلا تحديث ولا اختصار. كل قطعة تُنتقى باليد وتُوزن وتُغلَّف قبل أن تصلك.',
   heroCta: 'اكتشف المجموعة',
   heroCtaSecondary: 'قصة الدار',
   heroImageCaption: 'سرغينة · بخور دار بنشقرون',
@@ -232,8 +229,6 @@ const fr: BrandCopy = {
   heroAccentLine: "« On n'invente pas un héritage. On le préserve. »",
   heroSubtitle:
     "Matières nobles, recettes anciennes, gestes d'artisans — réunis dans une seule maison.",
-  heroBody:
-    "Dar Benchekroun rassemble ce que les grandes maisons de Fès et de Casablanca préparent depuis des générations, sans rien moderniser ni raccourcir. Chaque pièce est choisie à la main, pesée et scellée avant de partir chez vous.",
   heroCta: 'Découvrir la collection',
   heroCtaSecondary: "L'histoire de la maison",
   heroImageCaption: 'Serghina · bakhour Dar Benchekroun',
