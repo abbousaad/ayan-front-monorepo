@@ -118,7 +118,7 @@ export type BrandCopy = {
 const ar: BrandCopy = {
   brandName: 'دار بنشقرون',
   brandTagline: 'بخور مغربي فاخر',
-  heroEyebrow: 'بخور مغربي أصيل · فاس',
+  heroEyebrow: 'أجود المواد · بذوق مغربي',
   heroTitle: 'عبق الأصالة في كل خيط دخان',
   heroTitleLead: 'ما تتوارثه',
   heroTitleAccent: 'العائلات المغربية',
@@ -222,7 +222,7 @@ const ar: BrandCopy = {
 const fr: BrandCopy = {
   brandName: 'Dar Benchekroun',
   brandTagline: "Encens marocain d'exception",
-  heroEyebrow: 'Parfumerie traditionnelle · Fès',
+  heroEyebrow: 'Les plus belles matières · le goût marocain',
   heroTitle: "L'authenticité dans chaque volute",
   heroTitleLead: 'Ce que les familles marocaines',
   heroTitleAccent: 'se transmettent',
