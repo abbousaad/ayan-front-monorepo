@@ -51,14 +51,17 @@ export function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-gold">
                 {copy.heroEyebrow}
               </p>
-              <h1 className="mt-6 font-display text-5xl font-bold leading-[1.08] sm:text-6xl">
+              <h1 className="mt-6 font-display text-4xl font-bold leading-[1.12] sm:text-5xl">
                 <span className="block text-brand-ink">{copy.heroTitleLead}</span>
                 <span className="block text-brand-gold">{copy.heroTitleAccent}</span>
               </h1>
-              <p className="mt-6 font-display text-lg italic text-brand-ink/90">{copy.heroAccentLine}</p>
-              <p className="mx-auto mt-4 max-w-md text-sm leading-8 text-brand-muted md:mx-0">
+              <p className="mx-auto mt-6 max-w-md text-base leading-7 text-brand-ink/90 md:mx-0">
                 {copy.heroSubtitle}
               </p>
+              <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-brand-muted md:mx-0">
+                {copy.heroBody}
+              </p>
+              <p className="mt-6 font-display text-lg italic text-brand-gold-soft/90">{copy.heroAccentLine}</p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <a
                   className="inline-flex min-h-12 items-center justify-center border border-brand-gold-dim/60 bg-brand-burgundy px-7 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"

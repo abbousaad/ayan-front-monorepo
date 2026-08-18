@@ -16,6 +16,7 @@ export type BrandCopy = {
   heroTitleAccent: string;
   heroAccentLine: string;
   heroSubtitle: string;
+  heroBody: string;
   heroCta: string;
   heroCtaSecondary: string;
   heroImageCaption: string;
@@ -120,11 +121,12 @@ const ar: BrandCopy = {
   brandTagline: 'بخور مغربي فاخر',
   heroEyebrow: 'بخور مغربي أصيل · فاس',
   heroTitle: 'عبق الأصالة في كل خيط دخان',
-  heroTitleLead: 'سرغينة مخزنية',
-  heroTitleAccent: 'تُروى بالبخور',
-  heroAccentLine: "L'art du bakhour marocain, façonné à la main.",
-  heroSubtitle:
-    'خلطات مخزنية عريقة من العنبر والمسك والعود، تُحضّر على النار الهادئة وفق وصفات توارثتها الأجيال في دار بنشقرون.',
+  heroTitleLead: 'ما تتوارثه',
+  heroTitleAccent: 'العائلات المغربية',
+  heroAccentLine: '«الإرث لا يُبتكر، الإرث يُصان.»',
+  heroSubtitle: 'مواد نبيلة، وصفات قديمة، وصنعة أهل الحرفة — مجموعة في دار واحدة.',
+  heroBody:
+    'دار بنشقرون تجمع ما تُعِدّه دور فاس والدار البيضاء منذ أجيال، بلا تحديث ولا اختصار. كل قطعة تُنتقى باليد وتُوزن وتُغلَّف قبل أن تصلك.',
   heroCta: 'اكتشف المجموعة',
   heroCtaSecondary: 'قصة الدار',
   heroImageCaption: 'سرغينة · بخور دار بنشقرون',
@@ -225,11 +227,13 @@ const fr: BrandCopy = {
   brandTagline: "Encens marocain d'exception",
   heroEyebrow: 'Parfumerie traditionnelle · Fès',
   heroTitle: "L'authenticité dans chaque volute",
-  heroTitleLead: "L'art du bakhour",
-  heroTitleAccent: 'façonné à la main',
-  heroAccentLine: 'Ambre, musc et oud — brûlés au feu doux.',
+  heroTitleLead: 'Ce que les familles marocaines',
+  heroTitleAccent: 'se transmettent',
+  heroAccentLine: "« On n'invente pas un héritage. On le préserve. »",
   heroSubtitle:
-    "Des compositions d'ambre, de musc et d'oud, brûlées au feu doux selon des recettes transmises de génération en génération chez Dar Benchekroun.",
+    "Matières nobles, recettes anciennes, gestes d'artisans — réunis dans une seule maison.",
+  heroBody:
+    "Dar Benchekroun rassemble ce que les grandes maisons de Fès et de Casablanca préparent depuis des générations, sans rien moderniser ni raccourcir. Chaque pièce est choisie à la main, pesée et scellée avant de partir chez vous.",
   heroCta: 'Découvrir la collection',
   heroCtaSecondary: "L'histoire de la maison",
   heroImageCaption: 'Serghina · bakhour Dar Benchekroun',
