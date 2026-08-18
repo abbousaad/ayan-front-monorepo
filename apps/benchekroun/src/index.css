@@ -38,9 +38,9 @@
    */
   --color-gold-ink: #c8a24a;
 
-  --font-display: "Cormorant Garamond", "Amiri", serif;
-  --font-display-ar: "Amiri", "Cormorant Garamond", serif;
-  --font-body: "Cairo", "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Reem Kufi", serif;
+  --font-display-ar: "Reem Kufi", "Cormorant Garamond", sans-serif;
+  --font-body: "Tajawal", "Inter", system-ui, sans-serif;
 }
 
 :root {
