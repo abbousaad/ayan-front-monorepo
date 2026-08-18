@@ -64,6 +64,10 @@ async function sendMultipart(path: string, method: string, token: string, form: 
     } catch {
       /* keep the default message */
     }
+    if (response.status === 401 || response.status === 403) {
+      message =
+        'Not authorized — creating/editing categories and products requires a superadmin account (check the role shown in the sidebar), or your session expired. Sign in again as a superadmin.';
+    }
     throw new Error(message);
   }
 
