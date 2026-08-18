@@ -61,7 +61,7 @@ export function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
                 <a
-                  className="inline-flex min-h-12 items-center justify-center bg-brand-gold px-7 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
+                  className="inline-flex min-h-12 items-center justify-center border border-brand-gold-dim/60 bg-brand-burgundy px-7 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black"
                   href="#collection"
                 >
                   {copy.heroCta}
@@ -104,7 +104,7 @@ export function HomePage() {
           <div className="rounded-[1.5rem] border border-brand-line bg-brand-charcoal p-10 text-center">
             <p className="text-brand-muted">{copy.productsError}</p>
             <button
-              className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft"
+              className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-burgundy px-6 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft"
               onClick={() => void loadStores()}
               type="button"
             >

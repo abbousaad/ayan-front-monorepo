@@ -53,14 +53,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         )}
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-1">
-          <p className="text-sm font-semibold text-gold-ink">
+          <p className="text-sm font-semibold text-brand-burgundy">
             {formatPrice(product.price, locale, product.currencyCode)}
             <span className="ms-1 text-xs font-medium text-brand-muted">/ {product.unit}</span>
           </p>
 
           <button
             aria-label={`${copy.addToCart}: ${product.name}`}
-            className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-full bg-brand-gold p-2.5 text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
+            className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-full bg-brand-burgundy p-2.5 text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
             disabled={soldOut}
             onClick={handleAddToCart}
             type="button"

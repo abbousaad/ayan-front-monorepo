@@ -72,7 +72,7 @@ export function ProductPage() {
 
   const backLink = (
     <Link
-      className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-gold-ink"
+      className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-brand-burgundy"
       to="/"
     >
       <FiChevronLeft aria-hidden="true" className="rtl:rotate-180" size={16} />
@@ -119,7 +119,7 @@ function ErrorPanel({ message, onRetry, retryLabel }: { message: string; onRetry
       <p className="text-brand-muted">{message}</p>
       {onRetry && retryLabel && (
         <button
-          className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft"
+          className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-burgundy px-6 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft"
           onClick={onRetry}
           type="button"
         >
@@ -156,7 +156,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-brand-ink">{product.name}</h1>
-          <p className="mt-4 text-2xl font-semibold text-gold-ink">
+          <p className="mt-4 text-2xl font-semibold text-brand-burgundy">
             {formatPrice(product.price, locale, product.currencyCode)}
             <span className="ms-2 text-base font-normal text-brand-muted">/ {product.unit}</span>
           </p>
@@ -177,7 +177,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
             <div className="flex items-center gap-2 rounded-full border border-brand-line bg-brand-charcoal p-1">
               <button
                 aria-label="−"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-gold-ink disabled:opacity-40"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-brand-burgundy disabled:opacity-40"
                 disabled={quantity <= 1}
                 onClick={() => setQuantity((current) => Math.max(1, current - 1))}
                 type="button"
@@ -187,7 +187,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
               <span className="w-10 text-center text-base font-semibold text-brand-ink">{quantity}</span>
               <button
                 aria-label="+"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-gold-ink"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-brand-burgundy"
                 onClick={() => setQuantity((current) => current + 1)}
                 type="button"
               >
@@ -197,7 +197,7 @@ function ProductDetail({ product, quantity, setQuantity, onAdd, copy, locale }: 
           </div>
 
           <button
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-gold px-6 text-base font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black disabled:opacity-50"
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-burgundy px-6 text-base font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black disabled:opacity-50"
             disabled={soldOut}
             onClick={onAdd}
             type="button"

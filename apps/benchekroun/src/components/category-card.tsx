@@ -32,7 +32,7 @@ export function CategoryCard({ store }: CategoryCardProps) {
       <div className="flex flex-col items-center gap-2 border-t border-brand-line p-3 text-center">
         <h3 className="font-display text-sm font-semibold leading-tight text-brand-ink">{store.name}</h3>
         <span className="gold-rule h-px w-8" />
-        <span className="inline-flex items-center gap-1 rounded-full border border-brand-gold-dim/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-gold-ink transition group-hover:border-brand-gold group-hover:bg-brand-gold group-hover:text-brand-black">
+        <span className="inline-flex items-center gap-1 rounded-full border border-brand-gold-dim/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-gold-ink transition group-hover:border-brand-burgundy group-hover:bg-brand-burgundy group-hover:text-brand-ivory">
           {copy.viewCategory}
           <FiArrowRight aria-hidden className="rtl:rotate-180" size={11} />
         </span>

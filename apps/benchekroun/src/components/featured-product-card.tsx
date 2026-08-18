@@ -61,11 +61,11 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2">
-          <span className="text-sm font-semibold text-gold-ink">
+          <span className="text-sm font-semibold text-brand-burgundy">
             {formatPrice(product.price, locale, product.currencyCode)}
           </span>
           <button
-            className="inline-flex min-h-9 items-center justify-center border border-brand-gold-dim px-3 text-[11px] font-semibold text-gold-ink transition hover:bg-brand-gold hover:text-brand-black focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
+            className="inline-flex min-h-9 items-center justify-center border border-brand-burgundy/50 px-3 text-[11px] font-semibold text-brand-burgundy transition hover:bg-brand-burgundy hover:text-brand-ivory focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal disabled:opacity-40"
             disabled={soldOut}
             onClick={handleAdd}
             type="button"

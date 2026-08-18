@@ -129,7 +129,7 @@ export function GuestCheckoutForm({ onSuccess }: GuestCheckoutFormProps) {
       )}
 
       <button
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-gold px-5 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black disabled:opacity-50"
+        className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-burgundy px-5 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black disabled:opacity-50"
         disabled={isSubmitting}
         type="submit"
       >

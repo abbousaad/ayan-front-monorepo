@@ -55,7 +55,7 @@ export function CheckoutCartSummary() {
 
                   <button
                     aria-label={`✕ ${item.name}`}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-gold-ink focus:outline-none focus:ring-2 focus:ring-brand-gold"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-muted transition hover:bg-brand-panel hover:text-brand-burgundy focus:outline-none focus:ring-2 focus:ring-brand-gold"
                     onClick={() => removeCartItem(item.productId)}
                     type="button"
                   >
@@ -71,7 +71,7 @@ export function CheckoutCartSummary() {
                     quantity={item.quantity}
                   />
 
-                  <p className="text-sm font-semibold text-gold-ink">{price(lineTotal, item.currencyCode)}</p>
+                  <p className="text-sm font-semibold text-brand-burgundy">{price(lineTotal, item.currencyCode)}</p>
                 </div>
               </div>
             </article>
@@ -94,7 +94,7 @@ function SummaryRow({ label, value, emphasize = false }: { label: string; value:
   return (
     <div className="flex items-center justify-between gap-3 text-sm text-brand-muted">
       <span>{label}</span>
-      <span className={emphasize ? 'text-lg font-semibold text-gold-ink' : 'font-semibold text-brand-ink'}>
+      <span className={emphasize ? 'text-lg font-semibold text-brand-burgundy' : 'font-semibold text-brand-ink'}>
         {value}
       </span>
     </div>

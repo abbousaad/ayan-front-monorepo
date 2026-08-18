@@ -71,7 +71,7 @@ export function OrderConfirmation({ order, onClose }: OrderConfirmationProps) {
               {total !== undefined && (
                 <div className="flex justify-between gap-4 border-t border-brand-line pt-3">
                   <dt className="text-brand-muted">{copy.total}</dt>
-                  <dd className="text-lg font-semibold text-gold-ink">{formatPrice(total, locale)}</dd>
+                  <dd className="text-lg font-semibold text-brand-burgundy">{formatPrice(total, locale)}</dd>
                 </div>
               )}
             </dl>
@@ -79,7 +79,7 @@ export function OrderConfirmation({ order, onClose }: OrderConfirmationProps) {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-black transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-gold"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-burgundy px-6 py-3 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold"
               to="/shop"
             >
               {copy.continueShopping}

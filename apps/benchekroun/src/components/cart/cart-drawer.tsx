@@ -93,7 +93,7 @@ export function CartDrawer() {
 
                 <div className="flex flex-col gap-3 pt-1 sm:flex-row">
                   <button
-                    className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand-gold px-5 py-3 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal"
+                    className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand-burgundy px-5 py-3 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-charcoal"
                     onClick={goToCheckout}
                     type="button"
                   >

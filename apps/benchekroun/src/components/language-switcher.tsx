@@ -19,7 +19,7 @@ export const LanguageSwitcher = () => {
             aria-pressed={isActive}
             className={`min-h-9 rounded-full px-3 text-sm font-medium transition ${
               isActive
-                ? 'bg-brand-gold text-brand-black'
+                ? 'bg-brand-burgundy text-brand-ivory'
                 : 'text-brand-muted hover:text-brand-ink'
             }`}
             onClick={() => {

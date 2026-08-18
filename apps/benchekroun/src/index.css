@@ -6,15 +6,29 @@
  * Placeholder token values — refine from the design artifact.
  */
 @theme {
-  --color-brand-black: #0b0a09;
-  --color-brand-charcoal: #141210;
-  --color-brand-panel: #1a1714;
-  --color-brand-gold: #c8a24a;
+  /*
+   * Andalusian heritage palette — deep emerald + burgundy on ivory, with gold
+   * as the fine-detail accent. The historically-named `brand-black/charcoal/
+   * panel` tokens now hold the EMERALD "mood" surface (nav, hero, about,
+   * footer, cart); `.surface-light` remaps them to IVORY for product zones.
+   */
+  --color-brand-black: #0c3a2b; /* deep emerald — primary mood ground */
+  --color-brand-charcoal: #0f4634; /* raised emerald card */
+  --color-brand-panel: #14543c; /* emerald inset well */
+  --color-brand-gold: #c8a24a; /* gold detail accent */
   --color-brand-gold-soft: #e6d08a;
   --color-brand-gold-dim: #8a6f34;
-  --color-brand-ink: #f5f0e6;
-  --color-brand-muted: #a89f8c;
-  --color-brand-line: #2a2621;
+  --color-brand-ink: #f4ecd8; /* warm ivory text on emerald */
+  --color-brand-muted: #9fb1a4; /* soft sage secondary text on emerald */
+  --color-brand-line: #245c45; /* emerald hairline */
+
+  /* Burgundy — primary buttons, prices, active/hover accents. */
+  --color-brand-burgundy: #7a1f2e;
+  --color-brand-burgundy-soft: #97313f; /* button hover */
+  /* Stable ivory for text sitting on burgundy/emerald fills — never remapped. */
+  --color-brand-ivory: #f4ecd8;
+  /* Emerald as accent text/icon on the ivory surface. */
+  --color-brand-emerald: #0e4531;
 
   /*
    * Gold used as TEXT (prices, eyebrows, links). Bright on the dark surface;
@@ -65,12 +79,12 @@ html[lang="ar"] .font-display {
 .surface-light {
   color-scheme: light;
   --color-brand-charcoal: #ffffff; /* cards — pure white so products pop */
-  --color-brand-panel: #efe7d6; /* inset wells, image backdrops */
-  --color-brand-line: #e3dccb; /* hairlines / borders */
-  --color-brand-ink: #221d15; /* primary text — warm near-black */
+  --color-brand-panel: #efe6d2; /* inset wells, image backdrops */
+  --color-brand-line: #e6ddc7; /* hairlines / borders */
+  --color-brand-ink: #22201a; /* primary text — warm near-black */
   --color-brand-muted: #6b6252; /* secondary text */
-  --color-gold-ink: #7c611f; /* deep gold, legible on bone (AA) */
-  background-color: #f6f1e7; /* warm bone page — NOT pure white */
+  --color-gold-ink: #7c611f; /* deep gold, legible on ivory (AA) */
+  background-color: #f7f1e3; /* warm ivory page */
   color: var(--color-brand-ink);
 }
 

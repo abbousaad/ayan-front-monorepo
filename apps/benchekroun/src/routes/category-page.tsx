@@ -53,7 +53,7 @@ export function CategoryPage() {
     <main className="surface-light min-h-screen">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <Link
-        className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-gold-ink"
+        className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-brand-muted transition hover:text-brand-burgundy"
         to="/#collection"
       >
         <FiChevronLeft aria-hidden className="rtl:rotate-180" size={16} />
@@ -78,7 +78,7 @@ export function CategoryPage() {
         <div className="rounded-[1.5rem] border border-brand-line bg-brand-charcoal p-10 text-center">
           <p className="text-brand-muted">{copy.productsError}</p>
           <button
-            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-gold px-6 text-sm font-semibold text-brand-black transition hover:bg-brand-gold-soft"
+            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-burgundy px-6 text-sm font-semibold text-brand-ivory transition hover:bg-brand-burgundy-soft"
             onClick={() => void load()}
             type="button"
           >

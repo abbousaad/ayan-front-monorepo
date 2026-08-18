@@ -45,7 +45,7 @@ export function FeaturedProducts() {
         <h2 className="mt-3 font-display text-3xl font-semibold text-brand-ink sm:text-4xl">{copy.featuredTitle}</h2>
         <div className="mx-auto mt-5 flex items-center justify-center gap-3">
           <span className="h-px w-16 bg-brand-gold-dim/60" />
-          <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand-gold" />
+          <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand-burgundy" />
           <span className="h-px w-16 bg-brand-gold-dim/60" />
         </div>
       </div>
