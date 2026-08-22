@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { AdminCategoriesPage } from './admin/categories-page';
+import { AdminCurrencyPage } from './admin/currency-page';
 import { AdminLayout } from './admin/admin-layout';
 import { AdminLoginPage } from './admin/login-page';
 import { AdminOrdersPage } from './admin/orders-page';
@@ -36,7 +37,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Navigate replace to="/admin/products" /> },
       { path: 'categories', element: <AdminCategoriesPage /> },
       { path: 'products', element: <AdminProductsPage /> },
-      { path: 'orders', element: <AdminOrdersPage /> }
+      { path: 'orders', element: <AdminOrdersPage /> },
+      { path: 'currency', element: <AdminCurrencyPage /> }
     ]
   }
 ]);

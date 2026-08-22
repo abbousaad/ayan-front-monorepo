@@ -1,12 +1,13 @@
-import { FiGrid, FiLogOut, FiPackage, FiShoppingBag } from 'react-icons/fi';
+import { FiDollarSign, FiGrid, FiLogOut, FiPackage, FiShoppingBag } from 'react-icons/fi';
 import { NavLink, Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 import { useAdminAuth } from './admin-auth';
 
 const navItems = [
-  { to: '/admin/categories', label: 'Categories', icon: FiGrid },
-  { to: '/admin/products', label: 'Products', icon: FiPackage },
-  { to: '/admin/orders', label: 'Orders', icon: FiShoppingBag }
+  { to: '/admin/categories', label: 'Categories', icon: FiGrid, superadminOnly: false },
+  { to: '/admin/products', label: 'Products', icon: FiPackage, superadminOnly: false },
+  { to: '/admin/orders', label: 'Orders', icon: FiShoppingBag, superadminOnly: false },
+  { to: '/admin/currency', label: 'Currency', icon: FiDollarSign, superadminOnly: true }
 ];
 
 export function AdminLayout() {
@@ -31,7 +32,9 @@ export function AdminLayout() {
         </div>
 
         <nav className="flex-1 space-y-1 p-3">
-          {navItems.map(({ to, label, icon: Icon }) => (
+          {navItems
+            .filter((item) => !item.superadminOnly || user?.role === 'superadmin')
+            .map(({ to, label, icon: Icon }) => (
             <NavLink
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition ${
