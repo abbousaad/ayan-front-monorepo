@@ -56,7 +56,7 @@ export function FeaturedProductCard({ product, categoryLabel }: FeaturedProductC
 
       <div className="flex flex-1 flex-col gap-2 border-t border-brand-line p-3 text-start">
         <div>
-          <h3 className="font-display text-base font-semibold leading-tight text-brand-ink">
+          <h3 className="font-card text-base font-semibold leading-tight text-brand-ink">
             <Link to={`/products/${product.id}`}>{name}</Link>
           </h3>
           {description && (

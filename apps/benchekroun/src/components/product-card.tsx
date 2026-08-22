@@ -51,7 +51,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       <div className="mt-3 flex flex-1 flex-col gap-2">
-        <h2 className="font-display text-lg font-semibold leading-6 text-brand-ink">{name}</h2>
+        <h2 className="font-card text-lg font-semibold leading-6 text-brand-ink">{name}</h2>
         {description && (
           <p className="line-clamp-2 text-xs leading-5 text-brand-muted">{description}</p>
         )}

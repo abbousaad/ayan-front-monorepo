@@ -68,6 +68,18 @@ html[lang="ar"] .font-display {
 }
 
 /*
+ * Card titles (product / category cards). Keep the Latin serif for FR, but use
+ * the clean Tajawal sans for Arabic — Reem Kufi's geometric Kufic is hard to
+ * read at small card sizes.
+ */
+.font-card {
+  font-family: var(--font-display);
+}
+html[lang="ar"] .font-card {
+  font-family: var(--font-body);
+}
+
+/*
  * Arabic is a cursive, connected script — Latin-style letter-spacing (Tailwind
  * `tracking-*`, used on eyebrows/taglines) breaks the joins and makes words
  * look split apart. Neutralise all tracking while the document is Arabic.
