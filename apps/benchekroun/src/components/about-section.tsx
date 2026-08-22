@@ -21,8 +21,12 @@ export function AboutSection() {
           <h2 className="mt-5 font-display text-4xl font-bold leading-tight text-brand-ink sm:text-5xl">
             {copy.aboutTitle}
           </h2>
-          <p className="mt-6 max-w-xl text-sm leading-8 text-brand-muted">{copy.aboutBody}</p>
-          <p className="mt-6 font-display text-lg italic text-brand-ink/80">{copy.aboutQuote}</p>
+          <div className="mt-6 max-w-xl space-y-4 text-sm leading-8 text-brand-muted">
+            {copy.aboutParagraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+          <p className="mt-6 font-display text-lg italic text-brand-gold-soft/90">{copy.aboutQuote}</p>
 
           <div className="mt-8 flex flex-wrap gap-10">
             <Stat label={copy.statFoundedLabel} value={copy.statFoundedValue} />

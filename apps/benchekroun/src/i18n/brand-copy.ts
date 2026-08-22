@@ -36,7 +36,7 @@ export type BrandCopy = {
   // about
   aboutEyebrow: string;
   aboutTitle: string;
-  aboutBody: string;
+  aboutParagraphs: string[];
   aboutQuote: string;
   aboutImageCaption: string;
   statFoundedValue: string;
@@ -140,13 +140,16 @@ const ar: BrandCopy = {
   featuredEyebrow: 'تشكيلتنا',
   featuredTitle: 'مجموعتنا المختارة',
   aboutEyebrow: 'قصتنا',
-  aboutTitle: 'من قلب فاس القديمة',
-  aboutBody:
-    'تأسست دار بنشقرون على إرثٍ عائلي في صناعة البخور والسرغينة المخزنية. نختار المكوّنات الطبيعية – العنبر والمسك والعود والصمغ العربي – ونمزجها يدويًا وفق موازين دقيقة توارثناها جيلًا بعد جيل.',
-  aboutQuote: "« Un parfum n'est pas fabriqué, il est raconté. »",
-  aboutImageCaption: 'atelier · hands over embers',
-  statFoundedValue: '1960',
-  statFoundedLabel: 'سنة التأسيس',
+  aboutTitle: 'إرثٌ نحمله، لا بضاعة نبيعها',
+  aboutParagraphs: [
+    'منذ أجيال، حافظت عائلة بنشقرون على وصفاتها كما تُحفظ الأمانة: تنتقل من يدٍ إلى يد، دون أن يُنقص منها شيء.',
+    'في بيوتنا، حين نستقبل من هو عزيزٌ على القلب، نُحسن إعداد الطعام… ثم نُتمّ الاستقبال برائحة تليق به. فالرائحة عندنا ليست تفصيلًا صغيرًا، بل هي ما يبقى في الذاكرة بعد أن ينصرف الضيف.',
+    'وصفاتنا موروثة عمّن سبقونا، ونحن لا نبيع منتجًا بقدر ما نمدّ لك طرفًا من هذا الإرث — ونحمل مسؤولية تسليمه كاملًا لمن يأتي بعدنا، دون اختصار ولا تبديل.'
+  ],
+  aboutQuote: '«الرائحة هي ما يبقى بعد أن ينصرف الضيف.»',
+  aboutImageCaption: 'قصتنا · دار بنشقرون',
+  statFoundedValue: '٤ أجيال',
+  statFoundedLabel: 'من التوارث',
   statNaturalValue: '100%',
   statNaturalLabel: 'مكوّنات طبيعية',
   statHandmadeValue: 'يدويًا',
@@ -245,17 +248,20 @@ const fr: BrandCopy = {
   featuredEyebrow: 'Notre collection',
   featuredTitle: 'Notre sélection',
   aboutEyebrow: 'Notre histoire',
-  aboutTitle: 'Au cœur de la médina de Fès',
-  aboutBody:
-    "Dar Benchekroun est née d'un héritage familial dans l'art du bakhour et de la serghina makhzania. Nous choisissons des ingrédients naturels – ambre, musc, oud et gomme arabique – que nous assemblons à la main selon des dosages précis transmis de génération en génération.",
-  aboutQuote: "« Un parfum n'est pas fabriqué, il est raconté. »",
-  aboutImageCaption: 'atelier · hands over embers',
-  statFoundedValue: '1960',
-  statFoundedLabel: 'Année de création',
+  aboutTitle: "Un héritage que l'on porte, pas une marchandise",
+  aboutParagraphs: [
+    "Depuis des générations, la famille Benchekroun garde ses recettes comme on garde un dépôt : elles passent d'une main à l'autre sans qu'on en retire rien.",
+    "Chez nous, quand on reçoit quelqu'un qui compte, on soigne la table… puis on achève l'accueil par une odeur qui lui fait honneur. Le parfum n'est pas un détail : c'est ce qui reste en mémoire une fois l'invité parti.",
+    "Nos recettes nous viennent de ceux qui nous ont précédés. Nous ne vendons pas un produit, nous vous tendons une part de cet héritage — avec la responsabilité de le transmettre intact à ceux qui viendront après nous."
+  ],
+  aboutQuote: "« Le parfum est ce qui reste quand l'invité est parti. »",
+  aboutImageCaption: 'Notre histoire · Dar Benchekroun',
+  statFoundedValue: '4',
+  statFoundedLabel: 'générations de transmission',
   statNaturalValue: '100%',
-  statNaturalLabel: 'Ingrédients naturels',
+  statNaturalLabel: 'ingrédients naturels',
   statHandmadeValue: 'À la main',
-  statHandmadeLabel: 'Entièrement',
+  statHandmadeLabel: 'préparation entièrement',
   contactEyebrow: 'Contact',
   contactTitle: 'Écrivez-nous',
   contactSubtitle: 'Pour toute question sur nos produits ou vos commandes, écrivez-nous.',
