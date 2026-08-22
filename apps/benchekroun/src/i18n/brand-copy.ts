@@ -143,7 +143,6 @@ const ar: BrandCopy = {
   aboutTitle: 'إرثٌ نحمله، لا بضاعة نبيعها',
   aboutParagraphs: [
     'منذ أجيال، حافظت عائلة بنشقرون على وصفاتها كما تُحفظ الأمانة: تنتقل من يدٍ إلى يد، دون أن يُنقص منها شيء.',
-    'في بيوتنا، حين نستقبل من هو عزيزٌ على القلب، نُحسن إعداد الطعام… ثم نُتمّ الاستقبال برائحة تليق به. فالرائحة عندنا ليست تفصيلًا صغيرًا، بل هي ما يبقى في الذاكرة بعد أن ينصرف الضيف.',
     'وصفاتنا موروثة عمّن سبقونا، ونحن لا نبيع منتجًا بقدر ما نمدّ لك طرفًا من هذا الإرث — ونحمل مسؤولية تسليمه كاملًا لمن يأتي بعدنا، دون اختصار ولا تبديل.'
   ],
   aboutQuote: '«الرائحة هي ما يبقى بعد أن ينصرف الضيف.»',
@@ -251,7 +250,6 @@ const fr: BrandCopy = {
   aboutTitle: "Un héritage que l'on porte, pas une marchandise",
   aboutParagraphs: [
     "Depuis des générations, la famille Benchekroun garde ses recettes comme on garde un dépôt : elles passent d'une main à l'autre sans qu'on en retire rien.",
-    "Chez nous, quand on reçoit quelqu'un qui compte, on soigne la table… puis on achève l'accueil par une odeur qui lui fait honneur. Le parfum n'est pas un détail : c'est ce qui reste en mémoire une fois l'invité parti.",
     "Nos recettes nous viennent de ceux qui nous ont précédés. Nous ne vendons pas un produit, nous vous tendons une part de cet héritage — avec la responsabilité de le transmettre intact à ceux qui viendront après nous."
   ],
   aboutQuote: "« Le parfum est ce qui reste quand l'invité est parti. »",
