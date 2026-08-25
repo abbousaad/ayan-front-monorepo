@@ -38,7 +38,7 @@ const PRODUCTS: LandingProduct[] = [
     actives: ['Urée', 'Niacinamide', 'Panthénol', 'Extrait de lavande'],
     benefits: ['Nettoie en profondeur', 'Élimine les impuretés', "Régule l'excès de sébum"],
     chips: [{ label: '200 ml · 6,76 fl.oz', solid: true }, { label: 'Tous types de peaux' }, { label: 'Matin et soir' }],
-    image: '/images/nettodive.png',
+    image: '/images/Nettodive.webp',
     cols: ['#E8F2F8', '#BEDCEC', '#6EB4D8', '#0E86C4'],
     ambiance: <AmbianceEau />
   },
@@ -54,7 +54,7 @@ const PRODUCTS: LandingProduct[] = [
     actives: ['Niacinamide', 'Acide hyaluronique', 'Panthénol', 'Centella asiatica', 'Vitamine E'],
     benefits: ['Protège contre le soleil', 'Éclaircit le teint', 'Prévient les taches et les ridules'],
     chips: [{ label: '50 ml · 1,67 fl.oz', solid: true }, { label: 'Anti-âge & anti-taches' }, { label: 'Tous types de peaux' }],
-    image: '/images/sundive.png',
+    image: '/images/Sundive.webp',
     cols: ['#FCEEDD', '#F6CE9C', '#EFA457', '#E67E28'],
     ambiance: <AmbianceSoleil />
   },
@@ -70,7 +70,7 @@ const PRODUCTS: LandingProduct[] = [
     actives: ['Niacinamide', 'Extrait de réglisse', 'Acide hyaluronique', 'Panthénol', 'Beurre de karité', 'Vitamine E'],
     benefits: ['Illumine et unifie le teint', 'Réduit les taches pigmentaires', "Améliore l'éclat de la peau"],
     chips: [{ label: '40 ml · 1,3 fl.oz', solid: true }, { label: 'Tous types de peaux' }, { label: 'Le soir' }],
-    image: '/images/ecladive.png',
+    image: '/images/Ecladive.webp',
     cols: ['#EEF0F2', '#CBD1D7', '#9AA4AE', '#6E7A86'],
     ambiance: <AmbianceEclat />
   }
@@ -78,9 +78,9 @@ const PRODUCTS: LandingProduct[] = [
 
 // Hero packs — bottoms aligned, heights to real scale (tallest = 200 ml bottle).
 const PACKS = [
-  { key: 'n', tag: 'Nettoyer', image: '/images/nettodive.png', cols: ['#E8F2F8', '#BEDCEC', '#6EB4D8', '#0E86C4'] },
-  { key: 's', tag: 'Protéger', image: '/images/sundive.png', cols: ['#FCEEDD', '#F6CE9C', '#EFA457', '#E67E28'] },
-  { key: 'e', tag: 'Corriger', image: '/images/ecladive.png', cols: ['#EEF0F2', '#CBD1D7', '#9AA4AE', '#6E7A86'] }
+  { key: 'n', tag: 'Nettoyer', image: '/images/Nettodive.webp', cols: ['#E8F2F8', '#BEDCEC', '#6EB4D8', '#0E86C4'] },
+  { key: 's', tag: 'Protéger', image: '/images/Sundive.webp', cols: ['#FCEEDD', '#F6CE9C', '#EFA457', '#E67E28'] },
+  { key: 'e', tag: 'Corriger', image: '/images/Ecladive.webp', cols: ['#EEF0F2', '#CBD1D7', '#9AA4AE', '#6E7A86'] }
 ] as const;
 
 const ROUTINE_STEPS = [
