@@ -506,4 +506,20 @@ section{position:relative}
   .rise{opacity:1;transform:none}
   .amb *{animation:none !important}
   .bubbles i,.spark{opacity:var(--o)}
+  .sun-full .sun__rays{animation:none !important}
+}
+
+/* ============================================================
+   SunDive — a single, complete sun disc sitting behind the tube.
+   Rendered inside the product .shot (not the section-wide .amb) so it
+   stays centred on the product in both the desktop and stacked layouts.
+   ============================================================ */
+.sun-backdrop{
+  position:absolute;inset:0;z-index:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--c);pointer-events:none;
+}
+.sun-full{
+  width:min(122%,560px);height:auto;opacity:.5;
+  transform:translateY(-3%);
 }

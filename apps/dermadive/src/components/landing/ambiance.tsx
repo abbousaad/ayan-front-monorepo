@@ -130,12 +130,24 @@ export function AmbianceEau() {
   );
 }
 
+// Section-wide warm wash for SunDive. The sun itself lives behind the product
+// (see SunBackdrop) so it reads as one complete disc rather than a clipped corner.
 export function AmbianceSoleil() {
   return (
     <div className="amb amb--soleil" aria-hidden="true">
       <span className="glow" />
       <span className="haze" />
-      <svg className="sun" viewBox="0 0 300 300" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+    </div>
+  );
+}
+
+// A single, complete sun centred behind the product tube. Rendered inside the
+// product `.shot` (behind the image) so it stays centred on the product in every
+// layout — desktop and stacked mobile.
+export function SunBackdrop() {
+  return (
+    <div className="sun-backdrop" aria-hidden="true">
+      <svg className="sun-full" viewBox="0 0 300 300" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
         <circle cx="150" cy="150" r="66" />
         <g className="sun__rays">
           {SUN_RAYS.map(([x1, y1, x2, y2]) => (

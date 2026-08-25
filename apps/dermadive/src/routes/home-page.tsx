@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AmbianceEau, AmbianceEclat, AmbianceSoleil } from '../components/landing/ambiance';
+import { AmbianceEau, AmbianceEclat, AmbianceSoleil, SunBackdrop } from '../components/landing/ambiance';
 import { useReveal } from '../hooks/use-reveal';
 
 type ProductChip = { label: string; solid?: boolean };
@@ -21,6 +21,7 @@ type LandingProduct = {
   image: string;
   cols: [string, string, string, string];
   ambiance: ReactNode;
+  shotBackdrop?: ReactNode;
 };
 
 // The three products, lifted from the design. Each carries the stepped colour
@@ -56,7 +57,8 @@ const PRODUCTS: LandingProduct[] = [
     chips: [{ label: '50 ml · 1,67 fl.oz', solid: true }, { label: 'Anti-âge & anti-taches' }, { label: 'Tous types de peaux' }],
     image: '/images/Sundive.webp',
     cols: ['#FCEEDD', '#F6CE9C', '#EFA457', '#E67E28'],
-    ambiance: <AmbianceSoleil />
+    ambiance: <AmbianceSoleil />,
+    shotBackdrop: <SunBackdrop />
   },
   {
     id: 'ecladive',
@@ -219,6 +221,7 @@ export function HomePage() {
                       <i key={color} style={{ background: color }} />
                     ))}
                   </div>
+                  {product.shotBackdrop}
                   <img src={product.image} alt={product.name} />
                 </div>
 
