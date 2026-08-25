@@ -1,0 +1,509 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DERMADIVE — Tailwind theme tokens
+   Exposes the brand palette + type to Tailwind utilities so the
+   storefront components (cart, shop, product, checkout) can use
+   bg-papier / text-encre / font-display etc. The bespoke landing
+   below drives everything through the authored classes instead.
+   ============================================================ */
+@theme {
+  --color-encre: #231f20;
+  --color-encre-70: #5b5758;
+  --color-encre-45: #8b8788;
+  --color-papier: #f4f5f7;
+  --color-blanc: #ffffff;
+  --color-brume: #dde0e5;
+
+  --color-argent: #6e7a86;
+  --color-argent-fonce: #48525c;
+  --color-argent-clair: #a9b3bd;
+  --color-soleil: #e67e28;
+  --color-soleil-fonce: #c25a18;
+  --color-onde: #0e86c4;
+  --color-onde-fonce: #0a5f8c;
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Karla", "Helvetica Neue", Arial, sans-serif;
+  --font-data: "Martian Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* ============================================================
+   DERMADIVE — tokens
+   Palette derived from the packaging itself:
+   each product carries a stepped colour column on its tube.
+   ============================================================ */
+:root{
+  --encre:#231F20;         /* logo ink */
+  --encre-70:#5B5758;
+  --encre-45:#8B8788;
+  --papier:#F4F5F7;        /* cool porcelain, the pack backdrop */
+  --blanc:#FFFFFF;
+  --brume:#DDE0E5;         /* hairlines */
+
+  --argent:#6E7A86;        /* EclaDive */
+  --argent-fonce:#48525C;
+  --argent-clair:#A9B3BD;   /* EclaDive on the dark section */
+  --soleil:#E67E28;        /* SunDive  */
+  --soleil-fonce:#C25A18;
+  --onde:#0E86C4;          /* NettoDive */
+  --onde-fonce:#0A5F8C;
+
+  --accent:var(--encre);
+  --accent-fonce:var(--encre);
+
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --corps:'Karla','Helvetica Neue',Arial,sans-serif;
+  --data:'Martian Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+
+  --rail:76px;
+  --gouttiere:clamp(20px,5vw,72px);
+  --max:1240px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--papier);color:var(--encre);
+  font-family:var(--corps);font-weight:400;font-size:clamp(15px,1.05vw,17px);
+  line-height:1.62;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent-fonce);outline-offset:3px;border-radius:2px}
+
+/* --- type roles --- */
+.eyebrow{
+  font-family:var(--data);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--encre-45);
+}
+h1,h2,h3,.display{
+  font-family:var(--display);font-stretch:115%;
+  font-variation-settings:'wdth' 115,'wght' 600;
+  font-weight:600;letter-spacing:-.004em;line-height:1.04;
+  text-transform:uppercase;margin:0;text-wrap:balance;
+}
+h1{font-size:clamp(1.75rem,3.5vw,3.15rem);line-height:1.02}
+h2{font-size:clamp(1.5rem,2.9vw,2.5rem)}
+h3{font-size:clamp(1.1rem,1.8vw,1.4rem)}
+.lede{font-size:clamp(1rem,1.35vw,1.19rem);color:var(--encre-70);max-width:46ch}
+
+/* ============================================================
+   SIGNATURE — the stepped colour column lifted off the tubes,
+   turned into the page's scroll spine.
+   ============================================================ */
+.spine{
+  position:fixed;top:0;left:0;width:var(--rail);height:100vh;
+  z-index:40;display:flex;flex-direction:column;
+  border-right:1px solid var(--brume);background:var(--blanc);
+  padding:calc(76px + 18px) 0 18px;
+}
+.spine__step{
+  flex:1;position:relative;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:14px;color:var(--encre-45);
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  transition:color .5s ease;
+}
+.spine__step::before{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);
+  top:10px;bottom:10px;width:10px;border-radius:1px;
+  background:var(--c);opacity:.22;
+  transition:opacity .55s ease,width .55s cubic-bezier(.2,.8,.2,1);
+}
+.spine__step.is-on{color:var(--encre)}
+.spine__step.is-on::before{width:28px;opacity:1}
+.spine__mark{
+  position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  font-family:var(--data);font-size:9px;letter-spacing:.14em;color:var(--encre-45);
+}
+
+/* mobile version of the spine: a 3-segment bar under the header */
+.spine-m{
+  display:none;position:fixed;top:60px;left:0;right:0;height:4px;z-index:39;
+  background:var(--brume);
+}
+.spine-m span{
+  display:block;height:100%;width:0;background:var(--c,var(--encre));
+  transition:width .4s ease,background .4s ease;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-head{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:76px;
+  display:flex;align-items:center;gap:24px;
+  padding:0 var(--gouttiere) 0 calc(var(--rail) + var(--gouttiere));
+  background:rgba(244,245,247,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--brume);
+}
+.site-head__logo img{height:19px;width:auto}
+.site-nav{margin-left:auto;display:flex;gap:clamp(16px,2.4vw,34px);align-items:center}
+.site-nav a{
+  font-family:var(--data);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--encre-70);padding:6px 0;position:relative;
+}
+.site-nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--encre);transition:right .35s ease;
+}
+.site-nav a:hover::after{right:0}
+
+/* ============================================================
+   Layout shell
+   ============================================================ */
+.shell{padding-left:var(--rail)}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gouttiere)}
+section{position:relative}
+
+/* ============================================================
+   HERO — the thesis: three packs, each standing in its own
+   colour column. Bottoms aligned, heights to real scale.
+   ============================================================ */
+.hero{padding:calc(76px + clamp(40px,5.5vw,76px)) 0 0;background:var(--blanc)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,4vw,56px);align-items:end}
+.hero__copy{padding-bottom:clamp(36px,5vw,76px);max-width:34em}
+.hero h1{margin:14px 0 20px}
+.hero h1 em{
+  font-style:normal;display:block;margin-top:.14em;
+  font-size:.66em;font-stretch:100%;
+  font-variation-settings:'wdth' 100,'wght' 400;font-weight:400;
+  color:var(--encre-70);letter-spacing:.005em;line-height:1.14;
+}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--data);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 22px;border:1px solid var(--encre);background:var(--encre);color:var(--blanc);
+  transition:background .3s ease,color .3s ease,transform .3s ease;
+}
+.btn:hover{background:var(--blanc);color:var(--encre);transform:translateY(-2px)}
+.btn--ghost{background:transparent;color:var(--encre);border-color:var(--brume)}
+.btn--ghost:hover{background:var(--encre);color:var(--blanc);border-color:var(--encre)}
+
+.packs{display:flex;align-items:flex-end;justify-content:center;gap:clamp(4px,1.4vw,20px);position:relative}
+.pack{position:relative;display:flex;align-items:flex-end;justify-content:center;flex:1}
+.pack__col{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:min(94%,124px);z-index:0;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 26%);
+}
+.pack__col i{display:block;height:clamp(30px,5.2vh,54px)}
+.pack img{position:relative;z-index:1;filter:drop-shadow(0 26px 34px rgba(35,31,32,.16))}
+.pack--n img{height:clamp(250px,46vh,500px)}
+.pack--e img{height:clamp(227px,41.7vh,454px)}
+.pack--s img{height:clamp(188px,34.6vh,377px)}
+.pack__tag{
+  position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  white-space:nowrap;color:var(--encre-45);
+}
+.hero__meta{
+  border-top:1px solid var(--brume);margin-top:clamp(28px,4vw,48px);
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.hero__meta div{padding:20px 0 26px;border-left:1px solid var(--brume)}
+.hero__meta div:first-child{border-left:0}
+.hero__meta strong{
+  display:block;font-family:var(--display);font-variation-settings:'wdth' 112,'wght' 600;
+  font-size:clamp(1.1rem,1.7vw,1.35rem);text-transform:uppercase;margin-bottom:4px;
+}
+.hero__meta span{font-size:.86rem;color:var(--encre-70)}
+
+/* ============================================================
+   ROUTINE — the order is real information, so it is numbered.
+   ============================================================ */
+.routine{padding:clamp(64px,9vw,128px) 0;background:var(--papier)}
+.routine__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--encre)}
+.step{padding:26px 24px 30px 0;border-right:1px solid var(--brume);position:relative}
+.step:last-child{border-right:0}
+.step::before{
+  content:"";position:absolute;top:-1px;left:0;height:3px;width:0;background:var(--c);
+  transition:width .9s cubic-bezier(.2,.8,.2,1);
+}
+.step.is-in::before{width:calc(100% - 24px)}
+.step__no{font-family:var(--data);font-size:10px;letter-spacing:.14em;color:var(--c);font-weight:600}
+.step__verb{
+  font-family:var(--display);font-variation-settings:'wdth' 120,'wght' 600;
+  font-size:clamp(1.35rem,2.6vw,2rem);text-transform:uppercase;margin:10px 0 4px;line-height:1;
+}
+.step__when{font-family:var(--data);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--encre-45)}
+.step p{margin:14px 0 0;font-size:.94rem;color:var(--encre-70);max-width:34ch}
+
+/* ============================================================
+   PRODUCT SECTIONS
+   ============================================================ */
+.produit{padding:clamp(64px,9vw,124px) 0;background:var(--blanc);border-top:1px solid var(--brume)}
+.produit:nth-of-type(even){background:var(--papier)}
+.produit__grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.produit--flip .produit__grid{direction:rtl}
+.produit--flip .produit__grid > *{direction:ltr}
+
+.shot{position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:clamp(300px,46vh,540px)}
+.shot__col{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:clamp(120px,17vw,190px);z-index:0;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 26%);
+}
+.shot__col i{display:block;height:clamp(34px,5.6vh,56px)}
+.shot img{position:relative;z-index:1;height:clamp(280px,44vh,520px);filter:drop-shadow(0 30px 40px rgba(35,31,32,.18))}
+
+.produit__no{
+  font-family:var(--data);font-size:10px;letter-spacing:.16em;color:var(--c);font-weight:600;
+  display:flex;align-items:center;gap:10px;
+}
+.produit__no::after{content:"";flex:1;height:1px;background:var(--brume);max-width:90px}
+.produit h2{margin:14px 0 6px;font-variation-settings:'wdth' 122,'wght' 600;text-transform:none}
+.produit__type{
+  font-family:var(--display);font-variation-settings:'wdth' 104,'wght' 500;
+  font-size:clamp(.95rem,1.5vw,1.15rem);text-transform:uppercase;letter-spacing:.03em;
+  color:var(--c-fonce);
+}
+.produit__desc{margin:20px 0 0;color:var(--encre-70);max-width:44ch}
+
+/* the coloured actif band, lifted straight from the tube */
+.actifs-band{
+  margin:26px 0 0;padding:13px 18px;background:var(--c);color:#fff;
+  display:flex;flex-wrap:wrap;gap:6px 22px;max-width:46ch;
+}
+.actifs-band span{
+  font-style:italic;font-weight:600;font-size:.88rem;letter-spacing:.01em;
+}
+
+
+.benefices{list-style:none;margin:26px 0 0;padding:0;max-width:44ch}
+.benefices li{
+  display:flex;gap:14px;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--brume);font-size:.95rem;
+}
+.benefices li::before{
+  content:"";flex:0 0 auto;width:7px;height:7px;background:var(--c);
+  transform:translateY(-1px);
+}
+.produit__pied{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
+.chip{
+  font-family:var(--data);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 12px;border:1px solid var(--brume);color:var(--encre-70);
+}
+.chip--solid{background:var(--c);border-color:var(--c);color:#fff}
+
+
+/* ============================================================
+   AMBIANCES — each section borrows the motif printed on its own
+   tube: bubbles + lavande (NettoDive), soleil (SunDive),
+   étoiles d'éclat (EclaDive).
+   ============================================================ */
+.produit{overflow:hidden}
+.produit > .wrap{position:relative;z-index:2}
+.amb{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;color:var(--c)}
+.amb .glow{
+  position:absolute;inset:-10% -20%;
+  background:radial-gradient(58% 62% at var(--gx,50%) var(--gy,42%),
+    color-mix(in srgb,var(--c) 26%,transparent) 0%,
+    color-mix(in srgb,var(--c) 8%,transparent) 42%, transparent 72%);
+}
+
+/* --- NettoDive : eau, bulles, lavande --- */
+.amb--eau{--gx:38%;--gy:66%}
+.amb--eau .waves{
+  position:absolute;left:-5%;bottom:-2%;width:110%;height:clamp(150px,26vw,300px);
+  opacity:.26;animation:drift 26s ease-in-out infinite alternate;
+  -webkit-mask-image:linear-gradient(to right,#000 0 44%,rgba(0,0,0,.4) 66%,transparent 92%);
+  mask-image:linear-gradient(to right,#000 0 44%,rgba(0,0,0,.4) 66%,transparent 92%);
+}
+.bubbles{position:absolute;inset:0}
+.bubbles i{
+  position:absolute;left:var(--x);bottom:-16%;width:var(--s);height:var(--s);
+  border-radius:50%;opacity:0;
+  border:1.4px solid color-mix(in srgb,var(--c) 62%,transparent);
+  background:radial-gradient(38% 34% at 32% 30%,
+    color-mix(in srgb,#fff 92%,transparent) 0%, transparent 62%),
+    radial-gradient(circle at 50% 50%,
+    color-mix(in srgb,var(--c) 9%,transparent) 0%, transparent 70%);
+  animation:rise var(--t) linear var(--d) infinite;
+}
+.lav-wrap{position:absolute;bottom:-2%;color:var(--c);opacity:.34;transform-origin:50% 100%}
+.lav-wrap .lav{width:100%;height:auto;display:block}
+.lav-wrap--a{left:1%;width:clamp(56px,7vw,104px);opacity:.4;animation:sway 9s ease-in-out infinite}
+.lav-wrap--b{left:7.5%;width:clamp(40px,5vw,74px);opacity:.26;animation:sway 11.5s ease-in-out -3s infinite}
+.lav-wrap--c{right:2%;width:clamp(46px,6vw,88px);opacity:.15;animation:sway 13s ease-in-out -6s infinite}
+
+/* --- SunDive : chaleur et rayons --- */
+.amb--soleil{--gx:76%;--gy:24%}
+.amb--soleil .haze{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,
+    color-mix(in srgb,var(--c) 13%,transparent) 0%,
+    transparent 46%,
+    color-mix(in srgb,var(--c) 7%,transparent) 100%);
+}
+.amb--soleil .sun{
+  position:absolute;top:clamp(-38px,-2vw,-8px);right:clamp(-60px,2vw,40px);
+  width:clamp(260px,34vw,520px);height:auto;opacity:.3;
+}
+.sun__rays{transform-origin:150px 150px;animation:turn 68s linear infinite}
+
+/* --- EclaDive : éclat --- */
+#ecladive{background:#EAECF0}
+.amb--eclat{--gx:29%;--gy:48%}
+.amb--eclat .glow{
+  background:
+    radial-gradient(30% 46% at 29% 48%, #FFFFFF 0%, rgba(255,255,255,.72) 34%, transparent 68%),
+    radial-gradient(52% 60% at 29% 48%, rgba(255,246,235,.85) 0%, transparent 62%),
+    radial-gradient(70% 78% at 62% 34%, rgba(110,122,134,.14) 0%, transparent 70%);
+}
+.amb--eclat .burst{
+  position:absolute;top:50%;left:29%;transform:translate(-50%,-50%);
+  width:clamp(360px,44vw,760px);height:auto;color:#FFFFFF;opacity:.92;
+  filter:blur(1.1px);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 26%,rgba(0,0,0,.45) 58%,transparent 82%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 26%,rgba(0,0,0,.45) 58%,transparent 82%);
+}
+.burst__g{transform-origin:200px 200px;animation:turn 96s linear infinite}
+.amb--eclat .beam{
+  position:absolute;top:-30%;left:16%;width:34%;height:160%;
+  transform:rotate(15deg);
+  background:linear-gradient(90deg,transparent,
+    rgba(255,255,255,.95) 30%, rgba(255,250,242,.7) 60%, transparent);
+  filter:blur(30px);
+  animation:breathe 12s ease-in-out infinite;
+}
+.sparks{position:absolute;inset:0}
+.spark{
+  position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);
+  color:#FFFFFF;opacity:var(--o);
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 1px 1px rgba(72,82,92,.28));
+  animation:twinkle var(--t) ease-in-out var(--d) infinite;
+}
+
+@keyframes rise{
+  0%{opacity:0;transform:translate3d(0,0,0) scale(.85)}
+  12%{opacity:var(--o)}
+  80%{opacity:var(--o)}
+  100%{opacity:0;transform:translate3d(18px,-115vh,0) scale(1.08)}
+}
+@keyframes sway{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
+@keyframes drift{0%{transform:translateX(-2%)}100%{transform:translateX(2%)}}
+@keyframes turn{to{transform:rotate(360deg)}}
+@keyframes twinkle{
+  0%,100%{opacity:calc(var(--o) * .3);transform:scale(.62) rotate(0deg)}
+  50%{opacity:var(--o);transform:scale(1.05) rotate(45deg)}
+}
+@keyframes breathe{0%,100%{opacity:.5}50%{opacity:.85}}
+
+/* ============================================================
+   MATRICE DES ACTIFS
+   ============================================================ */
+.actifs{padding:clamp(64px,9vw,124px) 0;background:var(--encre);color:var(--papier);border-top:1px solid var(--encre)}
+.actifs .eyebrow{color:rgba(244,245,247,.5)}
+.actifs h2{color:var(--blanc);margin:14px 0 18px}
+.actifs__head{max-width:56ch;margin-bottom:clamp(34px,4.5vw,56px)}
+.actifs p{color:rgba(244,245,247,.68)}
+.matrice{width:100%;border-collapse:collapse;font-size:.92rem}
+.matrice th,.matrice td{text-align:left;padding:14px 10px;border-bottom:1px solid rgba(244,245,247,.16)}
+.matrice thead th{
+  font-family:var(--data);font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(244,245,247,.6);vertical-align:bottom;padding-bottom:12px;
+}
+.matrice thead th:not(:first-child){text-align:center;width:15%}
+.matrice tbody th{font-weight:400;color:var(--papier)}
+.matrice td{text-align:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c)}
+.dot--off{width:10px;height:1px;border-radius:0;background:rgba(244,245,247,.24);vertical-align:middle}
+.matrice tbody tr.is-common th{font-weight:600}
+.matrice tbody tr.is-common{background:rgba(244,245,247,.045)}
+.matrice__note{margin-top:18px;font-family:var(--data);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,245,247,.45)}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-foot{background:var(--blanc);padding:clamp(52px,7vw,88px) 0 30px}
+.foot__grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,.7fr));gap:36px}
+.foot__logo img{height:clamp(30px,3.4vw,46px);width:auto;margin-bottom:18px}
+.foot__logo p{margin:0;font-size:.9rem;color:var(--encre-70);max-width:34ch}
+.foot__grid h4{
+  font-family:var(--data);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--encre-45);margin:0 0 14px;font-weight:500;
+}
+.foot__grid ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot__grid li a{font-size:.92rem;color:var(--encre-70);transition:color .25s ease}
+.foot__grid li a:hover{color:var(--encre)}
+.foot__bas{
+  margin-top:clamp(36px,5vw,64px);padding-top:22px;border-top:1px solid var(--brume);
+  display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;
+  font-family:var(--data);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--encre-45);
+}
+
+/* ============================================================
+   Reveal
+   ============================================================ */
+.rise{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rise.is-in{opacity:1;transform:none}
+.rise[data-d="1"]{transition-delay:.08s}
+.rise[data-d="2"]{transition-delay:.16s}
+.rise[data-d="3"]{transition-delay:.24s}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width:1020px){
+  .hero__grid{grid-template-columns:1fr}
+  .hero__copy{padding-bottom:24px}
+  .produit__grid{grid-template-columns:1fr;gap:36px}
+  .produit--flip .produit__grid{direction:ltr}
+  .shot{min-height:auto;order:-1}
+}
+@media (max-width:1020px){
+  /* stacked layout: the light should sit behind the pack, which is now centred */
+  .amb--eclat{--gx:50%;--gy:26%}
+  .amb--eclat .burst{left:50%;top:28%}
+  .amb--eclat .glow{
+    background:
+      radial-gradient(34% 26% at 50% 26%,#FFFFFF 0%,rgba(255,255,255,.7) 36%,transparent 70%),
+      radial-gradient(58% 40% at 50% 26%,rgba(255,246,235,.8) 0%,transparent 64%),
+      radial-gradient(80% 60% at 50% 70%,rgba(110,122,134,.13) 0%,transparent 72%);
+  }
+  .amb--eclat .beam{left:26%;width:46%}
+  .amb--eau{--gx:50%;--gy:30%}
+  .amb--eau .waves{
+    -webkit-mask-image:none;mask-image:none;opacity:.2;
+  }
+  .amb--soleil{--gx:50%;--gy:20%}
+  .amb--soleil .sun{right:auto;left:50%;transform:translateX(-42%);top:clamp(-30px,-2vw,0px)}
+}
+@media (max-width:820px){
+  :root{--rail:0px}
+  .spine{display:none}
+  .spine-m{display:block}
+  .site-head{height:60px;padding-inline:var(--gouttiere)}
+  .site-head__logo img{height:16px}
+  .site-nav{gap:16px}
+  .hero{padding-top:calc(60px + 44px)}
+  .steps{grid-template-columns:1fr;border-top:0}
+  .step{border-right:0;border-top:1px solid var(--brume);padding:22px 0 26px}
+  .step.is-in::before{width:64px}
+  .routine__head{grid-template-columns:1fr;gap:18px}
+  .hero__meta{grid-template-columns:1fr}
+  .hero__meta div{border-left:0;border-top:1px solid var(--brume);padding:16px 0}
+  .hero__meta div:first-child{border-top:0}
+  .foot__grid{grid-template-columns:1fr 1fr}
+  .matrice th,.matrice td{padding:12px 6px;font-size:.85rem}
+}
+@media (max-width:560px){
+  .site-nav a:nth-child(3){display:none}
+  .packs{gap:2px}
+  .pack__tag{display:none}
+  .foot__grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important}
+  .rise{opacity:1;transform:none}
+  .amb *{animation:none !important}
+  .bubbles i,.spark{opacity:var(--o)}
+}
