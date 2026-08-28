@@ -141,19 +141,24 @@ export function AmbianceSoleil() {
   );
 }
 
-// A single, complete sun centred behind the product tube. Rendered inside the
-// product `.shot` (behind the image) so it stays centred on the product in every
-// layout — desktop and stacked mobile.
+// SPF protection motif behind the product tube: a sunrise (rays, no disc) with a
+// protective shield at the centre. Rendered inside the product `.shot` (behind
+// the image) so it stays centred on the product in every layout. The rays rotate
+// slowly; the shield stays put.
 export function SunBackdrop() {
   return (
     <div className="sun-backdrop" aria-hidden="true">
-      <svg className="sun-full" viewBox="0 0 300 300" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-        <circle cx="150" cy="150" r="66" />
-        <g className="sun__rays">
+      <svg className="sun-full" viewBox="0 0 300 300" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+        <g className="sun__rays" strokeWidth="2.2">
           {SUN_RAYS.map(([x1, y1, x2, y2]) => (
             <line key={`${x1}-${y1}`} x1={x1} y1={y1} x2={x2} y2={y2} />
           ))}
         </g>
+        <path
+          className="shield"
+          strokeWidth="2.4"
+          d="M150 78 C180 94 214 100 240 100 L240 156 C240 208 205 244 150 268 C95 244 60 208 60 156 L60 100 C86 100 120 94 150 78 Z"
+        />
       </svg>
     </div>
   );
